@@ -1,0 +1,40 @@
+# ============================================================
+# SPARC-NP v1.0 依赖
+#
+# 【两台机器的分工】
+#   树莓派 (aarch64)：只做规范、数据盘点与精确算术分析。
+#                     只需 numpy + PyYAML（本文件的"核心"段）。
+#   CUDA 服务器：      跑完整管线，装下面全部。
+#
+# 服务器安装建议（rdkit 用 conda 更省事）：
+#   conda create -n sparc python=3.11
+#   conda activate sparc
+#   conda install -c conda-forge rdkit=2024.03.*
+#   pip install torch --index-url https://download.pytorch.org/whl/cu121
+#   pip install -r requirements.txt
+#   pip install -e .
+# ============================================================
+
+# ---- 核心（两台机器都要） ----
+numpy>=1.24
+PyYAML>=6.0
+
+# ---- 训练（仅服务器） ----
+torch>=2.2
+transformers>=4.40          # Model A (MoLFormer/ChemBERTa) 与 ESM-2
+safetensors>=0.4
+
+# ---- 基线与统计（仅服务器） ----
+scikit-learn>=1.3           # ECFP4+RF / SVR，§7.4 的必备基线
+matplotlib>=3.7             # Figure 1 / Figure 2
+
+# ---- 化学（仅服务器；aarch64 上不要装） ----
+rdkit>=2024.03.1
+
+# ---- 可选 ----
+# hnswlib>=0.8              # Model A embedding 源的 ANN 加速；缺失时自动降级为精确检索
+# torch-geometric>=2.5      # 仅 MolCLR 适配器需要
+# tqdm>=4.66
+
+# ---- 开发 ----
+pytest>=8.0

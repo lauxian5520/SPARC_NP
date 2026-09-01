@@ -1,0 +1,7455 @@
+spec_version: 1.0.0
+generated_by: scripts/run_s0_data.py
+note: 由 Stage 0 生成。R4–R8 的淘汰数为实测值，method.md §3.1 明确规定不预填猜测值。targets 段只含通过 R1–R3 的靶点与
+  Tier-X 反例（≥50 化合物）；全部 8,764 个 target_id 的淘汰计数见 summary.eliminated_by_rule。
+summary:
+  n_targets_input: 8764
+  eliminated_by_rule:
+    R1_target_type: 4460
+    R7_no_sequence: 8685
+    R3_too_few_compounds: 8520
+    R8_no_tax_id: 241
+    R5_ortholog_redundant: 1865
+    R4_censored_frac: 551
+    R6_label_variance_degenerate: 6518
+    factE_transporter_panel: 3
+  n_ortholog_groups: 6899
+  ortholog_groups_with_merges:
+    OG_NPT1:
+    - NPT1
+    - NPT29112
+    OG_NPT100:
+    - NPT100
+    - NPT29547
+    OG_NPT1010:
+    - NPT1000
+    - NPT1001
+    - NPT1004
+    - NPT1007
+    - NPT1009
+    - NPT1010
+    - NPT1325
+    - NPT1326
+    - NPT1402
+    - NPT1408
+    - NPT1409
+    - NPT1411
+    - NPT28377
+    - NPT28518
+    - NPT28619
+    - NPT28731
+    - NPT28926
+    - NPT29195
+    - NPT29354
+    - NPT29443
+    - NPT29497
+    - NPT6132
+    - NPT6133
+    - NPT6134
+    - NPT6135
+    - NPT6140
+    - NPT6141
+    - NPT805
+    - NPT899
+    - NPT996
+    OG_NPT1412:
+    - NPT1002
+    - NPT1412
+    - NPT28369
+    OG_NPT1413:
+    - NPT1003
+    - NPT1413
+    - NPT6142
+    OG_NPT1008:
+    - NPT1008
+    - NPT998
+    OG_NPT101:
+    - NPT101
+    - NPT18189
+    OG_NPT1011:
+    - NPT1011
+    - NPT1030
+    - NPT2765
+    OG_NPT1012:
+    - NPT1012
+    - NPT2766
+    - NPT4331
+    OG_NPT1013:
+    - NPT1013
+    - NPT2767
+    OG_NPT1014:
+    - NPT1014
+    - NPT2768
+    - NPT4332
+    OG_NPT1024:
+    - NPT1024
+    - NPT1029
+    - NPT2775
+    OG_NPT1025:
+    - NPT1025
+    - NPT622
+    OG_NPT103:
+    - NPT103
+    - NPT531
+    OG_NPT1032:
+    - NPT1032
+    - NPT1602
+    - NPT19345
+    - NPT19348
+    - NPT2228
+    - NPT3084
+    - NPT3485
+    - NPT493
+    - NPT5783
+    - NPT6336
+    - NPT6390
+    - NPT6446
+    - NPT6447
+    - NPT6448
+    OG_NPT1035:
+    - NPT1035
+    - NPT29326
+    - NPT4014
+    - NPT5555
+    OG_NPT1036:
+    - NPT1036
+    - NPT28784
+    - NPT4023
+    OG_NPT197:
+    - NPT1038
+    - NPT197
+    - NPT29533
+    OG_NPT1040:
+    - NPT1040
+    - NPT5553
+    OG_NPT1044:
+    - NPT1044
+    - NPT6607
+    OG_NPT1050:
+    - NPT1050
+    - NPT5849
+    - NPT6043
+    OG_NPT1055:
+    - NPT1055
+    - NPT6631
+    OG_NPT1056:
+    - NPT1056
+    - NPT27334
+    - NPT28736
+    - NPT494
+    - NPT5853
+    - NPT6377
+    OG_NPT106:
+    - NPT106
+    - NPT30127
+    - NPT3942
+    - NPT4633
+    OG_NPT1060:
+    - NPT1060
+    - NPT1143
+    - NPT28409
+    OG_NPT1061:
+    - NPT1061
+    - NPT3101
+    OG_NPT1062:
+    - NPT1062
+    - NPT4287
+    OG_NPT14526:
+    - NPT1065
+    - NPT108
+    - NPT1145
+    - NPT1148
+    - NPT1150
+    - NPT1151
+    - NPT1166
+    - NPT1180
+    - NPT1347
+    - NPT1443
+    - NPT14526
+    - NPT14527
+    - NPT1485
+    - NPT1487
+    - NPT1488
+    - NPT1496
+    - NPT1537
+    - NPT1572
+    - NPT16008
+    - NPT16009
+    - NPT16011
+    - NPT16012
+    - NPT1615
+    - NPT16292
+    - NPT16293
+    - NPT16307
+    - NPT16342
+    - NPT16343
+    - NPT16957
+    - NPT17148
+    - NPT17149
+    - NPT17257
+    - NPT1732
+    - NPT17338
+    - NPT17339
+    - NPT17341
+    - NPT17346
+    - NPT17347
+    - NPT17499
+    - NPT17500
+    - NPT1760
+    - NPT17681
+    - NPT18044
+    - NPT18438
+    - NPT18598
+    - NPT18602
+    - NPT18603
+    - NPT18661
+    - NPT18663
+    - NPT18664
+    - NPT18669
+    - NPT18748
+    - NPT18754
+    - NPT18756
+    - NPT18771
+    - NPT18776
+    - NPT18850
+    - NPT18969
+    - NPT19030
+    - NPT19066
+    - NPT19140
+    - NPT19159
+    - NPT19161
+    - NPT19162
+    - NPT19225
+    - NPT19250
+    - NPT19251
+    - NPT19285
+    - NPT19286
+    - NPT19431
+    - NPT20648
+    - NPT207
+    - NPT20798
+    - NPT21114
+    - NPT21616
+    - NPT21617
+    - NPT21696
+    - NPT21697
+    - NPT21702
+    - NPT21733
+    - NPT21757
+    - NPT21770
+    - NPT21772
+    - NPT21774
+    - NPT218
+    - NPT21802
+    - NPT21877
+    - NPT21953
+    - NPT21967
+    - NPT22078
+    - NPT22130
+    - NPT22154
+    - NPT22155
+    - NPT22156
+    - NPT22197
+    - NPT22245
+    - NPT22263
+    - NPT22291
+    - NPT22324
+    - NPT22359
+    - NPT22382
+    - NPT22401
+    - NPT22409
+    - NPT2243
+    - NPT22588
+    - NPT22604
+    - NPT22612
+    - NPT22653
+    - NPT22671
+    - NPT22672
+    - NPT22674
+    - NPT22689
+    - NPT22752
+    - NPT22802
+    - NPT22906
+    - NPT22915
+    - NPT22974
+    - NPT23085
+    - NPT23107
+    - NPT23116
+    - NPT23324
+    - NPT23336
+    - NPT23356
+    - NPT23371
+    - NPT23410
+    - NPT23748
+    - NPT23786
+    - NPT23787
+    - NPT23816
+    - NPT24038
+    - NPT24068
+    - NPT24148
+    - NPT24168
+    - NPT24237
+    - NPT24245
+    - NPT24246
+    - NPT24344
+    - NPT24345
+    - NPT24354
+    - NPT24629
+    - NPT24631
+    - NPT24779
+    - NPT24788
+    - NPT248
+    - NPT24812
+    - NPT24937
+    - NPT25062
+    - NPT25088
+    - NPT25150
+    - NPT25153
+    - NPT25197
+    - NPT25202
+    - NPT25205
+    - NPT25209
+    - NPT25286
+    - NPT25303
+    - NPT25317
+    - NPT25344
+    - NPT25346
+    - NPT25348
+    - NPT25353
+    - NPT25397
+    - NPT25431
+    - NPT2555
+    - NPT25560
+    - NPT25561
+    - NPT25562
+    - NPT25563
+    - NPT2560
+    - NPT25608
+    - NPT25623
+    - NPT25658
+    - NPT25662
+    - NPT25663
+    - NPT25664
+    - NPT25665
+    - NPT25667
+    - NPT25668
+    - NPT25669
+    - NPT25670
+    - NPT25671
+    - NPT25672
+    - NPT25674
+    - NPT25685
+    - NPT25686
+    - NPT25695
+    - NPT25738
+    - NPT25791
+    - NPT25836
+    - NPT26010
+    - NPT26040
+    - NPT26049
+    - NPT261
+    - NPT26111
+    - NPT26112
+    - NPT26132
+    - NPT26244
+    - NPT26418
+    - NPT26487
+    - NPT26533
+    - NPT26581
+    - NPT26688
+    - NPT26691
+    - NPT26758
+    - NPT26787
+    - NPT26814
+    - NPT26852
+    - NPT2687
+    - NPT26909
+    - NPT26995
+    - NPT27017
+    - NPT27018
+    - NPT27019
+    - NPT27020
+    - NPT27045
+    - NPT27068
+    - NPT27091
+    - NPT27092
+    - NPT27093
+    - NPT27130
+    - NPT27136
+    - NPT27179
+    - NPT27292
+    - NPT2731
+    - NPT27394
+    - NPT27488
+    - NPT27499
+    - NPT27576
+    - NPT27577
+    - NPT27583
+    - NPT27588
+    - NPT276
+    - NPT27604
+    - NPT27641
+    - NPT27644
+    - NPT27645
+    - NPT27661
+    - NPT27732
+    - NPT27828
+    - NPT27936
+    - NPT27959
+    - NPT27960
+    - NPT27968
+    - NPT28011
+    - NPT28154
+    - NPT28178
+    - NPT28179
+    - NPT28182
+    - NPT28184
+    - NPT28190
+    - NPT28195
+    - NPT28199
+    - NPT2826
+    - NPT28578
+    - NPT28579
+    - NPT28594
+    - NPT28646
+    - NPT28678
+    - NPT28681
+    - NPT28790
+    - NPT28847
+    - NPT2890
+    - NPT28909
+    - NPT28933
+    - NPT28941
+    - NPT28966
+    - NPT28991
+    - NPT29097
+    - NPT29364
+    - NPT29389
+    - NPT29654
+    - NPT29667
+    - NPT29668
+    - NPT29670
+    - NPT29736
+    - NPT2978
+    - NPT29870
+    - NPT29936
+    - NPT30105
+    - NPT30115
+    - NPT30128
+    - NPT30132
+    - NPT3024
+    - NPT3026
+    - NPT3029
+    - NPT3031
+    - NPT3032
+    - NPT3034
+    - NPT3539
+    - NPT3739
+    - NPT3740
+    - NPT3741
+    - NPT3745
+    - NPT3750
+    - NPT3755
+    - NPT3916
+    - NPT4125
+    - NPT4148
+    - NPT4568
+    - NPT4793
+    - NPT490
+    - NPT491
+    - NPT5103
+    - NPT5243
+    - NPT544
+    - NPT5444
+    - NPT5448
+    - NPT5636
+    - NPT582
+    - NPT591
+    - NPT5946
+    - NPT6167
+    - NPT6375
+    - NPT678
+    - NPT679
+    - NPT728
+    - NPT892
+    - NPT893
+    - NPT940
+    OG_NPT1067:
+    - NPT1067
+    - NPT18074
+    - NPT296
+    OG_NPT1069:
+    - NPT1069
+    - NPT1074
+    - NPT1075
+    - NPT1168
+    - NPT1258
+    - NPT145
+    - NPT272
+    - NPT28600
+    - NPT2863
+    - NPT29445
+    - NPT3590
+    - NPT3601
+    - NPT3602
+    - NPT3603
+    - NPT4389
+    - NPT4390
+    - NPT4410
+    - NPT5130
+    OG_NPT1072:
+    - NPT1072
+    - NPT295
+    - NPT4314
+    OG_NPT1073:
+    - NPT1073
+    - NPT1790
+    - NPT246
+    - NPT4790
+    - NPT5678
+    - NPT5679
+    - NPT5875
+    OG_NPT1084:
+    - NPT1084
+    - NPT433
+    OG_NPT1087:
+    - NPT1087
+    - NPT4391
+    - NPT4392
+    OG_NPT1088:
+    - NPT1088
+    - NPT2666
+    OG_NPT1099:
+    - NPT1099
+    - NPT1895
+    OG_NPT1119:
+    - NPT1119
+    - NPT5384
+    OG_NPT1131:
+    - NPT1131
+    - NPT30039
+    - NPT4561
+    - NPT507
+    - NPT5850
+    OG_NPT1135:
+    - NPT1135
+    - NPT611
+    - NPT984
+    - NPT993
+    OG_NPT1137:
+    - NPT1137
+    - NPT4260
+    - NPT4862
+    OG_NPT1138:
+    - NPT1138
+    - NPT4259
+    - NPT4861
+    OG_NPT1139:
+    - NPT1139
+    - NPT5385
+    OG_NPT1142:
+    - NPT1142
+    - NPT5836
+    - NPT5838
+    OG_NPT1152:
+    - NPT1152
+    - NPT1157
+    OG_NPT1156:
+    - NPT1156
+    - NPT799
+    - NPT801
+    OG_NPT1159:
+    - NPT1159
+    - NPT5989
+    OG_NPT1167:
+    - NPT1167
+    - NPT271
+    - NPT29255
+    - NPT3600
+    - NPT4580
+    - NPT5131
+    - NPT5342
+    OG_NPT1169:
+    - NPT1169
+    - NPT1170
+    - NPT1287
+    - NPT1361
+    - NPT1362
+    - NPT232
+    - NPT3955
+    - NPT4118
+    - NPT5404
+    OG_NPT1181:
+    - NPT1181
+    - NPT29071
+    - NPT6476
+    OG_NPT1185:
+    - NPT1185
+    - NPT4857
+    OG_NPT1186:
+    - NPT1186
+    - NPT4856
+    OG_NPT1196:
+    - NPT1196
+    - NPT1633
+    OG_NPT1213:
+    - NPT1213
+    - NPT27003
+    - NPT2854
+    OG_NPT1214:
+    - NPT1214
+    - NPT28704
+    - NPT3065
+    OG_NPT1217:
+    - NPT1217
+    - NPT1323
+    OG_NPT1218:
+    - NPT1218
+    - NPT233
+    - NPT6152
+    OG_NPT1222:
+    - NPT1222
+    - NPT6191
+    - NPT6195
+    OG_NPT1234:
+    - NPT1234
+    - NPT29867
+    OG_NPT1240:
+    - NPT1240
+    - NPT19375
+    OG_NPT1249:
+    - NPT1249
+    - NPT1739
+    OG_NPT1253:
+    - NPT1253
+    - NPT19132
+    OG_NPT1259:
+    - NPT1259
+    - NPT1787
+    - NPT3080
+    OG_NPT1260:
+    - NPT1260
+    - NPT1363
+    - NPT1418
+    OG_NPT1268:
+    - NPT1268
+    - NPT17698
+    - NPT27023
+    - NPT5175
+    OG_NPT1269:
+    - NPT1269
+    - NPT548
+    - NPT6562
+    OG_NPT1284:
+    - NPT1284
+    - NPT29217
+    - NPT30135
+    - NPT316
+    - NPT727
+    - NPT887
+    OG_NPT1290:
+    - NPT1290
+    - NPT1291
+    - NPT25990
+    - NPT4896
+    OG_NPT1292:
+    - NPT1292
+    - NPT3111
+    OG_NPT1293:
+    - NPT1293
+    - NPT1449
+    OG_NPT1295:
+    - NPT1295
+    - NPT262
+    - NPT5997
+    - NPT95
+    OG_NPT1300:
+    - NPT1296
+    - NPT1297
+    - NPT1299
+    - NPT1300
+    - NPT1301
+    - NPT1302
+    - NPT1303
+    - NPT263
+    - NPT264
+    - NPT266
+    - NPT2843
+    - NPT28557
+    - NPT30120
+    - NPT30146
+    - NPT3977
+    - NPT420
+    - NPT422
+    - NPT5996
+    - NPT6000
+    OG_NPT13:
+    - NPT13
+    - NPT3815
+    OG_NPT1308:
+    - NPT1308
+    - NPT23180
+    - NPT24959
+    - NPT27050
+    - NPT28700
+    OG_NPT1310:
+    - NPT1310
+    - NPT967
+    OG_NPT1314:
+    - NPT1314
+    - NPT19437
+    OG_NPT1315:
+    - NPT1315
+    - NPT18660
+    - NPT216
+    - NPT2811
+    - NPT5049
+    OG_NPT1316:
+    - NPT1316
+    - NPT217
+    - NPT2554
+    - NPT2812
+    - NPT4262
+    - NPT4749
+    - NPT4757
+    - NPT5443
+    OG_NPT1332:
+    - NPT1332
+    - NPT15059
+    - NPT29162
+    - NPT3141
+    - NPT865
+    OG_NPT1335:
+    - NPT1335
+    - NPT4522
+    - NPT905
+    OG_NPT1337:
+    - NPT1337
+    - NPT6368
+    OG_NPT1345:
+    - NPT1345
+    - NPT2585
+    OG_NPT1360:
+    - NPT1360
+    - NPT1387
+    - NPT22367
+    - NPT24809
+    - NPT24971
+    - NPT27993
+    - NPT29280
+    - NPT4524
+    OG_NPT29168:
+    - NPT1371
+    - NPT29168
+    - NPT3944
+    OG_NPT1372:
+    - NPT1372
+    - NPT274
+    OG_NPT1375:
+    - NPT1375
+    - NPT1377
+    OG_NPT1384:
+    - NPT1384
+    - NPT5935
+    - NPT5936
+    OG_NPT1386:
+    - NPT1386
+    - NPT227
+    - NPT28929
+    - NPT29628
+    - NPT4333
+    - NPT4557
+    - NPT4915
+    OG_NPT1391:
+    - NPT1391
+    - NPT4962
+    OG_NPT1393:
+    - NPT1393
+    - NPT22316
+    OG_NPT1399:
+    - NPT1399
+    - NPT674
+    - NPT807
+    OG_NPT1401:
+    - NPT1401
+    - NPT28885
+    OG_NPT1406:
+    - NPT1406
+    - NPT1410
+    OG_NPT1415:
+    - NPT1415
+    - NPT1583
+    OG_NPT1423:
+    - NPT1423
+    - NPT4139
+    OG_NPT30087:
+    - NPT1427
+    - NPT30087
+    - NPT3105
+    OG_NPT1428:
+    - NPT1428
+    - NPT3207
+    OG_NPT1429:
+    - NPT1429
+    - NPT17848
+    - NPT2264
+    - NPT28810
+    OG_NPT143:
+    - NPT143
+    - NPT21657
+    - NPT27835
+    - NPT4451
+    - NPT4472
+    OG_NPT1434:
+    - NPT1434
+    - NPT19244
+    OG_NPT1436:
+    - NPT1436
+    - NPT3151
+    OG_NPT1444:
+    - NPT1444
+    - NPT1607
+    - NPT18596
+    OG_NPT1454:
+    - NPT1454
+    - NPT1459
+    - NPT17136
+    - NPT17137
+    - NPT249
+    OG_NPT1456:
+    - NPT1456
+    - NPT668
+    OG_NPT1462:
+    - NPT1462
+    - NPT24383
+    - NPT275
+    - NPT27887
+    - NPT3036
+    - NPT542
+    OG_NPT14664:
+    - NPT14664
+    - NPT14748
+    - NPT18819
+    OG_NPT14665:
+    - NPT14665
+    - NPT15205
+    - NPT28413
+    OG_NPT14666:
+    - NPT14666
+    - NPT15206
+    - NPT15209
+    OG_NPT1474:
+    - NPT1474
+    - NPT21292
+    - NPT5883
+    OG_NPT14749:
+    - NPT14749
+    - NPT15270
+    OG_NPT1476:
+    - NPT1476
+    - NPT1559
+    - NPT1665
+    - NPT28800
+    - NPT30
+    - NPT31
+    - NPT324
+    - NPT325
+    - NPT3782
+    - NPT3805
+    - NPT4243
+    - NPT4747
+    - NPT4866
+    - NPT5639
+    - NPT581
+    - NPT5973
+    - NPT5974
+    - NPT5975
+    OG_NPT1478:
+    - NPT1478
+    - NPT18822
+    - NPT18825
+    - NPT4450
+    OG_NPT1480:
+    - NPT1480
+    - NPT18824
+    OG_NPT28815:
+    - NPT1481
+    - NPT28815
+    - NPT3019
+    OG_NPT1491:
+    - NPT1491
+    - NPT657
+    OG_NPT15046:
+    - NPT15046
+    - NPT25741
+    OG_NPT1509:
+    - NPT1509
+    - NPT30024
+    OG_NPT1514:
+    - NPT1514
+    - NPT24744
+    - NPT28076
+    - NPT30155
+    OG_NPT15179:
+    - NPT15179
+    - NPT270
+    - NPT3517
+    OG_NPT1518:
+    - NPT1518
+    - NPT22639
+    OG_NPT1519:
+    - NPT1519
+    - NPT22643
+    OG_NPT152:
+    - NPT152
+    - NPT1651
+    - NPT30119
+    OG_NPT15207:
+    - NPT15207
+    - NPT15210
+    OG_NPT1528:
+    - NPT1528
+    - NPT1529
+    OG_NPT153:
+    - NPT153
+    - NPT299
+    - NPT4864
+    OG_NPT1530:
+    - NPT1530
+    - NPT1776
+    - NPT1783
+    - NPT28433
+    - NPT28868
+    - NPT29169
+    - NPT29423
+    - NPT2959
+    - NPT4042
+    - NPT4045
+    - NPT4579
+    - NPT5251
+    - NPT974
+    OG_NPT1534:
+    - NPT1534
+    - NPT346
+    - NPT467
+    OG_NPT1536:
+    - NPT1536
+    - NPT19157
+    - NPT273
+    OG_NPT1540:
+    - NPT1540
+    - NPT1544
+    - NPT4361
+    OG_NPT15408:
+    - NPT15408
+    - NPT5893
+    OG_NPT1542:
+    - NPT1542
+    - NPT1546
+    OG_NPT1543:
+    - NPT1543
+    - NPT2851
+    OG_NPT1545:
+    - NPT1545
+    - NPT434
+    - NPT705
+    OG_NPT1547:
+    - NPT1547
+    - NPT25086
+    OG_NPT15483:
+    - NPT15483
+    - NPT6544
+    OG_NPT15484:
+    - NPT15484
+    - NPT15486
+    OG_NPT155:
+    - NPT155
+    - NPT3959
+    - NPT4437
+    OG_NPT1552:
+    - NPT1552
+    - NPT1557
+    - NPT28586
+    - NPT2928
+    OG_NPT1553:
+    - NPT1553
+    - NPT2553
+    - NPT5923
+    - NPT5925
+    OG_NPT1554:
+    - NPT1554
+    - NPT5879
+    - NPT5881
+    - NPT6166
+    OG_NPT1556:
+    - NPT1556
+    - NPT285
+    OG_NPT15568:
+    - NPT15568
+    - NPT21727
+    OG_NPT15571:
+    - NPT15571
+    - NPT1618
+    - NPT99
+    OG_NPT15591:
+    - NPT15591
+    - NPT4449
+    OG_NPT15593:
+    - NPT15593
+    - NPT24328
+    OG_NPT156:
+    - NPT156
+    - NPT27932
+    OG_NPT1560:
+    - NPT1560
+    - NPT29662
+    OG_NPT15609:
+    - NPT15609
+    - NPT24801
+    - NPT29747
+    - NPT3727
+    OG_NPT1561:
+    - NPT1561
+    - NPT28770
+    - NPT4854
+    OG_NPT1562:
+    - NPT1562
+    - NPT28896
+    - NPT3047
+    - NPT4102
+    - NPT5099
+    - NPT5441
+    - NPT5447
+    OG_NPT1563:
+    - NPT1563
+    - NPT5100
+    - NPT5442
+    OG_NPT1564:
+    - NPT1564
+    - NPT3718
+    OG_NPT15640:
+    - NPT15640
+    - NPT706
+    OG_NPT1565:
+    - NPT1565
+    - NPT1578
+    - NPT41
+    - NPT4242
+    - NPT68
+    - NPT711
+    OG_NPT1566:
+    - NPT1566
+    - NPT26353
+    OG_NPT1567:
+    - NPT1567
+    - NPT23922
+    - NPT28648
+    - NPT29137
+    - NPT4942
+    - NPT5484
+    - NPT6211
+    OG_NPT1568:
+    - NPT1568
+    - NPT606
+    OG_NPT15680:
+    - NPT15680
+    - NPT15911
+    - NPT15912
+    - NPT15913
+    - NPT18316
+    - NPT24374
+    - NPT26318
+    - NPT27899
+    - NPT5053
+    - NPT5054
+    - NPT5566
+    - NPT5567
+    - NPT5577
+    - NPT5789
+    - NPT653
+    - NPT654
+    - NPT655
+    - NPT656
+    OG_NPT15686:
+    - NPT15686
+    - NPT18987
+    - NPT27906
+    - NPT27914
+    - NPT6537
+    OG_NPT1570:
+    - NPT1570
+    - NPT29281
+    OG_NPT29120:
+    - NPT1571
+    - NPT29120
+    - NPT29615
+    - NPT4089
+    - NPT4155
+    OG_NPT1573:
+    - NPT1573
+    - NPT30142
+    - NPT5154
+    - NPT5156
+    - NPT5157
+    OG_NPT1574:
+    - NPT1574
+    - NPT1593
+    - NPT26429
+    - NPT625
+    OG_NPT158:
+    - NPT158
+    - NPT2951
+    OG_NPT1584:
+    - NPT1584
+    - NPT5924
+    OG_NPT15884:
+    - NPT15884
+    - NPT1627
+    OG_NPT1589:
+    - NPT1589
+    - NPT680
+    - NPT683
+    OG_NPT1590:
+    - NPT1590
+    - NPT25740
+    OG_NPT1591:
+    - NPT1591
+    - NPT17862
+    - NPT17863
+    - NPT17865
+    - NPT17866
+    - NPT6563
+    OG_NPT1592:
+    - NPT1592
+    - NPT4184
+    - NPT6262
+    OG_NPT15938:
+    - NPT15938
+    - NPT15947
+    OG_NPT1594:
+    - NPT1594
+    - NPT4272
+    OG_NPT1595:
+    - NPT1595
+    - NPT20556
+    - NPT22753
+    - NPT29730
+    OG_NPT15952:
+    - NPT15952
+    - NPT568
+    OG_NPT1597:
+    - NPT1597
+    - NPT29038
+    OG_NPT1600:
+    - NPT1600
+    - NPT25169
+    - NPT26345
+    - NPT3102
+    - NPT608
+    OG_NPT1601:
+    - NPT1601
+    - NPT26738
+    - NPT4218
+    OG_NPT1603:
+    - NPT1603
+    - NPT3895
+    - NPT4683
+    OG_NPT1609:
+    - NPT1609
+    - NPT28599
+    - NPT3273
+    OG_NPT1610:
+    - NPT1610
+    - NPT3107
+    OG_NPT1621:
+    - NPT1621
+    - NPT549
+    OG_NPT1622:
+    - NPT1622
+    - NPT5933
+    OG_NPT1628:
+    - NPT1628
+    - NPT2534
+    - NPT670
+    OG_NPT163:
+    - NPT163
+    - NPT6479
+    OG_NPT1632:
+    - NPT1632
+    - NPT873
+    OG_NPT16341:
+    - NPT16341
+    - NPT599
+    OG_NPT1644:
+    - NPT1644
+    - NPT28729
+    - NPT863
+    OG_NPT1645:
+    - NPT1645
+    - NPT26725
+    OG_NPT1646:
+    - NPT1646
+    - NPT30118
+    OG_NPT1647:
+    - NPT1647
+    - NPT4192
+    - NPT6145
+    OG_NPT166:
+    - NPT166
+    - NPT2610
+    OG_NPT1664:
+    - NPT1664
+    - NPT28659
+    - NPT4221
+    OG_NPT1667:
+    - NPT1667
+    - NPT3784
+    OG_NPT1671:
+    - NPT1671
+    - NPT1835
+    OG_NPT1674:
+    - NPT1674
+    - NPT2545
+    - NPT29234
+    OG_NPT29648:
+    - NPT1681
+    - NPT29648
+    - NPT3932
+    OG_NPT1682:
+    - NPT1682
+    - NPT5347
+    OG_NPT1683:
+    - NPT1683
+    - NPT3931
+    OG_NPT1689:
+    - NPT1689
+    - NPT26582
+    OG_NPT1703:
+    - NPT1703
+    - NPT2543
+    - NPT3192
+    - NPT4135
+    OG_NPT17120:
+    - NPT17120
+    - NPT28442
+    - NPT29419
+    OG_NPT17169:
+    - NPT17144
+    - NPT17152
+    - NPT17155
+    - NPT17156
+    - NPT17157
+    - NPT17158
+    - NPT17160
+    - NPT17162
+    - NPT17164
+    - NPT17165
+    - NPT17166
+    - NPT17169
+    - NPT17171
+    - NPT17194
+    - NPT18431
+    - NPT19427
+    - NPT19428
+    - NPT24902
+    - NPT25183
+    - NPT26779
+    - NPT26861
+    - NPT27633
+    - NPT27920
+    - NPT27998
+    - NPT2818
+    - NPT2819
+    - NPT29024
+    - NPT5829
+    - NPT6065
+    - NPT6232
+    - NPT6236
+    - NPT6551
+    OG_NPT1720:
+    - NPT1720
+    - NPT5076
+    OG_NPT1722:
+    - NPT1722
+    - NPT4219
+    OG_NPT1727:
+    - NPT1727
+    - NPT18234
+    OG_NPT1729:
+    - NPT1729
+    - NPT3488
+    - NPT3492
+    OG_NPT1731:
+    - NPT1731
+    - NPT27063
+    OG_NPT17408:
+    - NPT17408
+    - NPT3733
+    - NPT3734
+    OG_NPT2962:
+    - NPT1746
+    - NPT2962
+    - NPT29673
+    OG_NPT1747:
+    - NPT1747
+    - NPT26037
+    OG_NPT1751:
+    - NPT1751
+    - NPT25528
+    - NPT27119
+    - NPT4060
+    - NPT912
+    OG_NPT17539:
+    - NPT17539
+    - NPT17540
+    OG_NPT1754:
+    - NPT1754
+    - NPT27704
+    - NPT3838
+    - NPT4058
+    OG_NPT1755:
+    - NPT1755
+    - NPT3796
+    - NPT4216
+    OG_NPT1763:
+    - NPT1763
+    - NPT19368
+    - NPT2869
+    - NPT3787
+    - NPT3788
+    - NPT3798
+    - NPT3799
+    - NPT3801
+    - NPT6615
+    OG_NPT1765:
+    - NPT1765
+    - NPT23140
+    OG_NPT1767:
+    - NPT1767
+    - NPT29388
+    - NPT30137
+    OG_NPT177:
+    - NPT177
+    - NPT26186
+    - NPT2744
+    OG_NPT1772:
+    - NPT1772
+    - NPT26022
+    OG_NPT1774:
+    - NPT1774
+    - NPT28771
+    - NPT30045
+    - NPT3714
+    - NPT5401
+    OG_NPT1777:
+    - NPT1777
+    - NPT1778
+    - NPT2695
+    - NPT290
+    - NPT29018
+    - NPT292
+    - NPT3053
+    - NPT3055
+    - NPT4043
+    - NPT438
+    - NPT5250
+    - NPT5254
+    - NPT5856
+    OG_NPT1779:
+    - NPT1779
+    - NPT291
+    OG_NPT178:
+    - NPT178
+    - NPT4286
+    - NPT5334
+    OG_NPT1784:
+    - NPT1784
+    - NPT5249
+    OG_NPT1785:
+    - NPT1785
+    - NPT4041
+    OG_NPT1786:
+    - NPT1786
+    - NPT18293
+    - NPT1857
+    - NPT1858
+    - NPT242
+    - NPT243
+    - NPT29082
+    - NPT29351
+    - NPT3052
+    - NPT3471
+    - NPT4657
+    - NPT4659
+    - NPT4666
+    - NPT5857
+    OG_NPT1789:
+    - NPT1788
+    - NPT1789
+    - NPT219
+    - NPT220
+    - NPT28378
+    - NPT30130
+    - NPT3051
+    - NPT4554
+    - NPT4555
+    - NPT4893
+    - NPT968
+    - NPT970
+    OG_NPT17895:
+    - NPT17895
+    - NPT5057
+    OG_NPT1791:
+    - NPT1791
+    - NPT4887
+    OG_NPT17977:
+    - NPT17977
+    - NPT2728
+    - NPT2729
+    - NPT3214
+    OG_NPT17978:
+    - NPT17978
+    - NPT3319
+    OG_NPT18034:
+    - NPT18034
+    - NPT19237
+    - NPT2575
+    OG_NPT18075:
+    - NPT18075
+    - NPT24748
+    - NPT24988
+    - NPT29380
+    OG_NPT18083:
+    - NPT18083
+    - NPT28913
+    OG_NPT1814:
+    - NPT1814
+    - NPT18191
+    OG_NPT1819:
+    - NPT1819
+    - NPT29362
+    OG_NPT18193:
+    - NPT18193
+    - NPT18194
+    OG_NPT182:
+    - NPT182
+    - NPT4629
+    OG_NPT21765:
+    - NPT1821
+    - NPT21765
+    - NPT29184
+    OG_NPT18231:
+    - NPT18231
+    - NPT23191
+    OG_NPT18289:
+    - NPT18289
+    - NPT18739
+    - NPT29943
+    - NPT4032
+    - NPT5885
+    - NPT6539
+    OG_NPT183:
+    - NPT183
+    - NPT25242
+    - NPT3021
+    - NPT3806
+    - NPT570
+    OG_NPT1837:
+    - NPT1837
+    - NPT25774
+    - NPT28676
+    - NPT29173
+    - NPT30117
+    - NPT3929
+    OG_NPT1838:
+    - NPT1838
+    - NPT29122
+    - NPT29139
+    - NPT3930
+    - NPT3933
+    - NPT5858
+    - NPT5859
+    OG_NPT1839:
+    - NPT1839
+    - NPT25773
+    - NPT29760
+    - NPT4202
+    OG_NPT18397:
+    - NPT18397
+    - NPT257
+    - NPT792
+    OG_NPT1841:
+    - NPT1841
+    - NPT1885
+    - NPT5259
+    OG_NPT18436:
+    - NPT18436
+    - NPT4037
+    OG_NPT18459:
+    - NPT18459
+    - NPT2956
+    OG_NPT18485:
+    - NPT18485
+    - NPT2833
+    - NPT29031
+    OG_NPT1854:
+    - NPT1854
+    - NPT4751
+    OG_NPT1856:
+    - NPT1856
+    - NPT2680
+    - NPT4628
+    - NPT5095
+    OG_NPT18563:
+    - NPT18563
+    - NPT27922
+    OG_NPT18634:
+    - NPT18634
+    - NPT29432
+    OG_NPT18662:
+    - NPT18662
+    - NPT28541
+    OG_NPT28816:
+    - NPT18667
+    - NPT28816
+    - NPT3541
+    OG_NPT18711:
+    - NPT18711
+    - NPT2770
+    OG_NPT1874:
+    - NPT1874
+    - NPT6119
+    OG_NPT1875:
+    - NPT1875
+    - NPT1876
+    - NPT1877
+    - NPT198
+    - NPT6118
+    OG_NPT1878:
+    - NPT1878
+    - NPT26198
+    OG_NPT1879:
+    - NPT1879
+    - NPT29334
+    OG_NPT18808:
+    - NPT18808
+    - NPT5082
+    OG_NPT1881:
+    - NPT1881
+    - NPT29232
+    OG_NPT18815:
+    - NPT18815
+    - NPT214
+    - NPT215
+    - NPT5077
+    - NPT5083
+    OG_NPT1882:
+    - NPT1882
+    - NPT6143
+    OG_NPT18823:
+    - NPT18823
+    - NPT301
+    OG_NPT18837:
+    - NPT18837
+    - NPT28449
+    - NPT29752
+    OG_NPT18854:
+    - NPT18854
+    - NPT26463
+    - NPT4937
+    OG_NPT189:
+    - NPT189
+    - NPT30043
+    OG_NPT1892:
+    - NPT1892
+    - NPT2891
+    OG_NPT1894:
+    - NPT1894
+    - NPT1898
+    OG_NPT1896:
+    - NPT1896
+    - NPT6457
+    OG_NPT18970:
+    - NPT18970
+    - NPT5374
+    OG_NPT18993:
+    - NPT18993
+    - NPT3098
+    - NPT3575
+    OG_NPT19007:
+    - NPT19007
+    - NPT2782
+    - NPT868
+    OG_NPT19027:
+    - NPT19027
+    - NPT19028
+    - NPT19031
+    OG_NPT19052:
+    - NPT19052
+    - NPT4897
+    OG_NPT19082:
+    - NPT19082
+    - NPT5968
+    - NPT6095
+    OG_NPT19093:
+    - NPT19093
+    - NPT2732
+    OG_NPT191:
+    - NPT191
+    - NPT30103
+    OG_NPT19120:
+    - NPT19120
+    - NPT3012
+    OG_NPT19123:
+    - NPT19123
+    - NPT4503
+    OG_NPT19155:
+    - NPT19155
+    - NPT4735
+    OG_NPT19262:
+    - NPT19262
+    - NPT2852
+    OG_NPT19290:
+    - NPT19290
+    - NPT204
+    - NPT2668
+    - NPT2749
+    - NPT2803
+    - NPT30088
+    - NPT3044
+    - NPT3768
+    - NPT3902
+    - NPT5339
+    - NPT6180
+    - NPT6203
+    - NPT6205
+    - NPT66
+    - NPT914
+    OG_NPT19337:
+    - NPT19337
+    - NPT326
+    OG_NPT19413:
+    - NPT19413
+    - NPT19416
+    OG_NPT1947:
+    - NPT1947
+    - NPT28515
+    OG_NPT19472:
+    - NPT19472
+    - NPT4414
+    OG_NPT19473:
+    - NPT19473
+    - NPT23108
+    OG_NPT19474:
+    - NPT19474
+    - NPT4860
+    OG_NPT19488:
+    - NPT19488
+    - NPT255
+    - NPT28478
+    OG_NPT1991:
+    - NPT1991
+    - NPT28923
+    OG_NPT2:
+    - NPT2
+    - NPT27
+    OG_NPT200:
+    - NPT200
+    - NPT28813
+    OG_NPT203:
+    - NPT203
+    - NPT836
+    OG_NPT2070:
+    - NPT2070
+    - NPT29315
+    OG_NPT208:
+    - NPT208
+    - NPT28799
+    - NPT29235
+    - NPT4880
+    - NPT5277
+    OG_NPT2085:
+    - NPT2085
+    - NPT28682
+    OG_NPT2100:
+    - NPT2100
+    - NPT30075
+    OG_NPT21116:
+    - NPT21116
+    - NPT426
+    OG_NPT21289:
+    - NPT21289
+    - NPT26850
+    OG_NPT21303:
+    - NPT21303
+    - NPT862
+    OG_NPT21312:
+    - NPT21312
+    - NPT3917
+    OG_NPT21577:
+    - NPT21577
+    - NPT29944
+    OG_NPT21579:
+    - NPT21579
+    - NPT26812
+    - NPT6571
+    OG_NPT21726:
+    - NPT21726
+    - NPT36
+    - NPT3813
+    - NPT6257
+    OG_NPT21778:
+    - NPT21778
+    - NPT26513
+    - NPT6570
+    OG_NPT21779:
+    - NPT21779
+    - NPT26514
+    OG_NPT21823:
+    - NPT21823
+    - NPT23142
+    OG_NPT21852:
+    - NPT21852
+    - NPT2558
+    - NPT2559
+    OG_NPT21964:
+    - NPT21964
+    - NPT21968
+    OG_NPT22005:
+    - NPT22005
+    - NPT252
+    - NPT4289
+    - NPT4290
+    OG_NPT22092:
+    - NPT22092
+    - NPT22093
+    - NPT26455
+    - NPT27528
+    - NPT631
+    - NPT632
+    OG_NPT221:
+    - NPT221
+    - NPT3048
+    OG_NPT2214:
+    - NPT2214
+    - NPT6413
+    - NPT6540
+    OG_NPT22141:
+    - NPT22141
+    - NPT29439
+    OG_NPT2216:
+    - NPT2216
+    - NPT59
+    OG_NPT2217:
+    - NPT2217
+    - NPT27939
+    - NPT6418
+    OG_NPT223:
+    - NPT222
+    - NPT223
+    - NPT2840
+    - NPT29099
+    - NPT3049
+    - NPT3057
+    - NPT3059
+    - NPT4894
+    - NPT969
+    - NPT971
+    - NPT972
+    OG_NPT22207:
+    - NPT22207
+    - NPT2673
+    OG_NPT22364:
+    - NPT22364
+    - NPT29830
+    - NPT4940
+    - NPT5486
+    - NPT5489
+    - NPT5490
+    OG_NPT29666:
+    - NPT22372
+    - NPT29666
+    - NPT5491
+    OG_NPT22482:
+    - NPT22482
+    - NPT2773
+    - NPT2774
+    OG_NPT22487:
+    - NPT22487
+    - NPT25568
+    - NPT3664
+    - NPT4074
+    OG_NPT225:
+    - NPT225
+    - NPT26430
+    - NPT2838
+    - NPT4558
+    - NPT4913
+    OG_NPT2251:
+    - NPT2251
+    - NPT28671
+    OG_NPT22560:
+    - NPT22560
+    - NPT894
+    OG_NPT226:
+    - NPT226
+    - NPT2839
+    - NPT4630
+    - NPT4632
+    - NPT4663
+    - NPT4914
+    - NPT5860
+    OG_NPT2266:
+    - NPT2266
+    - NPT3967
+    OG_NPT22661:
+    - NPT22661
+    - NPT27236
+    - NPT4442
+    - NPT4577
+    OG_NPT2267:
+    - NPT2267
+    - NPT24945
+    OG_NPT22750:
+    - NPT22750
+    - NPT5854
+    OG_NPT22784:
+    - NPT22784
+    - NPT644
+    OG_NPT228:
+    - NPT228
+    - NPT3986
+    - NPT4313
+    - NPT5676
+    - NPT5677
+    - NPT5680
+    - NPT5681
+    OG_NPT22849:
+    - NPT22849
+    - NPT27933
+    OG_NPT22886:
+    - NPT22886
+    - NPT3820
+    OG_NPT6078:
+    - NPT229
+    - NPT6078
+    - NPT6192
+    OG_NPT22927:
+    - NPT22927
+    - NPT28683
+    OG_NPT230:
+    - NPT230
+    - NPT6126
+    OG_NPT23071:
+    - NPT23071
+    - NPT27837
+    OG_NPT23089:
+    - NPT23089
+    - NPT28570
+    OG_NPT23158:
+    - NPT23158
+    - NPT26258
+    OG_NPT23159:
+    - NPT23159
+    - NPT26259
+    OG_NPT23190:
+    - NPT23190
+    - NPT23192
+    OG_NPT23195:
+    - NPT23195
+    - NPT28804
+    - NPT29242
+    OG_NPT2335:
+    - NPT2335
+    - NPT29324
+    OG_NPT23392:
+    - NPT23392
+    - NPT25341
+    - NPT27607
+    OG_NPT23415:
+    - NPT23415
+    - NPT2857
+    OG_NPT236:
+    - NPT236
+    - NPT5132
+    OG_NPT237:
+    - NPT237
+    - NPT3781
+    OG_NPT2373:
+    - NPT2373
+    - NPT29118
+    OG_NPT23875:
+    - NPT23875
+    - NPT25055
+    - NPT2739
+    - NPT29010
+    - NPT43
+    - NPT741
+    OG_NPT239:
+    - NPT239
+    - NPT28789
+    - NPT29672
+    - NPT4729
+    - NPT4730
+    - NPT4731
+    - NPT4741
+    - NPT4742
+    - NPT6137
+    - NPT6138
+    - NPT6139
+    OG_NPT23923:
+    - NPT23923
+    - NPT4701
+    - NPT6346
+    OG_NPT2397:
+    - NPT2397
+    - NPT28539
+    OG_NPT23993:
+    - NPT23993
+    - NPT5763
+    OG_NPT24057:
+    - NPT24057
+    - NPT758
+    OG_NPT24150:
+    - NPT24150
+    - NPT2606
+    - NPT3707
+    - NPT4763
+    OG_NPT24261:
+    - NPT24261
+    - NPT4759
+    OG_NPT29496:
+    - NPT24264
+    - NPT29496
+    - NPT3960
+    OG_NPT24280:
+    - NPT24280
+    - NPT29758
+    OG_NPT24290:
+    - NPT24290
+    - NPT27544
+    OG_NPT30106:
+    - NPT24316
+    - NPT30106
+    - NPT321
+    OG_NPT24397:
+    - NPT24397
+    - NPT3136
+    OG_NPT244:
+    - NPT244
+    - NPT3056
+    OG_NPT245:
+    - NPT245
+    - NPT4411
+    - NPT4661
+    OG_NPT2452:
+    - NPT2452
+    - NPT28706
+    OG_NPT24667:
+    - NPT24667
+    - NPT28008
+    OG_NPT247:
+    - NPT247
+    - NPT3951
+    - NPT5167
+    OG_NPT24713:
+    - NPT24713
+    - NPT587
+    - NPT626
+    OG_NPT24747:
+    - NPT24747
+    - NPT3939
+    OG_NPT24787:
+    - NPT24787
+    - NPT25172
+    OG_NPT24816:
+    - NPT24816
+    - NPT504
+    OG_NPT24900:
+    - NPT24900
+    - NPT24901
+    OG_NPT250:
+    - NPT250
+    - NPT29442
+    OG_NPT25048:
+    - NPT25048
+    - NPT3579
+    OG_NPT2505:
+    - NPT2505
+    - NPT29328
+    OG_NPT25083:
+    - NPT25083
+    - NPT2542
+    - NPT3125
+    OG_NPT251:
+    - NPT251
+    - NPT4288
+    - NPT4292
+    - NPT4293
+    OG_NPT25114:
+    - NPT25114
+    - NPT2684
+    OG_NPT2518:
+    - NPT2518
+    - NPT441
+    OG_NPT2519:
+    - NPT2519
+    - NPT253
+    - NPT463
+    OG_NPT2520:
+    - NPT2520
+    - NPT28183
+    OG_NPT25297:
+    - NPT25297
+    - NPT4255
+    OG_NPT25329:
+    - NPT25329
+    - NPT2800
+    OG_NPT2533:
+    - NPT2533
+    - NPT29327
+    OG_NPT25339:
+    - NPT25339
+    - NPT27608
+    - NPT27665
+    - NPT27666
+    - NPT27667
+    OG_NPT2535:
+    - NPT2535
+    - NPT26416
+    - NPT26574
+    - NPT614
+    - NPT621
+    - NPT624
+    OG_NPT25436:
+    - NPT25436
+    - NPT27601
+    - NPT5994
+    OG_NPT2544:
+    - NPT2544
+    - NPT30005
+    OG_NPT25443:
+    - NPT25443
+    - NPT27210
+    OG_NPT25490:
+    - NPT25490
+    - NPT584
+    OG_NPT25577:
+    - NPT25577
+    - NPT2603
+    - NPT28490
+    - NPT4750
+    OG_NPT256:
+    - NPT256
+    - NPT4528
+    OG_NPT2562:
+    - NPT2562
+    - NPT5336
+    OG_NPT2567:
+    - NPT2567
+    - NPT29696
+    OG_NPT2569:
+    - NPT2569
+    - NPT2748
+    - NPT439
+    - NPT5337
+    OG_NPT25714:
+    - NPT25714
+    - NPT3078
+    OG_NPT2574:
+    - NPT2574
+    - NPT28398
+    - NPT4142
+    OG_NPT25777:
+    - NPT25777
+    - NPT4901
+    OG_NPT2584:
+    - NPT2584
+    - NPT28353
+    OG_NPT25869:
+    - NPT25869
+    - NPT25870
+    - NPT25871
+    OG_NPT2587:
+    - NPT2587
+    - NPT645
+    OG_NPT25909:
+    - NPT25909
+    - NPT25910
+    OG_NPT25979:
+    - NPT25979
+    - NPT67
+    OG_NPT2598:
+    - NPT2598
+    - NPT26577
+    - NPT615
+    OG_NPT25986:
+    - NPT25986
+    - NPT6032
+    OG_NPT2604:
+    - NPT2604
+    - NPT29883
+    - NPT4502
+    OG_NPT26086:
+    - NPT26086
+    - NPT4760
+    OG_NPT26105:
+    - NPT26105
+    - NPT6194
+    OG_NPT2613:
+    - NPT2613
+    - NPT712
+    - NPT713
+    OG_NPT26184:
+    - NPT26184
+    - NPT425
+    - NPT5252
+    - NPT5253
+    - NPT5258
+    OG_NPT26188:
+    - NPT26188
+    - NPT26189
+    - NPT4029
+    - NPT5709
+    OG_NPT26217:
+    - NPT26217
+    - NPT4957
+    OG_NPT26232:
+    - NPT26232
+    - NPT29337
+    OG_NPT2626:
+    - NPT2626
+    - NPT3325
+    OG_NPT2628:
+    - NPT2628
+    - NPT600
+    OG_NPT26331:
+    - NPT26331
+    - NPT28417
+    OG_NPT26338:
+    - NPT26338
+    - NPT652
+    OG_NPT26349:
+    - NPT26349
+    - NPT5236
+    OG_NPT26385:
+    - NPT26385
+    - NPT29509
+    - NPT29598
+    OG_NPT26388:
+    - NPT26388
+    - NPT4106
+    - NPT4369
+    - NPT6017
+    OG_NPT26437:
+    - NPT26437
+    - NPT5866
+    OG_NPT26497:
+    - NPT26497
+    - NPT2689
+    OG_NPT265:
+    - NPT265
+    - NPT30049
+    - NPT432
+    OG_NPT26536:
+    - NPT26536
+    - NPT2924
+    - NPT2926
+    - NPT3791
+    - NPT3941
+    - NPT6094
+    OG_NPT2654:
+    - NPT2654
+    - NPT28243
+    - NPT6603
+    OG_NPT26604:
+    - NPT26604
+    - NPT6186
+    OG_NPT26618:
+    - NPT26618
+    - NPT52
+    OG_NPT26619:
+    - NPT26619
+    - NPT6230
+    OG_NPT26633:
+    - NPT26633
+    - NPT4523
+    OG_NPT2669:
+    - NPT2669
+    - NPT2674
+    - NPT2676
+    OG_NPT2670:
+    - NPT2670
+    - NPT4953
+    OG_NPT2671:
+    - NPT2671
+    - NPT4954
+    - NPT4964
+    OG_NPT26739:
+    - NPT26739
+    - NPT28021
+    - NPT4959
+    OG_NPT26753:
+    - NPT26753
+    - NPT977
+    OG_NPT26763:
+    - NPT26763
+    - NPT2681
+    OG_NPT26784:
+    - NPT26784
+    - NPT26785
+    OG_NPT26790:
+    - NPT26790
+    - NPT6159
+    OG_NPT26791:
+    - NPT26791
+    - NPT927
+    OG_NPT2683:
+    - NPT2683
+    - NPT3719
+    OG_NPT2685:
+    - NPT2685
+    - NPT28858
+    - NPT5064
+    - NPT5065
+    - NPT5071
+    OG_NPT2686:
+    - NPT2686
+    - NPT2879
+    OG_NPT26895:
+    - NPT26895
+    - NPT4698
+    OG_NPT269:
+    - NPT269
+    - NPT3569
+    - NPT5867
+    OG_NPT2691:
+    - NPT2691
+    - NPT2719
+    - NPT2830
+    - NPT4056
+    OG_NPT26920:
+    - NPT26920
+    - NPT28121
+    - NPT30074
+    OG_NPT26940:
+    - NPT26940
+    - NPT4885
+    OG_NPT26955:
+    - NPT26955
+    - NPT28458
+    - NPT3143
+    OG_NPT2699:
+    - NPT2699
+    - NPT4277
+    OG_NPT27014:
+    - NPT27014
+    - NPT4506
+    OG_NPT2704:
+    - NPT2704
+    - NPT28117
+    OG_NPT27073:
+    - NPT27073
+    - NPT29885
+    OG_NPT27081:
+    - NPT27081
+    - NPT27083
+    OG_NPT27131:
+    - NPT27131
+    - NPT27132
+    - NPT27133
+    - NPT28423
+    OG_NPT27155:
+    - NPT27155
+    - NPT27721
+    - NPT5046
+    OG_NPT2716:
+    - NPT2716
+    - NPT2717
+    OG_NPT27269:
+    - NPT27269
+    - NPT3830
+    OG_NPT2727:
+    - NPT2727
+    - NPT3116
+    OG_NPT27270:
+    - NPT27270
+    - NPT4274
+    - NPT4275
+    OG_NPT27319:
+    - NPT27319
+    - NPT5010
+    OG_NPT27367:
+    - NPT27367
+    - NPT30030
+    - NPT5931
+    OG_NPT2741:
+    - NPT2741
+    - NPT6638
+    OG_NPT27413:
+    - NPT27413
+    - NPT365
+    OG_NPT2742:
+    - NPT2742
+    - NPT2931
+    - NPT2932
+    - NPT2933
+    - NPT2934
+    OG_NPT27473:
+    - NPT27473
+    - NPT4549
+    OG_NPT27515:
+    - NPT27515
+    - NPT27517
+    OG_NPT27566:
+    - NPT27566
+    - NPT3225
+    OG_NPT2757:
+    - NPT2757
+    - NPT4493
+    OG_NPT27584:
+    - NPT27584
+    - NPT4641
+    OG_NPT2761:
+    - NPT2761
+    - NPT5102
+    OG_NPT2762:
+    - NPT2762
+    - NPT30170
+    OG_NPT27625:
+    - NPT27625
+    - NPT5440
+    OG_NPT2763:
+    - NPT2763
+    - NPT2764
+    - NPT2772
+    OG_NPT27662:
+    - NPT27662
+    - NPT27663
+    - NPT27664
+    - NPT28163
+    - NPT28164
+    OG_NPT27836:
+    - NPT27836
+    - NPT4491
+    OG_NPT27840:
+    - NPT27840
+    - NPT3731
+    OG_NPT280:
+    - NPT280
+    - NPT3545
+    OG_NPT28022:
+    - NPT28022
+    - NPT4960
+    OG_NPT2805:
+    - NPT2805
+    - NPT2806
+    - NPT5876
+    OG_NPT28075:
+    - NPT28075
+    - NPT6108
+    OG_NPT2808:
+    - NPT2808
+    - NPT29181
+    OG_NPT28123:
+    - NPT28123
+    - NPT30013
+    OG_NPT28137:
+    - NPT28137
+    - NPT29965
+    - NPT30006
+    - NPT3005
+    OG_NPT2817:
+    - NPT2817
+    - NPT5340
+    - NPT6383
+    OG_NPT28175:
+    - NPT28175
+    - NPT4172
+    OG_NPT282:
+    - NPT282
+    - NPT29613
+    - NPT4008
+    - NPT4141
+    OG_NPT28223:
+    - NPT28223
+    - NPT4191
+    - NPT5015
+    OG_NPT283:
+    - NPT283
+    - NPT6452
+    OG_NPT28315:
+    - NPT28315
+    - NPT28910
+    OG_NPT2832:
+    - NPT2832
+    - NPT28356
+    OG_NPT28343:
+    - NPT28343
+    - NPT28454
+    OG_NPT28347:
+    - NPT28347
+    - NPT6454
+    OG_NPT28384:
+    - NPT28384
+    - NPT3844
+    OG_NPT28415:
+    - NPT28415
+    - NPT3679
+    OG_NPT28430:
+    - NPT28430
+    - NPT4367
+    OG_NPT28435:
+    - NPT28435
+    - NPT5327
+    OG_NPT28456:
+    - NPT28456
+    - NPT3937
+    OG_NPT2846:
+    - NPT2846
+    - NPT29320
+    OG_NPT28461:
+    - NPT28461
+    - NPT4383
+    OG_NPT28465:
+    - NPT28465
+    - NPT29415
+    OG_NPT2847:
+    - NPT2847
+    - NPT29466
+    OG_NPT28471:
+    - NPT28471
+    - NPT4353
+    OG_NPT28476:
+    - NPT28476
+    - NPT29098
+    OG_NPT28488:
+    - NPT28488
+    - NPT29263
+    OG_NPT28491:
+    - NPT28491
+    - NPT28532
+    OG_NPT28500:
+    - NPT28500
+    - NPT5135
+    OG_NPT28503:
+    - NPT28503
+    - NPT6054
+    OG_NPT28536:
+    - NPT28536
+    - NPT29584
+    OG_NPT28544:
+    - NPT28544
+    - NPT4271
+    - NPT685
+    OG_NPT28551:
+    - NPT28551
+    - NPT3004
+    OG_NPT2856:
+    - NPT2856
+    - NPT5601
+    OG_NPT28562:
+    - NPT28562
+    - NPT28618
+    OG_NPT28569:
+    - NPT28569
+    - NPT30091
+    OG_NPT28581:
+    - NPT28581
+    - NPT3876
+    OG_NPT28593:
+    - NPT28593
+    - NPT3558
+    OG_NPT28595:
+    - NPT28595
+    - NPT468
+    - NPT472
+    - NPT939
+    OG_NPT28598:
+    - NPT28598
+    - NPT28808
+    - NPT29933
+    - NPT30108
+    - NPT3014
+    - NPT518
+    - NPT5180
+    - NPT781
+    - NPT782
+    OG_NPT28613:
+    - NPT28613
+    - NPT5821
+    OG_NPT28638:
+    - NPT28638
+    - NPT29260
+    OG_NPT28644:
+    - NPT28644
+    - NPT536
+    OG_NPT28658:
+    - NPT28658
+    - NPT30138
+    - NPT4343
+    - NPT4344
+    - NPT4346
+    - NPT5496
+    - NPT5649
+    - NPT5659
+    - NPT664
+    OG_NPT28669:
+    - NPT28669
+    - NPT663
+    OG_NPT28673:
+    - NPT28673
+    - NPT29371
+    OG_NPT28679:
+    - NPT28679
+    - NPT4165
+    OG_NPT28684:
+    - NPT28684
+    - NPT5728
+    OG_NPT28688:
+    - NPT28688
+    - NPT4677
+    OG_NPT28701:
+    - NPT28701
+    - NPT3222
+    - NPT4091
+    OG_NPT28702:
+    - NPT28702
+    - NPT29133
+    - NPT30033
+    OG_NPT2871:
+    - NPT2871
+    - NPT3559
+    OG_NPT28710:
+    - NPT28710
+    - NPT29661
+    OG_NPT28721:
+    - NPT28721
+    - NPT3020
+    - NPT3770
+    - NPT4143
+    OG_NPT2873:
+    - NPT2873
+    - NPT4889
+    OG_NPT28737:
+    - NPT28737
+    - NPT4115
+    OG_NPT28742:
+    - NPT28742
+    - NPT29474
+    OG_NPT28762:
+    - NPT28762
+    - NPT995
+    OG_NPT28764:
+    - NPT28764
+    - NPT29096
+    - NPT5060
+    OG_NPT28787:
+    - NPT28787
+    - NPT6206
+    OG_NPT28792:
+    - NPT28792
+    - NPT317
+    OG_NPT28794:
+    - NPT28794
+    - NPT4324
+    OG_NPT288:
+    - NPT288
+    - NPT5255
+    - NPT92
+    OG_NPT28802:
+    - NPT28802
+    - NPT4919
+    OG_NPT28840:
+    - NPT28840
+    - NPT3794
+    OG_NPT28849:
+    - NPT28849
+    - NPT5513
+    OG_NPT28850:
+    - NPT28850
+    - NPT30143
+    OG_NPT28855:
+    - NPT28855
+    - NPT5186
+    OG_NPT28864:
+    - NPT28864
+    - NPT5506
+    OG_NPT28866:
+    - NPT28866
+    - NPT6482
+    OG_NPT28869:
+    - NPT28869
+    - NPT5542
+    OG_NPT28870:
+    - NPT28870
+    - NPT4350
+    OG_NPT28875:
+    - NPT28875
+    - NPT4328
+    OG_NPT28879:
+    - NPT28879
+    - NPT6618
+    OG_NPT28880:
+    - NPT28880
+    - NPT5098
+    OG_NPT28883:
+    - NPT28883
+    - NPT29007
+    - NPT3345
+    - NPT4087
+    - NPT4156
+    OG_NPT28889:
+    - NPT28889
+    - NPT3919
+    OG_NPT28895:
+    - NPT28895
+    - NPT5667
+    - NPT5926
+    - NPT6264
+    - NPT687
+    OG_NPT289:
+    - NPT289
+    - NPT973
+    OG_NPT28907:
+    - NPT28907
+    - NPT533
+    OG_NPT28911:
+    - NPT28911
+    - NPT5504
+    OG_NPT2892:
+    - NPT2892
+    - NPT3972
+    OG_NPT3921:
+    - NPT28922
+    - NPT29138
+    - NPT29430
+    - NPT29611
+    - NPT29623
+    - NPT29651
+    - NPT3920
+    - NPT3921
+    - NPT3923
+    - NPT3924
+    - NPT409
+    - NPT411
+    - NPT412
+    - NPT415
+    - NPT416
+    - NPT417
+    - NPT418
+    - NPT423
+    - NPT424
+    - NPT5035
+    - NPT5038
+    - NPT5039
+    - NPT6362
+    OG_NPT28943:
+    - NPT28943
+    - NPT3328
+    OG_NPT28955:
+    - NPT28955
+    - NPT3638
+    OG_NPT28958:
+    - NPT28958
+    - NPT4545
+    OG_NPT29014:
+    - NPT29014
+    - NPT29444
+    OG_NPT29027:
+    - NPT29027
+    - NPT3700
+    OG_NPT29040:
+    - NPT29040
+    - NPT6612
+    OG_NPT4047:
+    - NPT29054
+    - NPT4047
+    - NPT4906
+    - NPT5862
+    - NPT5863
+    OG_NPT29065:
+    - NPT29065
+    - NPT5675
+    OG_NPT29074:
+    - NPT29074
+    - NPT3377
+    OG_NPT29131:
+    - NPT29131
+    - NPT610
+    OG_NPT29149:
+    - NPT29149
+    - NPT5632
+    - NPT6376
+    - NPT991
+    OG_NPT29158:
+    - NPT29158
+    - NPT29312
+    OG_NPT29161:
+    - NPT29161
+    - NPT6559
+    OG_NPT29339:
+    - NPT29183
+    - NPT29339
+    - NPT4345
+    OG_NPT2919:
+    - NPT2919
+    - NPT4385
+    OG_NPT29207:
+    - NPT29207
+    - NPT29386
+    - NPT5138
+    - NPT5139
+    OG_NPT29212:
+    - NPT29212
+    - NPT4419
+    OG_NPT29213:
+    - NPT29213
+    - NPT5514
+    OG_NPT29220:
+    - NPT29220
+    - NPT4671
+    - NPT677
+    OG_NPT29224:
+    - NPT29224
+    - NPT410
+    - NPT413
+    - NPT414
+    - NPT421
+    OG_NPT29259:
+    - NPT29259
+    - NPT29746
+    OG_NPT29269:
+    - NPT29269
+    - NPT4154
+    OG_NPT29284:
+    - NPT29284
+    - NPT4995
+    OG_NPT4417:
+    - NPT2929
+    - NPT4417
+    - NPT6363
+    OG_NPT293:
+    - NPT293
+    - NPT2958
+    - NPT4011
+    OG_NPT29314:
+    - NPT29314
+    - NPT6581
+    OG_NPT29338:
+    - NPT29338
+    - NPT29824
+    OG_NPT29349:
+    - NPT29349
+    - NPT29845
+    OG_NPT29387:
+    - NPT29387
+    - NPT4264
+    OG_NPT29393:
+    - NPT29393
+    - NPT3606
+    OG_NPT29409:
+    - NPT29409
+    - NPT3457
+    - NPT6509
+    OG_NPT29433:
+    - NPT29433
+    - NPT920
+    OG_NPT29441:
+    - NPT29441
+    - NPT3030
+    - NPT3605
+    - NPT880
+    OG_NPT2945:
+    - NPT2945
+    - NPT4316
+    - NPT545
+    OG_NPT29465:
+    - NPT29465
+    - NPT4231
+    - NPT6333
+    OG_NPT29471:
+    - NPT29471
+    - NPT3240
+    OG_NPT29476:
+    - NPT29476
+    - NPT3675
+    OG_NPT29487:
+    - NPT29487
+    - NPT897
+    OG_NPT29494:
+    - NPT29494
+    - NPT931
+    OG_NPT29495:
+    - NPT29495
+    - NPT997
+    OG_NPT29505:
+    - NPT29505
+    - NPT5977
+    OG_NPT29535:
+    - NPT29535
+    - NPT4110
+    - NPT5625
+    OG_NPT29537:
+    - NPT29537
+    - NPT30034
+    OG_NPT29570:
+    - NPT29570
+    - NPT3713
+    OG_NPT29586:
+    - NPT29586
+    - NPT4476
+    OG_NPT29587:
+    - NPT29587
+    - NPT539
+    OG_NPT29590:
+    - NPT29590
+    - NPT30051
+    OG_NPT2961:
+    - NPT2961
+    - NPT5069
+    OG_NPT29630:
+    - NPT29630
+    - NPT3346
+    - NPT4090
+    OG_NPT29631:
+    - NPT29631
+    - NPT856
+    OG_NPT29632:
+    - NPT29632
+    - NPT3922
+    OG_NPT29663:
+    - NPT29663
+    - NPT3267
+    OG_NPT29665:
+    - NPT29665
+    - NPT935
+    OG_NPT29671:
+    - NPT29671
+    - NPT721
+    - NPT983
+    OG_NPT29695:
+    - NPT29695
+    - NPT5758
+    OG_NPT29698:
+    - NPT29698
+    - NPT3905
+    OG_NPT297:
+    - NPT297
+    - NPT6047
+    OG_NPT29721:
+    - NPT29721
+    - NPT3033
+    OG_NPT29738:
+    - NPT29738
+    - NPT3304
+    OG_NPT29739:
+    - NPT29739
+    - NPT3395
+    OG_NPT2979:
+    - NPT2979
+    - NPT5645
+    OG_NPT2982:
+    - NPT2982
+    - NPT2989
+    OG_NPT29826:
+    - NPT29826
+    - NPT3164
+    - NPT4251
+    - NPT4381
+    - NPT4634
+    OG_NPT29827:
+    - NPT29827
+    - NPT3785
+    - NPT3797
+    OG_NPT2985:
+    - NPT2985
+    - NPT3000
+    - NPT3956
+    OG_NPT29853:
+    - NPT29853
+    - NPT6392
+    OG_NPT2987:
+    - NPT2987
+    - NPT2994
+    OG_NPT2988:
+    - NPT2988
+    - NPT2993
+    OG_NPT29881:
+    - NPT29881
+    - NPT6350
+    OG_NPT29900:
+    - NPT29900
+    - NPT4117
+    OG_NPT29918:
+    - NPT29918
+    - NPT4394
+    OG_NPT29962:
+    - NPT29962
+    - NPT5141
+    OG_NPT29964:
+    - NPT29964
+    - NPT4494
+    OG_NPT2997:
+    - NPT2997
+    - NPT3003
+    OG_NPT2998:
+    - NPT2998
+    - NPT2999
+    OG_NPT29996:
+    - NPT29996
+    - NPT3108
+    - NPT3168
+    OG_NPT300:
+    - NPT300
+    - NPT5066
+    OG_NPT30015:
+    - NPT30015
+    - NPT6074
+    OG_NPT30046:
+    - NPT30046
+    - NPT4458
+    OG_NPT30070:
+    - NPT30070
+    - NPT5810
+    - NPT999
+    OG_NPT30076:
+    - NPT30076
+    - NPT3814
+    - NPT4157
+    OG_NPT30107:
+    - NPT30107
+    - NPT78
+    OG_NPT3011:
+    - NPT3011
+    - NPT911
+    OG_NPT30122:
+    - NPT30122
+    - NPT3347
+    - NPT4092
+    OG_NPT30133:
+    - NPT30133
+    - NPT4149
+    OG_NPT5105:
+    - NPT30140
+    - NPT5105
+    - NPT5222
+    - NPT5438
+    - NPT5439
+    OG_NPT30152:
+    - NPT30152
+    - NPT320
+    - NPT322
+    - NPT5376
+    - NPT6545
+    OG_NPT303:
+    - NPT303
+    - NPT4680
+    OG_NPT304:
+    - NPT304
+    - NPT612
+    OG_NPT3054:
+    - NPT3054
+    - NPT4059
+    - NPT5445
+    OG_NPT3064:
+    - NPT3064
+    - NPT3079
+    - NPT4931
+    - NPT4932
+    - NPT5226
+    - NPT5227
+    - NPT5228
+    OG_NPT3068:
+    - NPT3068
+    - NPT3069
+    OG_NPT3081:
+    - NPT3081
+    - NPT4563
+    OG_NPT3082:
+    - NPT3082
+    - NPT4565
+    OG_NPT3103:
+    - NPT3103
+    - NPT4949
+    OG_NPT3112:
+    - NPT3112
+    - NPT5003
+    OG_NPT3113:
+    - NPT3113
+    - NPT5002
+    OG_NPT3114:
+    - NPT3114
+    - NPT6579
+    OG_NPT3124:
+    - NPT3124
+    - NPT4935
+    OG_NPT3150:
+    - NPT3150
+    - NPT4546
+    OG_NPT3159:
+    - NPT3159
+    - NPT6403
+    OG_NPT3160:
+    - NPT3160
+    - NPT6639
+    OG_NPT3161:
+    - NPT3161
+    - NPT6467
+    OG_NPT3172:
+    - NPT3172
+    - NPT4062
+    OG_NPT3201:
+    - NPT3201
+    - NPT5986
+    OG_NPT3224:
+    - NPT3224
+    - NPT4086
+    OG_NPT3231:
+    - NPT3231
+    - NPT5346
+    OG_NPT3232:
+    - NPT3232
+    - NPT4761
+    OG_NPT3237:
+    - NPT3237
+    - NPT3331
+    OG_NPT3239:
+    - NPT3239
+    - NPT4784
+    OG_NPT3299:
+    - NPT3299
+    - NPT4160
+    OG_NPT3312:
+    - NPT3312
+    - NPT4138
+    OG_NPT3375:
+    - NPT3375
+    - NPT3387
+    OG_NPT344:
+    - NPT344
+    - NPT345
+    OG_NPT3442:
+    - NPT3442
+    - NPT3818
+    OG_NPT3475:
+    - NPT3475
+    - NPT3476
+    OG_NPT3509:
+    - NPT3509
+    - NPT3510
+    - NPT3512
+    OG_NPT3511:
+    - NPT3511
+    - NPT3513
+    OG_NPT3520:
+    - NPT3520
+    - NPT3529
+    OG_NPT3522:
+    - NPT3522
+    - NPT3523
+    - NPT3530
+    OG_NPT3547:
+    - NPT3547
+    - NPT3928
+    - NPT4334
+    OG_NPT3549:
+    - NPT3549
+    - NPT4570
+    OG_NPT3560:
+    - NPT3560
+    - NPT4215
+    - NPT5221
+    OG_NPT3581:
+    - NPT3581
+    - NPT3992
+    - NPT3993
+    - NPT4435
+    OG_NPT3604:
+    - NPT3604
+    - NPT5650
+    OG_NPT3702:
+    - NPT3702
+    - NPT4477
+    - NPT5653
+    OG_NPT3710:
+    - NPT3710
+    - NPT5072
+    OG_NPT3715:
+    - NPT3715
+    - NPT482
+    OG_NPT3732:
+    - NPT3732
+    - NPT6348
+    OG_NPT3737:
+    - NPT3737
+    - NPT3738
+    OG_NPT3742:
+    - NPT3742
+    - NPT3751
+    OG_NPT3743:
+    - NPT3743
+    - NPT3753
+    OG_NPT3744:
+    - NPT3744
+    - NPT3748
+    OG_NPT3746:
+    - NPT3746
+    - NPT3756
+    OG_NPT3752:
+    - NPT3752
+    - NPT3758
+    OG_NPT3757:
+    - NPT3757
+    - NPT4573
+    OG_NPT38:
+    - NPT38
+    - NPT6622
+    OG_NPT3809:
+    - NPT3809
+    - NPT5056
+    - NPT5058
+    OG_NPT3811:
+    - NPT3811
+    - NPT4947
+    - NPT6247
+    - NPT6248
+    OG_NPT3825:
+    - NPT3825
+    - NPT3831
+    OG_NPT3826:
+    - NPT3826
+    - NPT3832
+    - NPT3833
+    OG_NPT3827:
+    - NPT3827
+    - NPT3828
+    OG_NPT3906:
+    - NPT3906
+    - NPT514
+    OG_NPT3907:
+    - NPT3907
+    - NPT510
+    OG_NPT3909:
+    - NPT3909
+    - NPT740
+    OG_NPT3925:
+    - NPT3925
+    - NPT5033
+    OG_NPT3936:
+    - NPT3936
+    - NPT4295
+    - NPT4297
+    - NPT988
+    OG_NPT3945:
+    - NPT3945
+    - NPT5917
+    OG_NPT3946:
+    - NPT3946
+    - NPT3947
+    - NPT5919
+    OG_NPT3948:
+    - NPT3948
+    - NPT745
+    OG_NPT3952:
+    - NPT3952
+    - NPT5168
+    - NPT5792
+    OG_NPT3974:
+    - NPT3974
+    - NPT4415
+    - NPT6181
+    OG_NPT4000:
+    - NPT4000
+    - NPT869
+    OG_NPT4005:
+    - NPT4005
+    - NPT4007
+    OG_NPT4020:
+    - NPT4020
+    - NPT6624
+    OG_NPT4027:
+    - NPT4027
+    - NPT61
+    OG_NPT4028:
+    - NPT4028
+    - NPT4567
+    - NPT4575
+    OG_NPT4040:
+    - NPT4040
+    - NPT443
+    OG_NPT4108:
+    - NPT4108
+    - NPT4673
+    - NPT6584
+    OG_NPT4158:
+    - NPT4158
+    - NPT4159
+    OG_NPT4164:
+    - NPT4164
+    - NPT5421
+    OG_NPT4177:
+    - NPT4177
+    - NPT6188
+    OG_NPT4187:
+    - NPT4187
+    - NPT5871
+    OG_NPT4203:
+    - NPT4203
+    - NPT4204
+    OG_NPT4207:
+    - NPT4207
+    - NPT4794
+    OG_NPT4227:
+    - NPT4227
+    - NPT643
+    - NPT646
+    OG_NPT4250:
+    - NPT4250
+    - NPT5559
+    - NPT5617
+    OG_NPT4284:
+    - NPT4284
+    - NPT5365
+    OG_NPT4294:
+    - NPT4294
+    - NPT986
+    - NPT987
+    - NPT989
+    OG_NPT4300:
+    - NPT4300
+    - NPT6049
+    - NPT6558
+    OG_NPT4318:
+    - NPT4318
+    - NPT4423
+    OG_NPT4319:
+    - NPT4319
+    - NPT4320
+    - NPT4321
+    - NPT976
+    OG_NPT4323:
+    - NPT4323
+    - NPT77
+    OG_NPT435:
+    - NPT435
+    - NPT4360
+    - NPT613
+    OG_NPT4373:
+    - NPT4373
+    - NPT802
+    OG_NPT4375:
+    - NPT4375
+    - NPT4376
+    OG_NPT4438:
+    - NPT4438
+    - NPT4439
+    - NPT5407
+    OG_NPT445:
+    - NPT445
+    - NPT796
+    OG_NPT4467:
+    - NPT4467
+    - NPT6083
+    - NPT6086
+    - NPT6088
+    - NPT6090
+    - NPT7211
+    OG_NPT448:
+    - NPT448
+    - NPT541
+    OG_NPT4547:
+    - NPT4547
+    - NPT4551
+    OG_NPT4562:
+    - NPT4562
+    - NPT4572
+    OG_NPT4566:
+    - NPT4566
+    - NPT4574
+    OG_NPT4576:
+    - NPT4576
+    - NPT4644
+    OG_NPT46:
+    - NPT46
+    - NPT5121
+    - NPT5683
+    OG_NPT462:
+    - NPT462
+    - NPT511
+    OG_NPT4638:
+    - NPT4638
+    - NPT6009
+    OG_NPT4664:
+    - NPT4664
+    - NPT5074
+    - NPT5729
+    OG_NPT4734:
+    - NPT4734
+    - NPT5638
+    OG_NPT4788:
+    - NPT4788
+    - NPT94
+    OG_NPT479:
+    - NPT479
+    - NPT5922
+    - NPT5927
+    OG_NPT4888:
+    - NPT4888
+    - NPT5093
+    OG_NPT4903:
+    - NPT4903
+    - NPT4905
+    - NPT525
+    OG_NPT4911:
+    - NPT4911
+    - NPT546
+    - NPT6160
+    OG_NPT4934:
+    - NPT4934
+    - NPT881
+    OG_NPT495:
+    - NPT495
+    - NPT502
+    - NPT509
+    - NPT5114
+    - NPT6343
+    OG_NPT500:
+    - NPT500
+    - NPT506
+    - NPT6626
+    OG_NPT501:
+    - NPT501
+    - NPT6372
+    OG_NPT5028:
+    - NPT5028
+    - NPT5040
+    OG_NPT503:
+    - NPT503
+    - NPT5153
+    OG_NPT5032:
+    - NPT5032
+    - NPT6226
+    OG_NPT5047:
+    - NPT5047
+    - NPT5048
+    OG_NPT5084:
+    - NPT5084
+    - NPT5085
+    OG_NPT5101:
+    - NPT5101
+    - NPT5104
+    OG_NPT513:
+    - NPT513
+    - NPT5618
+    - NPT5852
+    OG_NPT5133:
+    - NPT5133
+    - NPT5134
+    OG_NPT5158:
+    - NPT5158
+    - NPT5161
+    OG_NPT516:
+    - NPT516
+    - NPT5387
+    OG_NPT5166:
+    - NPT5166
+    - NPT588
+    OG_NPT5174:
+    - NPT5174
+    - NPT910
+    OG_NPT5211:
+    - NPT5211
+    - NPT5816
+    - NPT866
+    OG_NPT5231:
+    - NPT5231
+    - NPT6505
+    OG_NPT5233:
+    - NPT5233
+    - NPT5234
+    OG_NPT5288:
+    - NPT5288
+    - NPT6629
+    OG_NPT5301:
+    - NPT5301
+    - NPT5309
+    OG_NPT5343:
+    - NPT5343
+    - NPT5971
+    OG_NPT5345:
+    - NPT5345
+    - NPT6239
+    OG_NPT5380:
+    - NPT5380
+    - NPT5381
+    OG_NPT5388:
+    - NPT5388
+    - NPT5389
+    OG_NPT5394:
+    - NPT5394
+    - NPT5395
+    OG_NPT5418:
+    - NPT5418
+    - NPT6024
+    OG_NPT5470:
+    - NPT5470
+    - NPT6327
+    OG_NPT5471:
+    - NPT5471
+    - NPT6574
+    OG_NPT5494:
+    - NPT5494
+    - NPT641
+    OG_NPT5495:
+    - NPT5495
+    - NPT640
+    OG_NPT5538:
+    - NPT5538
+    - NPT5539
+    OG_NPT5568:
+    - NPT5568
+    - NPT5584
+    OG_NPT5660:
+    - NPT5660
+    - NPT684
+    OG_NPT5665:
+    - NPT5665
+    - NPT689
+    OG_NPT5666:
+    - NPT5666
+    - NPT692
+    OG_NPT5786:
+    - NPT5786
+    - NPT5787
+    - NPT5788
+    OG_NPT5878:
+    - NPT5878
+    - NPT5880
+    OG_NPT589:
+    - NPT589
+    - NPT604
+    - NPT619
+    OG_NPT5895:
+    - NPT5895
+    - NPT60
+    OG_NPT5976:
+    - NPT5976
+    - NPT5978
+    OG_NPT5980:
+    - NPT5980
+    - NPT5990
+    OG_NPT5981:
+    - NPT5981
+    - NPT5991
+    OG_NPT5982:
+    - NPT5982
+    - NPT5984
+    - NPT5988
+    OG_NPT5983:
+    - NPT5983
+    - NPT5993
+    OG_NPT6028:
+    - NPT6028
+    - NPT6030
+    OG_NPT6082:
+    - NPT6082
+    - NPT6087
+    OG_NPT6085:
+    - NPT6085
+    - NPT6089
+    OG_NPT6113:
+    - NPT6113
+    - NPT895
+    OG_NPT6120:
+    - NPT6120
+    - NPT6122
+    OG_NPT6124:
+    - NPT6124
+    - NPT6296
+    OG_NPT6151:
+    - NPT6151
+    - NPT956
+    OG_NPT6197:
+    - NPT6197
+    - NPT6199
+    OG_NPT6281:
+    - NPT6281
+    - NPT8
+    OG_NPT6433:
+    - NPT6433
+    - NPT6488
+    OG_NPT6464:
+    - NPT6464
+    - NPT6575
+    OG_NPT647:
+    - NPT647
+    - NPT648
+    - NPT649
+    OG_NPT6526:
+    - NPT6526
+    - NPT6527
+    OG_NPT661:
+    - NPT661
+    - NPT665
+    - NPT666
+    OG_NPT6611:
+    - NPT6611
+    - NPT761
+    OG_NPT667:
+    - NPT667
+    - NPT669
+    - NPT877
+    OG_NPT715:
+    - NPT715
+    - NPT716
+    - NPT717
+    OG_NPT748:
+    - NPT748
+    - NPT751
+    OG_NPT808:
+    - NPT808
+    - NPT812
+    - NPT813
+    OG_NPT809:
+    - NPT809
+    - NPT814
+    - NPT817
+    OG_NPT810:
+    - NPT810
+    - NPT815
+    OG_NPT818:
+    - NPT818
+    - NPT819
+    OG_NPT907:
+    - NPT907
+    - NPT908
+    OG_NPT942:
+    - NPT942
+    - NPT944
+    OG_NPT945:
+    - NPT945
+    - NPT946
+  n_tier1: 13
+  n_tier2: 28
+  n_tier_x: 34
+  tier1:
+  - NPT109
+  - NPT178
+  - NPT204
+  - NPT208
+  - NPT31
+  - NPT43
+  - NPT439
+  - NPT441
+  - NPT459
+  - NPT570
+  - NPT668
+  - NPT68
+  - NPT740
+  tier2:
+  - NPT1044
+  - NPT13
+  - NPT1337
+  - NPT1422
+  - NPT143
+  - NPT1433
+  - NPT1464
+  - NPT1478
+  - NPT1592
+  - NPT1603
+  - NPT1604
+  - NPT203
+  - NPT2216
+  - NPT270
+  - NPT279
+  - NPT285
+  - NPT299
+  - NPT344
+  - NPT36
+  - NPT38
+  - NPT462
+  - NPT67
+  - NPT78
+  - NPT831
+  - NPT862
+  - NPT956
+  - NPT967
+  - NPT98
+  tier_x:
+  - NPT1028
+  - NPT1087
+  - NPT110
+  - NPT1120
+  - NPT1171
+  - NPT1249
+  - NPT133
+  - NPT134
+  - NPT1371
+  - NPT147
+  - NPT18
+  - NPT180
+  - NPT181
+  - NPT1821
+  - NPT19
+  - NPT20555
+  - NPT20987
+  - NPT212
+  - NPT213
+  - NPT2170
+  - NPT2678
+  - NPT2740
+  - NPT2890
+  - NPT3119
+  - NPT401
+  - NPT547
+  - NPT612
+  - NPT659
+  - NPT660
+  - NPT713
+  - NPT721
+  - NPT81
+  - NPT840
+  - NPT848
+  n_pairs_selected: 4250
+  n_unique_compounds: 3005
+n_targets_in_npass: 8764
+n_targets_written: 244
+targets:
+  NPT1:
+    target_id: NPT1
+    target_name: Radical scavenging activity
+    target_type: Others
+    uniprot_id: ''
+    organism_tax_id: ''
+    organism: ''
+    ortholog_group_id: OG_NPT1
+    n_unique_compounds: 602
+    censored_frac: 0.1748
+    pactivity_std: 0.7133
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+    - R8_no_tax_id
+  NPT1021:
+    target_id: NPT1021
+    target_name: Leishmania infantum
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '5671'
+    organism: Leishmania infantum
+    ortholog_group_id: OG_NPT1021
+    n_unique_compounds: 56
+    censored_frac: 0.0923
+    pactivity_std: 0.7378
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1028:
+    target_id: NPT1028
+    target_name: Multidrug resistance-associated protein 4
+    target_type: Individual protein
+    uniprot_id: O15439
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1028
+    n_unique_compounds: 178
+    censored_frac: 0.7403
+    pactivity_std: 0.3708
+    tier: tier_x
+    has_sequence: true
+    exclusion_reasons:
+    - R4_censored_frac
+    - R6_label_variance_degenerate
+    - factE_transporter_panel
+  NPT1031:
+    target_id: NPT1031
+    target_name: Ca9-22
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1031
+    n_unique_compounds: 78
+    censored_frac: 0.2247
+    pactivity_std: 1.3117
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1034:
+    target_id: NPT1034
+    target_name: Lu1
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1034
+    n_unique_compounds: 68
+    censored_frac: 0.3243
+    pactivity_std: 0.8388
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1044:
+    target_id: NPT1044
+    target_name: DNA topoisomerase II alpha
+    target_type: Individual protein
+    uniprot_id: P11388
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1044
+    n_unique_compounds: 65
+    censored_frac: 0.3093
+    pactivity_std: 0.7405
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT1045:
+    target_id: NPT1045
+    target_name: U2OS
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1045
+    n_unique_compounds: 96
+    censored_frac: 0.2348
+    pactivity_std: 1.4119
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1081:
+    target_id: NPT1081
+    target_name: BXPC-3
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1081
+    n_unique_compounds: 72
+    censored_frac: 0.0874
+    pactivity_std: 1.4991
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1083:
+    target_id: NPT1083
+    target_name: A-375
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1083
+    n_unique_compounds: 152
+    censored_frac: 0.1345
+    pactivity_std: 1.3543
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1084:
+    target_id: NPT1084
+    target_name: Liver microsomes
+    target_type: Subcellular
+    uniprot_id: ''
+    organism_tax_id: '10116'
+    organism: Rattus norvegicus
+    ortholog_group_id: OG_NPT1084
+    n_unique_compounds: 52
+    censored_frac: 0.1429
+    pactivity_std: 1.3932
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1086:
+    target_id: NPT1086
+    target_name: SK-HEP1
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1086
+    n_unique_compounds: 71
+    censored_frac: 0.2105
+    pactivity_std: 1.4758
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1087:
+    target_id: NPT1087
+    target_name: Isocitrate lyase
+    target_type: Individual protein
+    uniprot_id: Q9P8Q7
+    organism_tax_id: '5476'
+    organism: Candida albicans
+    ortholog_group_id: OG_NPT1087
+    n_unique_compounds: 105
+    censored_frac: 0.2044
+    pactivity_std: 0.4628
+    tier: tier_x
+    has_sequence: true
+    exclusion_reasons:
+    - R6_label_variance_degenerate
+  NPT109:
+    target_id: NPT109
+    target_name: Cytochrome P450 3A4
+    target_type: Individual protein
+    uniprot_id: P08684
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT109
+    n_unique_compounds: 156
+    censored_frac: 0.2461
+    pactivity_std: 0.7978
+    tier: tier1
+    has_sequence: true
+    exclusion_reasons: []
+  NPT1097:
+    target_id: NPT1097
+    target_name: MKN-45
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1097
+    n_unique_compounds: 88
+    censored_frac: 0.1951
+    pactivity_std: 1.4298
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT110:
+    target_id: NPT110
+    target_name: Cytochrome P450 2D6
+    target_type: Individual protein
+    uniprot_id: P10635
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT110
+    n_unique_compounds: 110
+    censored_frac: 0.4118
+    pactivity_std: 0.7482
+    tier: tier_x
+    has_sequence: true
+    exclusion_reasons:
+    - R4_censored_frac
+  NPT111:
+    target_id: NPT111
+    target_name: K562
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT111
+    n_unique_compounds: 1142
+    censored_frac: 0.2937
+    pactivity_std: 0.8818
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT112:
+    target_id: NPT112
+    target_name: MOLT-4
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT112
+    n_unique_compounds: 183
+    censored_frac: 0.2227
+    pactivity_std: 1.2454
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1120:
+    target_id: NPT1120
+    target_name: Pancreatic triacylglycerol lipase
+    target_type: Individual protein
+    uniprot_id: P00591
+    organism_tax_id: '9823'
+    organism: Sus scrofa
+    ortholog_group_id: OG_NPT1120
+    n_unique_compounds: 62
+    censored_frac: 0.4198
+    pactivity_std: 0.6282
+    tier: tier_x
+    has_sequence: true
+    exclusion_reasons:
+    - R4_censored_frac
+  NPT1125:
+    target_id: NPT1125
+    target_name: T98G
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1125
+    n_unique_compounds: 64
+    censored_frac: 0.2055
+    pactivity_std: 1.7427
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT113:
+    target_id: NPT113
+    target_name: RAW264.7
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '10090'
+    organism: Mus musculus
+    ortholog_group_id: OG_NPT113
+    n_unique_compounds: 2173
+    censored_frac: 0.2844
+    pactivity_std: 0.6564
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT114:
+    target_id: NPT114
+    target_name: LoVo
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT114
+    n_unique_compounds: 304
+    censored_frac: 0.278
+    pactivity_std: 1.2965
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT116:
+    target_id: NPT116
+    target_name: HL-60
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT116
+    n_unique_compounds: 2226
+    censored_frac: 0.3706
+    pactivity_std: 0.8628
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1161:
+    target_id: NPT1161
+    target_name: CHO
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '10029'
+    organism: Cricetulus griseus
+    ortholog_group_id: OG_NPT1161
+    n_unique_compounds: 60
+    censored_frac: 0.1639
+    pactivity_std: 1.1177
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1171:
+    target_id: NPT1171
+    target_name: HEp-2
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1171
+    n_unique_compounds: 109
+    censored_frac: 0.4405
+    pactivity_std: 0.9349
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R4_censored_frac
+    - R7_no_sequence
+  NPT1178:
+    target_id: NPT1178
+    target_name: KB 3-1
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1178
+    n_unique_compounds: 69
+    censored_frac: 0.1053
+    pactivity_std: 1.6263
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1179:
+    target_id: NPT1179
+    target_name: MKN-28
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1179
+    n_unique_compounds: 50
+    censored_frac: 0.2037
+    pactivity_std: 1.7146
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1182:
+    target_id: NPT1182
+    target_name: J774.A1
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '10090'
+    organism: Mus musculus
+    ortholog_group_id: OG_NPT1182
+    n_unique_compounds: 77
+    censored_frac: 0.1146
+    pactivity_std: 1.1266
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT12:
+    target_id: NPT12
+    target_name: Human immunodeficiency virus type 1 integrase
+    target_type: Individual protein
+    uniprot_id: Q7ZJM1
+    organism_tax_id: '11676'
+    organism: Human immunodeficiency virus 1
+    ortholog_group_id: OG_NPT12
+    n_unique_compounds: 110
+    censored_frac: 0.1705
+    pactivity_std: 1.3228
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R7_no_sequence
+  NPT1225:
+    target_id: NPT1225
+    target_name: Plasmodium falciparum (isolate FcB1 / Columbia)
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '186763'
+    organism: Plasmodium falciparum FcB1/Columbia
+    ortholog_group_id: OG_NPT1225
+    n_unique_compounds: 50
+    censored_frac: 0.1867
+    pactivity_std: 1.2052
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1229:
+    target_id: NPT1229
+    target_name: Huh-7
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1229
+    n_unique_compounds: 122
+    censored_frac: 0.2686
+    pactivity_std: 1.1173
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1249:
+    target_id: NPT1249
+    target_name: Canalicular multispecific organic anion transporter 2
+    target_type: Individual protein
+    uniprot_id: O15438
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1249
+    n_unique_compounds: 168
+    censored_frac: 0.9345
+    pactivity_std: 0.1473
+    tier: tier_x
+    has_sequence: true
+    exclusion_reasons:
+    - R4_censored_frac
+    - R6_label_variance_degenerate
+    - factE_transporter_panel
+  NPT13:
+    target_id: NPT13
+    target_name: Tyrosine-protein kinase LCK
+    target_type: Individual protein
+    uniprot_id: P06239
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT13
+    n_unique_compounds: 54
+    censored_frac: 0.0843
+    pactivity_std: 1.1178
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT1307:
+    target_id: NPT1307
+    target_name: Calu-1
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1307
+    n_unique_compounds: 63
+    censored_frac: 0.3077
+    pactivity_std: 1.1169
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1312:
+    target_id: NPT1312
+    target_name: SW1990
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1312
+    n_unique_compounds: 140
+    censored_frac: 0.2968
+    pactivity_std: 1.2427
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT133:
+    target_id: NPT133
+    target_name: ZR-75-1
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT133
+    n_unique_compounds: 52
+    censored_frac: 0.5
+    pactivity_std: 1.3106
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R4_censored_frac
+    - R7_no_sequence
+  NPT1337:
+    target_id: NPT1337
+    target_name: Hepatocyte growth factor receptor
+    target_type: Individual protein
+    uniprot_id: P08581
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1337
+    n_unique_compounds: 55
+    censored_frac: 0.2048
+    pactivity_std: 0.7324
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT134:
+    target_id: NPT134
+    target_name: SK-BR-3
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT134
+    n_unique_compounds: 248
+    censored_frac: 0.4508
+    pactivity_std: 1.0474
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R4_censored_frac
+    - R7_no_sequence
+  NPT137:
+    target_id: NPT137
+    target_name: L1210
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '10090'
+    organism: Mus musculus
+    ortholog_group_id: OG_NPT137
+    n_unique_compounds: 296
+    censored_frac: 0.135
+    pactivity_std: 1.5794
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1371:
+    target_id: NPT1371
+    target_name: Cyclin-dependent kinase 2
+    target_type: Individual protein
+    uniprot_id: P24941
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT29168
+    n_unique_compounds: 58
+    censored_frac: 0.4118
+    pactivity_std: 0.7144
+    tier: tier_x
+    has_sequence: true
+    exclusion_reasons:
+    - R4_censored_frac
+  NPT1374:
+    target_id: NPT1374
+    target_name: WI-38
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1374
+    n_unique_compounds: 128
+    censored_frac: 0.2457
+    pactivity_std: 0.7283
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1383:
+    target_id: NPT1383
+    target_name: A2058
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1383
+    n_unique_compounds: 93
+    censored_frac: 0.2525
+    pactivity_std: 1.4169
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT139:
+    target_id: NPT139
+    target_name: HT-29
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT139
+    n_unique_compounds: 1206
+    censored_frac: 0.2886
+    pactivity_std: 1.045
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1422:
+    target_id: NPT1422
+    target_name: ATP-binding cassette sub-family G member 2
+    target_type: Individual protein
+    uniprot_id: Q9UNQ0
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1422
+    n_unique_compounds: 64
+    censored_frac: 0.0267
+    pactivity_std: 0.5852
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT143:
+    target_id: NPT143
+    target_name: DNA topoisomerase I
+    target_type: Individual protein
+    uniprot_id: P11387
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT143
+    n_unique_compounds: 54
+    censored_frac: 0.2857
+    pactivity_std: 0.7716
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT1433:
+    target_id: NPT1433
+    target_name: Serine/threonine-protein kinase Aurora-B
+    target_type: Individual protein
+    uniprot_id: Q96GD4
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1433
+    n_unique_compounds: 53
+    censored_frac: 0.2344
+    pactivity_std: 0.8477
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT146:
+    target_id: NPT146
+    target_name: SK-OV-3
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT146
+    n_unique_compounds: 533
+    censored_frac: 0.3395
+    pactivity_std: 0.9603
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1460:
+    target_id: NPT1460
+    target_name: L929
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '10090'
+    organism: Mus musculus
+    ortholog_group_id: OG_NPT1460
+    n_unique_compounds: 176
+    censored_frac: 0.1592
+    pactivity_std: 1.2503
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1464:
+    target_id: NPT1464
+    target_name: Phosphodiesterase 4D
+    target_type: Individual protein
+    uniprot_id: Q08499
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1464
+    n_unique_compounds: 52
+    censored_frac: 0.0259
+    pactivity_std: 0.7856
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT147:
+    target_id: NPT147
+    target_name: SK-MEL-2
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT147
+    n_unique_compounds: 352
+    censored_frac: 0.4219
+    pactivity_std: 0.8286
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R4_censored_frac
+    - R7_no_sequence
+  NPT1475:
+    target_id: NPT1475
+    target_name: WI-38 VA13
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1475
+    n_unique_compounds: 105
+    censored_frac: 0.2195
+    pactivity_std: 0.845
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1478:
+    target_id: NPT1478
+    target_name: Vascular endothelial growth factor receptor 2
+    target_type: Individual protein
+    uniprot_id: P35968
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1478
+    n_unique_compounds: 54
+    censored_frac: 0.0522
+    pactivity_std: 0.9137
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT148:
+    target_id: NPT148
+    target_name: HCT-15
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT148
+    n_unique_compounds: 333
+    censored_frac: 0.2629
+    pactivity_std: 1.0209
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT15:
+    target_id: NPT15
+    target_name: Jurkat
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT15
+    n_unique_compounds: 291
+    censored_frac: 0.3063
+    pactivity_std: 1.1598
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1505:
+    target_id: NPT1505
+    target_name: J82
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1505
+    n_unique_compounds: 51
+    censored_frac: 0.2361
+    pactivity_std: 1.6279
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1535:
+    target_id: NPT1535
+    target_name: U-87 MG
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1535
+    n_unique_compounds: 107
+    censored_frac: 0.1463
+    pactivity_std: 1.1806
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1592:
+    target_id: NPT1592
+    target_name: Dipeptidyl peptidase IV
+    target_type: Individual protein
+    uniprot_id: P27487
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1592
+    n_unique_compounds: 50
+    censored_frac: 0.2182
+    pactivity_std: 1.1545
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT16:
+    target_id: NPT16
+    target_name: Staphylococcus aureus
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '1280'
+    organism: Staphylococcus aureus
+    ortholog_group_id: OG_NPT16
+    n_unique_compounds: 225
+    censored_frac: 0.1599
+    pactivity_std: 1.0506
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1603:
+    target_id: NPT1603
+    target_name: Cytochrome P450 1A1
+    target_type: Individual protein
+    uniprot_id: P04798
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1603
+    n_unique_compounds: 51
+    censored_frac: 0.0405
+    pactivity_std: 0.9475
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT1604:
+    target_id: NPT1604
+    target_name: Cytochrome P450 1B1
+    target_type: Individual protein
+    uniprot_id: Q16678
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1604
+    n_unique_compounds: 61
+    censored_frac: 0.044
+    pactivity_std: 1.1283
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT1629:
+    target_id: NPT1629
+    target_name: CWR22R
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1629
+    n_unique_compounds: 56
+    censored_frac: 0.0635
+    pactivity_std: 1.4752
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT164:
+    target_id: NPT164
+    target_name: Human herpesvirus 4
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '10376'
+    organism: Human herpesvirus 4
+    ortholog_group_id: OG_NPT164
+    n_unique_compounds: 51
+    censored_frac: 0.0
+    pactivity_std: 1.4566
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1649:
+    target_id: NPT1649
+    target_name: MV4-11
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1649
+    n_unique_compounds: 72
+    censored_frac: 0.1709
+    pactivity_std: 1.704
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT165:
+    target_id: NPT165
+    target_name: HeLa
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT165
+    n_unique_compounds: 2126
+    censored_frac: 0.2557
+    pactivity_std: 0.9264
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT168:
+    target_id: NPT168
+    target_name: P388
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '10090'
+    organism: Mus musculus
+    ortholog_group_id: OG_NPT168
+    n_unique_compounds: 802
+    censored_frac: 0.2334
+    pactivity_std: 1.4134
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT169:
+    target_id: NPT169
+    target_name: B16-F10
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '10090'
+    organism: Mus musculus
+    ortholog_group_id: OG_NPT169
+    n_unique_compounds: 130
+    censored_frac: 0.3837
+    pactivity_std: 0.8197
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT170:
+    target_id: NPT170
+    target_name: SK-MEL-28
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT170
+    n_unique_compounds: 253
+    censored_frac: 0.3852
+    pactivity_std: 1.0176
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT171:
+    target_id: NPT171
+    target_name: MRC5
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT171
+    n_unique_compounds: 239
+    censored_frac: 0.3333
+    pactivity_std: 0.8191
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT178:
+    target_id: NPT178
+    target_name: Protein-tyrosine phosphatase 1B
+    target_type: Individual protein
+    uniprot_id: P18031
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT178
+    n_unique_compounds: 600
+    censored_frac: 0.1745
+    pactivity_std: 0.6204
+    tier: tier1
+    has_sequence: true
+    exclusion_reasons: []
+  NPT179:
+    target_id: NPT179
+    target_name: A2780
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT179
+    n_unique_compounds: 904
+    censored_frac: 0.3493
+    pactivity_std: 0.8961
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT18:
+    target_id: NPT18
+    target_name: Pseudomonas aeruginosa
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '287'
+    organism: Pseudomonas aeruginosa
+    ortholog_group_id: OG_NPT18
+    n_unique_compounds: 55
+    censored_frac: 0.4943
+    pactivity_std: 1.5611
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R4_censored_frac
+    - R7_no_sequence
+  NPT180:
+    target_id: NPT180
+    target_name: HCT-8
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT180
+    n_unique_compounds: 473
+    censored_frac: 0.5317
+    pactivity_std: 0.7473
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R4_censored_frac
+    - R7_no_sequence
+  NPT181:
+    target_id: NPT181
+    target_name: Bel-7402
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT181
+    n_unique_compounds: 608
+    censored_frac: 0.4844
+    pactivity_std: 1.0528
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R4_censored_frac
+    - R7_no_sequence
+  NPT1820:
+    target_id: NPT1820
+    target_name: NCI-H1650
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1820
+    n_unique_compounds: 74
+    censored_frac: 0.3882
+    pactivity_std: 1.2688
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1821:
+    target_id: NPT1821
+    target_name: Sortase
+    target_type: Individual protein
+    uniprot_id: Q9S446
+    organism_tax_id: '1280'
+    organism: Staphylococcus aureus
+    ortholog_group_id: OG_NPT21765
+    n_unique_compounds: 91
+    censored_frac: 0.5464
+    pactivity_std: 0.3296
+    tier: tier_x
+    has_sequence: true
+    exclusion_reasons:
+    - R4_censored_frac
+    - R6_label_variance_degenerate
+  NPT1851:
+    target_id: NPT1851
+    target_name: Col2
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1851
+    n_unique_compounds: 50
+    censored_frac: 0.2281
+    pactivity_std: 0.7804
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1864:
+    target_id: NPT1864
+    target_name: L5178Y
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '10090'
+    organism: Mus musculus
+    ortholog_group_id: OG_NPT1864
+    n_unique_compounds: 103
+    censored_frac: 0.3667
+    pactivity_std: 0.5608
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1872:
+    target_id: NPT1872
+    target_name: Bcap37
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1872
+    n_unique_compounds: 51
+    censored_frac: 0.3623
+    pactivity_std: 0.6958
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1886:
+    target_id: NPT1886
+    target_name: J774
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '10090'
+    organism: Mus musculus
+    ortholog_group_id: OG_NPT1886
+    n_unique_compounds: 69
+    censored_frac: 0.1574
+    pactivity_std: 1.3149
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT189:
+    target_id: NPT189
+    target_name: Vero
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9534'
+    organism: Chlorocebus aethiops
+    ortholog_group_id: OG_NPT189
+    n_unique_compounds: 809
+    censored_frac: 0.3691
+    pactivity_std: 0.8993
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT19:
+    target_id: NPT19
+    target_name: Escherichia coli
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '562'
+    organism: Escherichia coli
+    ortholog_group_id: OG_NPT19
+    n_unique_compounds: 111
+    censored_frac: 0.4304
+    pactivity_std: 1.2898
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R4_censored_frac
+    - R7_no_sequence
+  NPT190:
+    target_id: NPT190
+    target_name: Human herpesvirus 1
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '10298'
+    organism: Human herpesvirus 1
+    ortholog_group_id: OG_NPT190
+    n_unique_compounds: 61
+    censored_frac: 0.0983
+    pactivity_std: 1.0846
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT196:
+    target_id: NPT196
+    target_name: AGS
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT196
+    n_unique_compounds: 127
+    censored_frac: 0.3198
+    pactivity_std: 1.2332
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1970:
+    target_id: NPT1970
+    target_name: THP-1
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1970
+    n_unique_compounds: 199
+    censored_frac: 0.2372
+    pactivity_std: 0.872
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT1997:
+    target_id: NPT1997
+    target_name: OS-RC-2
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1997
+    n_unique_compounds: 92
+    censored_frac: 0.3654
+    pactivity_std: 1.2396
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT2:
+    target_id: NPT2
+    target_name: Unspecified
+    target_type: Others
+    uniprot_id: ''
+    organism_tax_id: ''
+    organism: ''
+    ortholog_group_id: OG_NPT2
+    n_unique_compounds: 3916
+    censored_frac: 0.1907
+    pactivity_std: 1.1126
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+    - R8_no_tax_id
+  NPT20:
+    target_id: NPT20
+    target_name: Candida albicans
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '5476'
+    organism: Candida albicans
+    ortholog_group_id: OG_NPT20
+    n_unique_compounds: 258
+    censored_frac: 0.3239
+    pactivity_std: 0.9252
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT202:
+    target_id: NPT202
+    target_name: Protease
+    target_type: Individual protein
+    uniprot_id: Q9YQ12
+    organism_tax_id: '11676'
+    organism: Human immunodeficiency virus 1
+    ortholog_group_id: OG_NPT202
+    n_unique_compounds: 56
+    censored_frac: 0.1806
+    pactivity_std: 0.8981
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R7_no_sequence
+  NPT203:
+    target_id: NPT203
+    target_name: Carboxylesterase 2
+    target_type: Individual protein
+    uniprot_id: O00748
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT203
+    n_unique_compounds: 57
+    censored_frac: 0.05
+    pactivity_std: 0.7853
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT204:
+    target_id: NPT204
+    target_name: Acetylcholinesterase
+    target_type: Individual protein
+    uniprot_id: P22303
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT19290
+    n_unique_compounds: 323
+    censored_frac: 0.1163
+    pactivity_std: 1.0684
+    tier: tier1
+    has_sequence: true
+    exclusion_reasons: []
+  NPT20529:
+    target_id: NPT20529
+    target_name: NON-PROTEIN TARGET
+    target_type: Non-molecular
+    uniprot_id: ''
+    organism_tax_id: ''
+    organism: ''
+    ortholog_group_id: OG_NPT20529
+    n_unique_compounds: 4873
+    censored_frac: 0.3081
+    pactivity_std: 0.8764
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+    - R8_no_tax_id
+  NPT20555:
+    target_id: NPT20555
+    target_name: SARS-CoV-2
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '2697049'
+    organism: Severe acute respiratory syndrome coronavirus 2
+    ortholog_group_id: OG_NPT20555
+    n_unique_compounds: 767
+    censored_frac: 0.9457
+    pactivity_std: 0.2759
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R4_censored_frac
+    - R6_label_variance_degenerate
+    - R7_no_sequence
+  NPT20763:
+    target_id: NPT20763
+    target_name: J774.1
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '10090'
+    organism: Mus musculus
+    ortholog_group_id: OG_NPT20763
+    n_unique_compounds: 58
+    censored_frac: 0.0462
+    pactivity_std: 0.5495
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT208:
+    target_id: NPT208
+    target_name: Cytochrome P450 1A2
+    target_type: Individual protein
+    uniprot_id: P05177
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT208
+    n_unique_compounds: 118
+    censored_frac: 0.2057
+    pactivity_std: 1.3178
+    tier: tier1
+    has_sequence: true
+    exclusion_reasons: []
+  NPT20904:
+    target_id: NPT20904
+    target_name: Hep 3B2
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT20904
+    n_unique_compounds: 73
+    censored_frac: 0.1828
+    pactivity_std: 0.7032
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT20967:
+    target_id: NPT20967
+    target_name: Platelet
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: ''
+    organism: ''
+    ortholog_group_id: OG_NPT20967
+    n_unique_compounds: 77
+    censored_frac: 0.2453
+    pactivity_std: 0.8113
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+    - R8_no_tax_id
+  NPT20987:
+    target_id: NPT20987
+    target_name: HeLa S3
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT20987
+    n_unique_compounds: 96
+    censored_frac: 0.6078
+    pactivity_std: 0.6013
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R4_censored_frac
+    - R7_no_sequence
+  NPT2107:
+    target_id: NPT2107
+    target_name: PSN1
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT2107
+    n_unique_compounds: 50
+    censored_frac: 0.2308
+    pactivity_std: 1.9973
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT212:
+    target_id: NPT212
+    target_name: Cytochrome P450 2C9
+    target_type: Individual protein
+    uniprot_id: P11712
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT212
+    n_unique_compounds: 65
+    censored_frac: 0.5
+    pactivity_std: 0.57
+    tier: tier_x
+    has_sequence: true
+    exclusion_reasons:
+    - R4_censored_frac
+  NPT213:
+    target_id: NPT213
+    target_name: Cytochrome P450 2C19
+    target_type: Individual protein
+    uniprot_id: P33261
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT213
+    n_unique_compounds: 53
+    censored_frac: 0.4306
+    pactivity_std: 0.6185
+    tier: tier_x
+    has_sequence: true
+    exclusion_reasons:
+    - R4_censored_frac
+  NPT2170:
+    target_id: NPT2170
+    target_name: RKO
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT2170
+    n_unique_compounds: 100
+    censored_frac: 0.4014
+    pactivity_std: 1.4122
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R4_censored_frac
+    - R7_no_sequence
+  NPT21742:
+    target_id: NPT21742
+    target_name: L02
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT21742
+    n_unique_compounds: 93
+    censored_frac: 0.2919
+    pactivity_std: 0.7775
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT21802:
+    target_id: NPT21802
+    target_name: Hypoxia inducible factors; HIF-1-alpha, HIF-2-alpha
+    target_type: Protein family
+    uniprot_id: n.a
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT14526
+    n_unique_compounds: 101
+    censored_frac: 0.2378
+    pactivity_std: 0.8658
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT2216:
+    target_id: NPT2216
+    target_name: DNA polymerase beta
+    target_type: Individual protein
+    uniprot_id: P06766
+    organism_tax_id: '10116'
+    organism: Rattus norvegicus
+    ortholog_group_id: OG_NPT2216
+    n_unique_compounds: 50
+    censored_frac: 0.3115
+    pactivity_std: 0.7974
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT2245:
+    target_id: NPT2245
+    target_name: SiHa
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT2245
+    n_unique_compounds: 65
+    censored_frac: 0.1685
+    pactivity_std: 1.353
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT2257:
+    target_id: NPT2257
+    target_name: MCF-10A
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT2257
+    n_unique_compounds: 68
+    censored_frac: 0.3146
+    pactivity_std: 0.7592
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT2341:
+    target_id: NPT2341
+    target_name: NCI-H1975
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT2341
+    n_unique_compounds: 76
+    censored_frac: 0.2
+    pactivity_std: 1.3121
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT2351:
+    target_id: NPT2351
+    target_name: MG-63
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT2351
+    n_unique_compounds: 68
+    censored_frac: 0.25
+    pactivity_std: 1.6199
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT24:
+    target_id: NPT24
+    target_name: Human immunodeficiency virus 1
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '11676'
+    organism: Human immunodeficiency virus 1
+    ortholog_group_id: OG_NPT24
+    n_unique_compounds: 281
+    censored_frac: 0.1461
+    pactivity_std: 1.397
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT2410:
+    target_id: NPT2410
+    target_name: NCI-H1299
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT2410
+    n_unique_compounds: 137
+    censored_frac: 0.3976
+    pactivity_std: 1.2938
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT2452:
+    target_id: NPT2452
+    target_name: NCI-H292
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: ''
+    organism: ''
+    ortholog_group_id: OG_NPT2452
+    n_unique_compounds: 52
+    censored_frac: 0.1594
+    pactivity_std: 1.894
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+    - R8_no_tax_id
+  NPT2511:
+    target_id: NPT2511
+    target_name: HGC-27
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT2511
+    n_unique_compounds: 53
+    censored_frac: 0.2576
+    pactivity_std: 1.6416
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT261:
+    target_id: NPT261
+    target_name: Monoamine oxidase A
+    target_type: Individual protein
+    uniprot_id: P21397
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT14526
+    n_unique_compounds: 92
+    censored_frac: 0.0784
+    pactivity_std: 1.0754
+    tier: tier_x
+    has_sequence: true
+    exclusion_reasons:
+    - R5_ortholog_redundant
+  NPT2645:
+    target_id: NPT2645
+    target_name: Giardia intestinalis
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '5741'
+    organism: Giardia intestinalis
+    ortholog_group_id: OG_NPT2645
+    n_unique_compounds: 65
+    censored_frac: 0.0286
+    pactivity_std: 1.0924
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT2678:
+    target_id: NPT2678
+    target_name: NB-4
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT2678
+    n_unique_compounds: 84
+    censored_frac: 0.4787
+    pactivity_std: 0.5733
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R4_censored_frac
+    - R7_no_sequence
+  NPT27:
+    target_id: NPT27
+    target_name: Unspecified
+    target_type: Others
+    uniprot_id: ''
+    organism_tax_id: ''
+    organism: ''
+    ortholog_group_id: OG_NPT2
+    n_unique_compounds: 193
+    censored_frac: 0.3956
+    pactivity_std: 0.8788
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R5_ortholog_redundant
+    - R7_no_sequence
+    - R8_no_tax_id
+  NPT270:
+    target_id: NPT270
+    target_name: Nitric oxide synthase, inducible
+    target_type: Individual protein
+    uniprot_id: P29477
+    organism_tax_id: '10090'
+    organism: Mus musculus
+    ortholog_group_id: OG_NPT15179
+    n_unique_compounds: 75
+    censored_frac: 0.1524
+    pactivity_std: 0.6315
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT2740:
+    target_id: NPT2740
+    target_name: Neutrophils
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: ''
+    organism: ''
+    ortholog_group_id: OG_NPT2740
+    n_unique_compounds: 77
+    censored_frac: 0.4397
+    pactivity_std: 0.5612
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R4_censored_frac
+    - R7_no_sequence
+    - R8_no_tax_id
+  NPT279:
+    target_id: NPT279
+    target_name: Leukocyte elastase
+    target_type: Individual protein
+    uniprot_id: P08246
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT279
+    n_unique_compounds: 56
+    censored_frac: 0.1857
+    pactivity_std: 1.088
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT285:
+    target_id: NPT285
+    target_name: Epidermal growth factor receptor erbB1
+    target_type: Individual protein
+    uniprot_id: P00533
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1556
+    n_unique_compounds: 80
+    censored_frac: 0.1433
+    pactivity_std: 1.1424
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT2890:
+    target_id: NPT2890
+    target_name: Sodium/potassium-transporting ATPase
+    target_type: Protein complex
+    uniprot_id: P54710
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT14526
+    n_unique_compounds: 87
+    censored_frac: 0.5421
+    pactivity_std: 0.821
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R4_censored_frac
+    - R5_ortholog_redundant
+    - R7_no_sequence
+  NPT29:
+    target_id: NPT29
+    target_name: Rattus norvegicus
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '10116'
+    organism: Rattus norvegicus
+    ortholog_group_id: OG_NPT29
+    n_unique_compounds: 115
+    censored_frac: 0.1841
+    pactivity_std: 1.5726
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT299:
+    target_id: NPT299
+    target_name: Androgen Receptor
+    target_type: Individual protein
+    uniprot_id: P15207
+    organism_tax_id: '10116'
+    organism: Rattus norvegicus
+    ortholog_group_id: OG_NPT153
+    n_unique_compounds: 50
+    censored_frac: 0.1143
+    pactivity_std: 1.1495
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT30:
+    target_id: NPT30
+    target_name: Cyclooxygenase-1
+    target_type: Individual protein
+    uniprot_id: P23219
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1476
+    n_unique_compounds: 132
+    censored_frac: 0.1508
+    pactivity_std: 0.9787
+    tier: tier_x
+    has_sequence: true
+    exclusion_reasons:
+    - R5_ortholog_redundant
+  NPT306:
+    target_id: NPT306
+    target_name: PC-3
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT306
+    n_unique_compounds: 865
+    censored_frac: 0.2182
+    pactivity_std: 0.9236
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT31:
+    target_id: NPT31
+    target_name: Cyclooxygenase-2
+    target_type: Individual protein
+    uniprot_id: P35354
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1476
+    n_unique_compounds: 178
+    censored_frac: 0.1365
+    pactivity_std: 0.8275
+    tier: tier1
+    has_sequence: true
+    exclusion_reasons: []
+  NPT3119:
+    target_id: NPT3119
+    target_name: Human coxsackievirus B3
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '12072'
+    organism: Human coxsackievirus B3
+    ortholog_group_id: OG_NPT3119
+    n_unique_compounds: 71
+    censored_frac: 0.4524
+    pactivity_std: 1.0265
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R4_censored_frac
+    - R7_no_sequence
+  NPT3140:
+    target_id: NPT3140
+    target_name: MGC-803
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT3140
+    n_unique_compounds: 85
+    censored_frac: 0.1392
+    pactivity_std: 0.7536
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT319:
+    target_id: NPT319
+    target_name: B16
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '10090'
+    organism: Mus musculus
+    ortholog_group_id: OG_NPT319
+    n_unique_compounds: 224
+    censored_frac: 0.2136
+    pactivity_std: 1.0413
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT32:
+    target_id: NPT32
+    target_name: Mus musculus
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '10090'
+    organism: Mus musculus
+    ortholog_group_id: OG_NPT32
+    n_unique_compounds: 215
+    censored_frac: 0.31
+    pactivity_std: 1.3039
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT323:
+    target_id: NPT323
+    target_name: SW-620
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT323
+    n_unique_compounds: 157
+    censored_frac: 0.2647
+    pactivity_std: 1.2684
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT324:
+    target_id: NPT324
+    target_name: Cyclooxygenase-1
+    target_type: Individual protein
+    uniprot_id: P05979
+    organism_tax_id: '9940'
+    organism: Ovis aries
+    ortholog_group_id: OG_NPT1476
+    n_unique_compounds: 151
+    censored_frac: 0.182
+    pactivity_std: 1.0832
+    tier: tier_x
+    has_sequence: true
+    exclusion_reasons:
+    - R5_ortholog_redundant
+  NPT325:
+    target_id: NPT325
+    target_name: Cyclooxygenase-2
+    target_type: Individual protein
+    uniprot_id: P79208
+    organism_tax_id: '9940'
+    organism: Ovis aries
+    ortholog_group_id: OG_NPT1476
+    n_unique_compounds: 90
+    censored_frac: 0.1303
+    pactivity_std: 0.9169
+    tier: tier_x
+    has_sequence: true
+    exclusion_reasons:
+    - R5_ortholog_redundant
+  NPT34:
+    target_id: NPT34
+    target_name: BV-2
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '10090'
+    organism: Mus musculus
+    ortholog_group_id: OG_NPT34
+    n_unique_compounds: 549
+    censored_frac: 0.2094
+    pactivity_std: 0.5456
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT344:
+    target_id: NPT344
+    target_name: Sialidase
+    target_type: Individual protein
+    uniprot_id: P10481
+    organism_tax_id: '1502'
+    organism: Clostridium perfringens
+    ortholog_group_id: OG_NPT344
+    n_unique_compounds: 67
+    censored_frac: 0.0
+    pactivity_std: 0.8057
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT35:
+    target_id: NPT35
+    target_name: ''
+    target_type: Others
+    uniprot_id: ''
+    organism_tax_id: ''
+    organism: ''
+    ortholog_group_id: OG_NPT35
+    n_unique_compounds: 109
+    censored_frac: 0.1223
+    pactivity_std: 1.0203
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+    - R8_no_tax_id
+  NPT36:
+    target_id: NPT36
+    target_name: Tyrosine-protein kinase SRC
+    target_type: Individual protein
+    uniprot_id: P12931
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT21726
+    n_unique_compounds: 71
+    censored_frac: 0.1892
+    pactivity_std: 1.1021
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT369:
+    target_id: NPT369
+    target_name: ACHN
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT369
+    n_unique_compounds: 149
+    censored_frac: 0.274
+    pactivity_std: 1.1053
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT370:
+    target_id: NPT370
+    target_name: NCI-H23
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT370
+    n_unique_compounds: 50
+    censored_frac: 0.0
+    pactivity_std: 1.5436
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT374:
+    target_id: NPT374
+    target_name: SF-539
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT374
+    n_unique_compounds: 54
+    censored_frac: 0.0317
+    pactivity_std: 1.861
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT376:
+    target_id: NPT376
+    target_name: A498
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT376
+    n_unique_compounds: 79
+    censored_frac: 0.1748
+    pactivity_std: 1.6659
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT377:
+    target_id: NPT377
+    target_name: OVCAR-3
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT377
+    n_unique_compounds: 149
+    censored_frac: 0.1805
+    pactivity_std: 1.2534
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT378:
+    target_id: NPT378
+    target_name: NCI/ADR-RES
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT378
+    n_unique_compounds: 73
+    censored_frac: 0.2923
+    pactivity_std: 1.2087
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT379:
+    target_id: NPT379
+    target_name: HOP-62
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT379
+    n_unique_compounds: 55
+    censored_frac: 0.0635
+    pactivity_std: 1.7094
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT38:
+    target_id: NPT38
+    target_name: Signal transducer and activator of transcription 3
+    target_type: Individual protein
+    uniprot_id: P40763
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT38
+    n_unique_compounds: 54
+    censored_frac: 0.2167
+    pactivity_std: 0.6667
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT380:
+    target_id: NPT380
+    target_name: U-251
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT380
+    n_unique_compounds: 250
+    censored_frac: 0.2431
+    pactivity_std: 1.1766
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT386:
+    target_id: NPT386
+    target_name: KM12
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT386
+    n_unique_compounds: 52
+    censored_frac: 0.0597
+    pactivity_std: 1.552
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT387:
+    target_id: NPT387
+    target_name: M14
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT387
+    n_unique_compounds: 78
+    censored_frac: 0.2472
+    pactivity_std: 1.5495
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT389:
+    target_id: NPT389
+    target_name: RPMI-8226
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT389
+    n_unique_compounds: 71
+    censored_frac: 0.0175
+    pactivity_std: 1.5273
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT390:
+    target_id: NPT390
+    target_name: LOX IMVI
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT390
+    n_unique_compounds: 58
+    censored_frac: 0.0455
+    pactivity_std: 1.5137
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT393:
+    target_id: NPT393
+    target_name: HCT-116
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT393
+    n_unique_compounds: 1203
+    censored_frac: 0.2057
+    pactivity_std: 1.0552
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT395:
+    target_id: NPT395
+    target_name: SF-268
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT395
+    n_unique_compounds: 256
+    censored_frac: 0.2776
+    pactivity_std: 1.101
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT396:
+    target_id: NPT396
+    target_name: T47D
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT396
+    n_unique_compounds: 166
+    censored_frac: 0.1688
+    pactivity_std: 1.0853
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT397:
+    target_id: NPT397
+    target_name: NCI-H460
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT397
+    n_unique_compounds: 559
+    censored_frac: 0.2092
+    pactivity_std: 1.1256
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT398:
+    target_id: NPT398
+    target_name: UACC-62
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT398
+    n_unique_compounds: 60
+    censored_frac: 0.0758
+    pactivity_std: 1.7073
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT399:
+    target_id: NPT399
+    target_name: SF-295
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT399
+    n_unique_compounds: 74
+    censored_frac: 0.1707
+    pactivity_std: 1.432
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT400:
+    target_id: NPT400
+    target_name: MDA-MB-435
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT400
+    n_unique_compounds: 264
+    censored_frac: 0.2308
+    pactivity_std: 1.1142
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT401:
+    target_id: NPT401
+    target_name: 786-0
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT401
+    n_unique_compounds: 112
+    censored_frac: 0.4154
+    pactivity_std: 1.55
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R4_censored_frac
+    - R7_no_sequence
+  NPT404:
+    target_id: NPT404
+    target_name: CCRF-CEM
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT404
+    n_unique_compounds: 263
+    censored_frac: 0.1257
+    pactivity_std: 1.2649
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT405:
+    target_id: NPT405
+    target_name: NCI-H226
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT405
+    n_unique_compounds: 64
+    censored_frac: 0.1266
+    pactivity_std: 1.6536
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT407:
+    target_id: NPT407
+    target_name: COLO 205
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT407
+    n_unique_compounds: 174
+    censored_frac: 0.225
+    pactivity_std: 1.3456
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT41:
+    target_id: NPT41
+    target_name: Aldose reductase
+    target_type: Individual protein
+    uniprot_id: P15121
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1565
+    n_unique_compounds: 108
+    censored_frac: 0.1951
+    pactivity_std: 1.0614
+    tier: tier_x
+    has_sequence: true
+    exclusion_reasons:
+    - R5_ortholog_redundant
+  NPT43:
+    target_id: NPT43
+    target_name: Tyrosinase
+    target_type: Individual protein
+    uniprot_id: O42713
+    organism_tax_id: '5341'
+    organism: Agaricus bisporus
+    ortholog_group_id: OG_NPT23875
+    n_unique_compounds: 180
+    censored_frac: 0.1816
+    pactivity_std: 0.943
+    tier: tier1
+    has_sequence: true
+    exclusion_reasons: []
+  NPT439:
+    target_id: NPT439
+    target_name: Butyrylcholinesterase
+    target_type: Individual protein
+    uniprot_id: P06276
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT2569
+    n_unique_compounds: 137
+    censored_frac: 0.1773
+    pactivity_std: 0.9451
+    tier: tier1
+    has_sequence: true
+    exclusion_reasons: []
+  NPT441:
+    target_id: NPT441
+    target_name: Cytochrome P450 19A1
+    target_type: Individual protein
+    uniprot_id: P11511
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT2518
+    n_unique_compounds: 110
+    censored_frac: 0.1951
+    pactivity_std: 1.1628
+    tier: tier1
+    has_sequence: true
+    exclusion_reasons: []
+  NPT453:
+    target_id: NPT453
+    target_name: HT-1080
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT453
+    n_unique_compounds: 240
+    censored_frac: 0.2727
+    pactivity_std: 1.292
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT457:
+    target_id: NPT457
+    target_name: BT-549
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT457
+    n_unique_compounds: 130
+    censored_frac: 0.2739
+    pactivity_std: 1.3867
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT459:
+    target_id: NPT459
+    target_name: Human immunodeficiency virus type 1 reverse transcriptase
+    target_type: Individual protein
+    uniprot_id: Q72547
+    organism_tax_id: '11676'
+    organism: Human immunodeficiency virus 1
+    ortholog_group_id: OG_NPT459
+    n_unique_compounds: 180
+    censored_frac: 0.2381
+    pactivity_std: 0.9993
+    tier: tier1
+    has_sequence: true
+    exclusion_reasons: []
+  NPT461:
+    target_id: NPT461
+    target_name: PANC-1
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT461
+    n_unique_compounds: 232
+    censored_frac: 0.3144
+    pactivity_std: 0.7762
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT462:
+    target_id: NPT462
+    target_name: Sucrase-isomaltase
+    target_type: Individual protein
+    uniprot_id: P23739
+    organism_tax_id: '10116'
+    organism: Rattus norvegicus
+    ortholog_group_id: OG_NPT462
+    n_unique_compounds: 67
+    censored_frac: 0.1641
+    pactivity_std: 0.836
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT465:
+    target_id: NPT465
+    target_name: NCI-N87
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT465
+    n_unique_compounds: 71
+    censored_frac: 0.2911
+    pactivity_std: 1.6552
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT466:
+    target_id: NPT466
+    target_name: U-937
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT466
+    n_unique_compounds: 284
+    censored_frac: 0.3002
+    pactivity_std: 1.0998
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT471:
+    target_id: NPT471
+    target_name: Trypanosoma brucei brucei
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '5702'
+    organism: Trypanosoma brucei brucei
+    ortholog_group_id: OG_NPT471
+    n_unique_compounds: 199
+    censored_frac: 0.208
+    pactivity_std: 0.9329
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT485:
+    target_id: NPT485
+    target_name: Plasmodium falciparum (isolate K1 / Thailand)
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '5839'
+    organism: Plasmodium falciparum K1
+    ortholog_group_id: OG_NPT485
+    n_unique_compounds: 391
+    censored_frac: 0.0944
+    pactivity_std: 0.9505
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT492:
+    target_id: NPT492
+    target_name: Caco-2
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT492
+    n_unique_compounds: 125
+    censored_frac: 0.2074
+    pactivity_std: 0.951
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT493:
+    target_id: NPT493
+    target_name: Neuraminidase
+    target_type: Individual protein
+    uniprot_id: B4URF0
+    organism_tax_id: '382835'
+    organism: Influenza A virus
+    ortholog_group_id: OG_NPT1032
+    n_unique_compounds: 87
+    censored_frac: 0.1384
+    pactivity_std: 0.8028
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R7_no_sequence
+  NPT515:
+    target_id: NPT515
+    target_name: SGC-7901
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT515
+    n_unique_compounds: 169
+    censored_frac: 0.3319
+    pactivity_std: 1.0425
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT519:
+    target_id: NPT519
+    target_name: SH-SY5Y
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT519
+    n_unique_compounds: 117
+    censored_frac: 0.3765
+    pactivity_std: 0.9586
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT521:
+    target_id: NPT521
+    target_name: RBL-2H3
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '10116'
+    organism: Rattus norvegicus
+    ortholog_group_id: OG_NPT521
+    n_unique_compounds: 73
+    censored_frac: 0.3364
+    pactivity_std: 1.3689
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT547:
+    target_id: NPT547
+    target_name: BGC-823
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT547
+    n_unique_compounds: 436
+    censored_frac: 0.5538
+    pactivity_std: 0.7319
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R4_censored_frac
+    - R7_no_sequence
+  NPT550:
+    target_id: NPT550
+    target_name: T-24
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT550
+    n_unique_compounds: 54
+    censored_frac: 0.0238
+    pactivity_std: 1.5831
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT570:
+    target_id: NPT570
+    target_name: Arachidonate 5-lipoxygenase
+    target_type: Individual protein
+    uniprot_id: P09917
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT183
+    n_unique_compounds: 141
+    censored_frac: 0.1609
+    pactivity_std: 0.8466
+    tier: tier1
+    has_sequence: true
+    exclusion_reasons: []
+  NPT574:
+    target_id: NPT574
+    target_name: XF498
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT574
+    n_unique_compounds: 63
+    censored_frac: 0.1266
+    pactivity_std: 0.8574
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT579:
+    target_id: NPT579
+    target_name: DLD-1
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT579
+    n_unique_compounds: 117
+    censored_frac: 0.2581
+    pactivity_std: 1.2374
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT580:
+    target_id: NPT580
+    target_name: Trypanosoma cruzi
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '5693'
+    organism: Trypanosoma cruzi
+    ortholog_group_id: OG_NPT580
+    n_unique_compounds: 420
+    censored_frac: 0.0935
+    pactivity_std: 0.812
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT582:
+    target_id: NPT582
+    target_name: Monoamine oxidase B
+    target_type: Individual protein
+    uniprot_id: P27338
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT14526
+    n_unique_compounds: 74
+    censored_frac: 0.0769
+    pactivity_std: 0.8829
+    tier: tier_x
+    has_sequence: true
+    exclusion_reasons:
+    - R5_ortholog_redundant
+  NPT591:
+    target_id: NPT591
+    target_name: Glycogen synthase kinase-3 beta
+    target_type: Individual protein
+    uniprot_id: P49841
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT14526
+    n_unique_compounds: 51
+    censored_frac: 0.0846
+    pactivity_std: 0.9445
+    tier: tier_x
+    has_sequence: true
+    exclusion_reasons:
+    - R5_ortholog_redundant
+  NPT6:
+    target_id: NPT6
+    target_name: Plasmodium falciparum
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '5833'
+    organism: Plasmodium falciparum
+    ortholog_group_id: OG_NPT6
+    n_unique_compounds: 1700
+    censored_frac: 0.0673
+    pactivity_std: 0.9783
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT605:
+    target_id: NPT605
+    target_name: Homo sapiens
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT605
+    n_unique_compounds: 53
+    censored_frac: 0.1429
+    pactivity_std: 2.075
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT610:
+    target_id: NPT610
+    target_name: Molecular identity unknown
+    target_type: Others
+    uniprot_id: ''
+    organism_tax_id: ''
+    organism: ''
+    ortholog_group_id: OG_NPT29131
+    n_unique_compounds: 83
+    censored_frac: 0.1439
+    pactivity_std: 0.9598
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+    - R8_no_tax_id
+  NPT612:
+    target_id: NPT612
+    target_name: Canalicular multispecific organic anion transporter 1
+    target_type: Individual protein
+    uniprot_id: Q92887
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT304
+    n_unique_compounds: 162
+    censored_frac: 0.8994
+    pactivity_std: 0.218
+    tier: tier_x
+    has_sequence: true
+    exclusion_reasons:
+    - R4_censored_frac
+    - R6_label_variance_degenerate
+  NPT633:
+    target_id: NPT633
+    target_name: Leishmania donovani
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '5661'
+    organism: Leishmania donovani
+    ortholog_group_id: OG_NPT633
+    n_unique_compounds: 468
+    censored_frac: 0.1429
+    pactivity_std: 0.8105
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT634:
+    target_id: NPT634
+    target_name: Leishmania amazonensis
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '5659'
+    organism: Leishmania amazonensis
+    ortholog_group_id: OG_NPT634
+    n_unique_compounds: 128
+    censored_frac: 0.1331
+    pactivity_std: 0.6926
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT639:
+    target_id: NPT639
+    target_name: NCI-H187
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT639
+    n_unique_compounds: 243
+    censored_frac: 0.2074
+    pactivity_std: 0.8588
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT65:
+    target_id: NPT65
+    target_name: HepG2
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT65
+    n_unique_compounds: 2107
+    censored_frac: 0.3473
+    pactivity_std: 0.8489
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT659:
+    target_id: NPT659
+    target_name: SMMC-7721
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT659
+    n_unique_compounds: 840
+    censored_frac: 0.5658
+    pactivity_std: 0.5629
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R4_censored_frac
+    - R7_no_sequence
+  NPT66:
+    target_id: NPT66
+    target_name: Acetylcholinesterase
+    target_type: Individual protein
+    uniprot_id: O42275
+    organism_tax_id: '8005'
+    organism: Electrophorus electricus
+    ortholog_group_id: OG_NPT19290
+    n_unique_compounds: 167
+    censored_frac: 0.0826
+    pactivity_std: 0.9496
+    tier: tier_x
+    has_sequence: true
+    exclusion_reasons:
+    - R5_ortholog_redundant
+  NPT660:
+    target_id: NPT660
+    target_name: SW480
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT660
+    n_unique_compounds: 827
+    censored_frac: 0.5713
+    pactivity_std: 0.5927
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R4_censored_frac
+    - R7_no_sequence
+  NPT668:
+    target_id: NPT668
+    target_name: P-glycoprotein 1
+    target_type: Individual protein
+    uniprot_id: P08183
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1456
+    n_unique_compounds: 109
+    censored_frac: 0.0853
+    pactivity_std: 0.933
+    tier: tier1
+    has_sequence: true
+    exclusion_reasons: []
+  NPT67:
+    target_id: NPT67
+    target_name: Cholinesterase
+    target_type: Individual protein
+    uniprot_id: P81908
+    organism_tax_id: '9796'
+    organism: Equus caballus
+    ortholog_group_id: OG_NPT25979
+    n_unique_compounds: 64
+    censored_frac: 0.0532
+    pactivity_std: 0.9172
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT68:
+    target_id: NPT68
+    target_name: Aldose reductase
+    target_type: Individual protein
+    uniprot_id: P07943
+    organism_tax_id: '10116'
+    organism: Rattus norvegicus
+    ortholog_group_id: OG_NPT1565
+    n_unique_compounds: 171
+    censored_frac: 0.2606
+    pactivity_std: 0.9307
+    tier: tier1
+    has_sequence: true
+    exclusion_reasons: []
+  NPT71:
+    target_id: NPT71
+    target_name: HEK293
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT71
+    n_unique_compounds: 282
+    censored_frac: 0.1979
+    pactivity_std: 1.1981
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT713:
+    target_id: NPT713
+    target_name: Bile salt export pump
+    target_type: Individual protein
+    uniprot_id: O95342
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT2613
+    n_unique_compounds: 267
+    censored_frac: 0.6306
+    pactivity_std: 0.6547
+    tier: tier_x
+    has_sequence: true
+    exclusion_reasons:
+    - R4_censored_frac
+    - factE_transporter_panel
+  NPT721:
+    target_id: NPT721
+    target_name: Nuclear factor NF-kappa-B p65 subunit
+    target_type: Individual protein
+    uniprot_id: Q04206
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT29671
+    n_unique_compounds: 55
+    censored_frac: 0.5079
+    pactivity_std: 0.7226
+    tier: tier_x
+    has_sequence: true
+    exclusion_reasons:
+    - R4_censored_frac
+  NPT737:
+    target_id: NPT737
+    target_name: HUVEC
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT737
+    n_unique_compounds: 203
+    censored_frac: 0.1637
+    pactivity_std: 1.3065
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT740:
+    target_id: NPT740
+    target_name: Beta-secretase 1
+    target_type: Individual protein
+    uniprot_id: P56817
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT3909
+    n_unique_compounds: 152
+    censored_frac: 0.2976
+    pactivity_std: 0.9649
+    tier: tier1
+    has_sequence: true
+    exclusion_reasons: []
+  NPT741:
+    target_id: NPT741
+    target_name: Tyrosinase
+    target_type: Individual protein
+    uniprot_id: P14679
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT23875
+    n_unique_compounds: 63
+    censored_frac: 0.1863
+    pactivity_std: 1.1986
+    tier: tier_x
+    has_sequence: true
+    exclusion_reasons:
+    - R5_ortholog_redundant
+  NPT742:
+    target_id: NPT742
+    target_name: Influenza A virus
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '11320'
+    organism: Influenza A virus
+    ortholog_group_id: OG_NPT742
+    n_unique_compounds: 172
+    censored_frac: 0.1261
+    pactivity_std: 0.7491
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT757:
+    target_id: NPT757
+    target_name: Plasmodium falciparum 3D7
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '36329'
+    organism: Plasmodium falciparum 3D7
+    ortholog_group_id: OG_NPT757
+    n_unique_compounds: 56
+    censored_frac: 0.0423
+    pactivity_std: 1.5504
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT759:
+    target_id: NPT759
+    target_name: H9
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT759
+    n_unique_compounds: 197
+    censored_frac: 0.2151
+    pactivity_std: 0.8844
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT76:
+    target_id: NPT76
+    target_name: C6
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '10116'
+    organism: Rattus norvegicus
+    ortholog_group_id: OG_NPT76
+    n_unique_compounds: 71
+    censored_frac: 0.2222
+    pactivity_std: 0.9931
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT762:
+    target_id: NPT762
+    target_name: A-431
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT762
+    n_unique_compounds: 159
+    censored_frac: 0.144
+    pactivity_std: 1.3359
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT78:
+    target_id: NPT78
+    target_name: Beta amyloid A4 protein
+    target_type: Individual protein
+    uniprot_id: P05067
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT30107
+    n_unique_compounds: 50
+    censored_frac: 0.2174
+    pactivity_std: 0.9215
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT783:
+    target_id: NPT783
+    target_name: MIA PaCa-2
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT783
+    n_unique_compounds: 134
+    censored_frac: 0.106
+    pactivity_std: 1.3753
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT784:
+    target_id: NPT784
+    target_name: MDA-MB-468
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT784
+    n_unique_compounds: 113
+    censored_frac: 0.1402
+    pactivity_std: 1.5386
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT788:
+    target_id: NPT788
+    target_name: SNU1
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT788
+    n_unique_compounds: 50
+    censored_frac: 0.2069
+    pactivity_std: 1.6742
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT79:
+    target_id: NPT79
+    target_name: Bacillus subtilis
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '1423'
+    organism: Bacillus subtilis
+    ortholog_group_id: OG_NPT79
+    n_unique_compounds: 75
+    censored_frac: 0.0991
+    pactivity_std: 1.2735
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT80:
+    target_id: NPT80
+    target_name: Raji
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT80
+    n_unique_compounds: 80
+    censored_frac: 0.1983
+    pactivity_std: 1.3737
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT81:
+    target_id: NPT81
+    target_name: A549
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT81
+    n_unique_compounds: 4599
+    censored_frac: 0.4006
+    pactivity_std: 0.7874
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R4_censored_frac
+    - R7_no_sequence
+  NPT82:
+    target_id: NPT82
+    target_name: MDA-MB-231
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT82
+    n_unique_compounds: 1412
+    censored_frac: 0.3186
+    pactivity_std: 0.8262
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT83:
+    target_id: NPT83
+    target_name: MCF7
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT83
+    n_unique_compounds: 3690
+    censored_frac: 0.3124
+    pactivity_std: 0.8405
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT831:
+    target_id: NPT831
+    target_name: Serine/threonine-protein kinase PLK1
+    target_type: Individual protein
+    uniprot_id: P53350
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT831
+    n_unique_compounds: 50
+    censored_frac: 0.3538
+    pactivity_std: 0.5324
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT839:
+    target_id: NPT839
+    target_name: L6
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '10116'
+    organism: Rattus norvegicus
+    ortholog_group_id: OG_NPT839
+    n_unique_compounds: 273
+    censored_frac: 0.1276
+    pactivity_std: 0.7127
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT840:
+    target_id: NPT840
+    target_name: Transcriptional activator Myb
+    target_type: Individual protein
+    uniprot_id: P01103
+    organism_tax_id: '9031'
+    organism: Gallus gallus
+    ortholog_group_id: OG_NPT840
+    n_unique_compounds: 59
+    censored_frac: 0.1441
+    pactivity_std: 0.4818
+    tier: tier_x
+    has_sequence: true
+    exclusion_reasons:
+    - R6_label_variance_degenerate
+  NPT841:
+    target_id: NPT841
+    target_name: Leishmania major
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '5664'
+    organism: Leishmania major
+    ortholog_group_id: OG_NPT841
+    n_unique_compounds: 74
+    censored_frac: 0.0752
+    pactivity_std: 1.2201
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT844:
+    target_id: NPT844
+    target_name: Trypanosoma brucei rhodesiense
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '31286'
+    organism: Trypanosoma brucei rhodesiense
+    ortholog_group_id: OG_NPT844
+    n_unique_compounds: 291
+    censored_frac: 0.0437
+    pactivity_std: 0.873
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT845:
+    target_id: NPT845
+    target_name: BT-474
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT845
+    n_unique_compounds: 86
+    censored_frac: 0.1782
+    pactivity_std: 1.7168
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT848:
+    target_id: NPT848
+    target_name: N9
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT848
+    n_unique_compounds: 68
+    censored_frac: 0.5942
+    pactivity_std: 0.5584
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R4_censored_frac
+    - R7_no_sequence
+  NPT85:
+    target_id: NPT85
+    target_name: Filobasidiella neoformans
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '5207'
+    organism: Cryptococcus neoformans
+    ortholog_group_id: OG_NPT85
+    n_unique_compounds: 132
+    censored_frac: 0.2565
+    pactivity_std: 1.0324
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT858:
+    target_id: NPT858
+    target_name: LNCaP
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT858
+    n_unique_compounds: 299
+    censored_frac: 0.2564
+    pactivity_std: 1.1618
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT862:
+    target_id: NPT862
+    target_name: Epoxide hydratase
+    target_type: Individual protein
+    uniprot_id: P34913
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT21303
+    n_unique_compounds: 74
+    censored_frac: 0.0804
+    pactivity_std: 1.1552
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT886:
+    target_id: NPT886
+    target_name: NIH3T3
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '10090'
+    organism: Mus musculus
+    ortholog_group_id: OG_NPT886
+    n_unique_compounds: 112
+    censored_frac: 0.2056
+    pactivity_std: 1.0783
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT90:
+    target_id: NPT90
+    target_name: DU-145
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT90
+    n_unique_compounds: 504
+    censored_frac: 0.2263
+    pactivity_std: 1.0049
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT91:
+    target_id: NPT91
+    target_name: KB
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT91
+    n_unique_compounds: 1670
+    censored_frac: 0.2894
+    pactivity_std: 1.1325
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT916:
+    target_id: NPT916
+    target_name: SK-MEL
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT916
+    n_unique_compounds: 61
+    censored_frac: 0.2368
+    pactivity_std: 0.5802
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT924:
+    target_id: NPT924
+    target_name: HSC-2
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT924
+    n_unique_compounds: 82
+    censored_frac: 0.2308
+    pactivity_std: 1.6336
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT926:
+    target_id: NPT926
+    target_name: SK-MEL-1
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT926
+    n_unique_compounds: 57
+    censored_frac: 0.2581
+    pactivity_std: 1.1034
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT927:
+    target_id: NPT927
+    target_name: PBMC
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT26791
+    n_unique_compounds: 100
+    censored_frac: 0.2996
+    pactivity_std: 1.1642
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT937:
+    target_id: NPT937
+    target_name: NCI-H446
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT937
+    n_unique_compounds: 56
+    censored_frac: 0.1774
+    pactivity_std: 1.716
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT941:
+    target_id: NPT941
+    target_name: HaCaT
+    target_type: Cell line
+    uniprot_id: ''
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT941
+    n_unique_compounds: 97
+    censored_frac: 0.2782
+    pactivity_std: 0.8211
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT956:
+    target_id: NPT956
+    target_name: Prostaglandin E synthase
+    target_type: Individual protein
+    uniprot_id: O14684
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT6151
+    n_unique_compounds: 55
+    censored_frac: 0.0784
+    pactivity_std: 0.6867
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT963:
+    target_id: NPT963
+    target_name: Hepatitis B virus
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '10407'
+    organism: Hepatitis B virus
+    ortholog_group_id: OG_NPT963
+    n_unique_compounds: 111
+    censored_frac: 0.3141
+    pactivity_std: 1.35
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence
+  NPT967:
+    target_id: NPT967
+    target_name: Xanthine dehydrogenase
+    target_type: Individual protein
+    uniprot_id: P47989
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT1310
+    n_unique_compounds: 97
+    censored_frac: 0.2715
+    pactivity_std: 0.7541
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT98:
+    target_id: NPT98
+    target_name: HERG
+    target_type: Individual protein
+    uniprot_id: Q12809
+    organism_tax_id: '9606'
+    organism: Homo sapiens
+    ortholog_group_id: OG_NPT98
+    n_unique_compounds: 65
+    censored_frac: 0.0721
+    pactivity_std: 1.1289
+    tier: tier2
+    has_sequence: true
+    exclusion_reasons: []
+  NPT992:
+    target_id: NPT992
+    target_name: Entamoeba histolytica
+    target_type: Organism
+    uniprot_id: ''
+    organism_tax_id: '5759'
+    organism: Entamoeba histolytica
+    ortholog_group_id: OG_NPT992
+    n_unique_compounds: 154
+    censored_frac: 0.0228
+    pactivity_std: 1.1803
+    tier: tier_x
+    has_sequence: false
+    exclusion_reasons:
+    - R1_target_type
+    - R7_no_sequence

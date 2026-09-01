@@ -1,0 +1,69 @@
+# ============================================================
+# SPARC-NP v1.0 —— 门控 28 维特征清单 (§8.3.5)
+#
+# 【冻结规则】本清单与其 sha256 一起写入 run manifest。
+# 顺序即 w_g 的分量顺序 —— Figure 2 的系数图直接按此顺序标注。
+#
+# pool 字段的语义 (§8.3.2 排序目标副作用修正)：
+#   top_k  = 在 Top-K=16 上计算 (支持类)
+#   k0     = 在 K₀=256 候选池上计算 (冲突类，避开重排器抹平)
+#   both   = 两池之比
+#   model  = 与候选池无关，来自 Base 预测器
+#
+# sign_prior 是 H2 判据 (d) 的判定依据：
+#   +1 相似度/支持类，期望正系数
+#   -1 冲突/不确定性类，期望负系数
+# ============================================================
+
+spec_version: "1.0.0"
+n_features: 28
+n_params: 29        # 28 权重 + 1 截距
+
+features:
+  - {idx: 1,  name: "alpha_entropy",            pool: "top_k", group: "similarity",  sign_prior: -1, desc: "rerank 注意力 α 的熵"}
+  - {idx: 2,  name: "alpha_ess",                pool: "top_k", group: "similarity",  sign_prior: +1, desc: "有效样本数 ESS = 1/Σα²"}
+  - {idx: 3,  name: "score_margin_norm",        pool: "top_k", group: "similarity",  sign_prior: +1, desc: "归一化间隔 (s1−s2)/(s1−sK+1e-6)"}
+  - {idx: 4,  name: "tanimoto_max",             pool: "top_k", group: "similarity",  sign_prior: +1, desc: "Tanimoto 最大值"}
+  - {idx: 5,  name: "tanimoto_mean",            pool: "top_k", group: "similarity",  sign_prior: +1, desc: "Tanimoto 均值"}
+  - {idx: 6,  name: "tanimoto_std",             pool: "top_k", group: "similarity",  sign_prior: -1, desc: "Tanimoto 标准差"}
+  - {idx: 7,  name: "tanimoto_top1_top2_gap",   pool: "top_k", group: "similarity",  sign_prior: +1, desc: "Tanimoto Top1−Top2 间隔"}
+  - {idx: 8,  name: "emb_sim_max",              pool: "top_k", group: "similarity",  sign_prior: +1, desc: "Model A embedding 相似度最大值"}
+  - {idx: 9,  name: "emb_sim_mean",             pool: "top_k", group: "similarity",  sign_prior: +1, desc: "Model A embedding 相似度均值"}
+  - {idx: 10, name: "emb_sim_std",              pool: "top_k", group: "similarity",  sign_prior: -1, desc: "Model A embedding 相似度标准差"}
+  - {idx: 11, name: "rank_zscore_q50",          pool: "k0",    group: "similarity",  sign_prior: +1, desc: "rerank 分数在候选池内 z-score 的 0.50 分位"}
+  - {idx: 12, name: "rank_zscore_q75",          pool: "k0",    group: "similarity",  sign_prior: +1, desc: "rerank 分数 z-score 的 0.75 分位"}
+  - {idx: 13, name: "rank_zscore_q90",          pool: "k0",    group: "similarity",  sign_prior: +1, desc: "rerank 分数 z-score 的 0.90 分位"}
+  - {idx: 14, name: "match_conf_max",           pool: "top_k", group: "similarity",  sign_prior: +1, desc: "图匹配置信度 m_i 最大值"}
+  - {idx: 15, name: "match_conf_mean",          pool: "top_k", group: "similarity",  sign_prior: +1, desc: "图匹配置信度 m_i 均值"}
+  - {idx: 16, name: "match_conf_std",           pool: "top_k", group: "similarity",  sign_prior: -1, desc: "图匹配置信度 m_i 标准差"}
+  - {idx: 17, name: "neighbor_label_variance",  pool: "k0",    group: "conflict",    sign_prior: -1, desc: "邻居标签方差(候选池)"}
+  - {idx: 18, name: "neighbor_label_mad",       pool: "k0",    group: "conflict",    sign_prior: -1, desc: "邻居标签 MAD(候选池)"}
+  - {idx: 19, name: "neighbor_label_range",     pool: "k0",    group: "conflict",    sign_prior: -1, desc: "邻居标签极差(候选池)"}
+  - {idx: 20, name: "unique_scaffold_ratio",    pool: "top_k", group: "conflict",    sign_prior: -1, desc: "Top-K 内唯一骨架占比"}
+  - {idx: 21, name: "pairwise_tanimoto_mean",   pool: "top_k", group: "similarity",  sign_prior: +1, desc: "邻居两两 Tanimoto 均值(邻居内聚性)"}
+  - {idx: 22, name: "pairwise_tanimoto_std",    pool: "top_k", group: "conflict",    sign_prior: -1, desc: "邻居两两 Tanimoto 标准差"}
+  - {idx: 23, name: "assay_compatible_ratio",   pool: "top_k", group: "similarity",  sign_prior: +1, desc: "assay 兼容比例(硬过滤下应恒 1，manifest 标 dead 时置 0 方差)"}
+  - {idx: 24, name: "activity_cliff_score",     pool: "k0",    group: "conflict",    sign_prior: -1, desc: "活性悬崖分数(高相似-大标签差)"}
+  - {idx: 25, name: "var_ratio_k_over_k0",      pool: "both",  group: "conflict",    sign_prior: -1, desc: "Var_K(y)/Var_K0(y)：重排器抹平了多少标签方差"}
+  - {idx: 26, name: "dropped_high_tanimoto_cnt",pool: "both",  group: "conflict",    sign_prior: -1, desc: "被重排器移除的高 Tanimoto(≥0.7) 邻居计数"}
+  - {idx: 27, name: "base_ensemble_variance",   pool: "model", group: "uncertainty", sign_prior: -1, desc: "Base 集成方差(5 seed)；预算不足时在 pilot.yaml 标 blocked，不得静默改语义"}
+  - {idx: 28, name: "base_aleatoric_sigma",     pool: "model", group: "uncertainty", sign_prior: -1, desc: "Base aleatoric 不确定性 σ_a"}
+
+# 可选第 29 维 (§10.3 ②)：启用后门控参数变 30，须同步改 n_features/n_params
+optional_features:
+  - {idx: 29, name: "crossfit_ensemble_variance", pool: "model", group: "uncertainty", sign_prior: -1,
+     enabled: false, desc: "Var_j f_R^(−j)(q)：交叉拟合集成方差"}
+
+# 已删除的旧维度及理由 (§8.3.5 表)，保留以防被"顺手加回来"
+removed:
+  - {old_idx: "1-4",   name: "rerank_score_raw_stats", reason: "L_rank 平移不变 ⇒ 分数尺度不可辨识 ⇒ 跨 fold/seed 不可比"}
+  - {old_idx: "12-14", name: "sigma_s2_threshold_frac", reason: "同上：在不可辨识的尺度上打绝对阈值"}
+  - {old_idx: "25-26", name: "context_similarity_mean_min", reason: "硬过滤后恒为 1"}
+  - {old_idx: "28",    name: "endpoint_compatible_ratio", reason: "硬过滤后恒为 1"}
+  - {old_idx: "32",    name: "disagreement_3d", reason: "no-3D 模式下恒为 0"}
+
+# 标准化：x_g 在 fold-train 上拟合 z-score，参数随 fold checkpoint 落盘
+standardization:
+  method: "zscore"
+  fit_on: "fold_train"
+  clip_sigma: 5.0

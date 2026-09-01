@@ -1,0 +1,105 @@
+# ============================================================
+# SPARC-NP v1.0 —— Model A 注册表 (§7)
+#
+# Model A 永不训练。下游只依赖 d_A，且 d_A 之后立刻接
+# fold-train 上拟合的冻结 PCA 白化到 128 维 ⇒ 切换 Model A
+# 不改动任何其它模块 (§7.1)。
+#
+# eligibility 的 11 条判据 (§7.2)：
+#   c1  模态 (no-3D)                  c7  许可合规
+#   c2  无下游标签泄漏                 c8  几何依赖排除 (P0)
+#   c3  可钉版本 (revision 必填)       c9  预训练域门禁 r_NP ≤ 0.05 (P0)
+#   c4  drug/NP 同一接口               c10 低数据稳定性 (P0，S0-B 实测)
+#   c5  可复现                        c11 输出稳定性 cos ≥ 0.99
+#   c6  重叠可审计
+# 状态取值：pass / fail / blocked / unverified
+# 【unverified 不等于 pass】：判据 9 明确规定 unknown ⇒ blocked。
+# ============================================================
+
+spec_version: "1.0.0"
+
+eligibility_thresholds:
+  c9_max_r_np: 0.05                 # r_NP = |pretrain ∩ (COCONUT∪LOTUS)|.skeleton14 / |pretrain|.skeleton14
+  c10_must_beat_mean_baseline: true
+  c10_max_worse_than_ecfp_rf: 0.05  # 不劣于 ECFP4+RF 超过 5%
+  c11_min_cosine_canonical_vs_random_smiles: 0.99
+
+candidates:
+  - name: "molformer_xl"
+    display: "MoLFormer-XL (both-10pct)"
+    adapter: "sparc.models.model_a:HuggingFaceSmilesEncoder"
+    hf_id: "ibm-research/MoLFormer-XL-both-10pct"
+    revision: "REQUIRED_PIN_BEFORE_USE"   # 必须钉死 commit，判据 3
+    trust_remote_code: true
+    pretrain_corpus: "ZINC15 + PubChem, 1.1B"
+    license: "Apache-2.0"
+    d_a: null                              # 由 adapter 自报 (从 config 读)
+    pooling: "mean"
+    eligibility: {c1: pass, c2: pass, c3: unverified, c4: pass, c5: pass, c6: unverified,
+                  c7: pass, c8: pass, c9: unverified, c10: unverified, c11: unverified}
+    priority: 1
+    note: "首选。许可干净、加载简单。判据 9 待测(ZINC/PubChem 含少量天然产物)"
+
+  - name: "molclr_gin"
+    display: "MolCLR (GIN)"
+    adapter: "sparc.models.model_a:MolCLRGraphEncoder"
+    repo: "github.com/yuyangw/MolCLR"
+    ckpt_rel: "../../data/assets_weight/MolCLR/pretrained_gin/model.pth"
+    revision: "REQUIRED_PIN_BEFORE_USE"
+    pretrain_corpus: "PubChem 10M"
+    license: "unverified"
+    d_a: 512
+    pooling: "mean"
+    eligibility: {c1: pass, c2: pass, c3: unverified, c4: pass, c5: unverified, c6: unverified,
+                  c7: unverified, c8: pass, c9: unverified, c10: unverified, c11: unverified}
+    priority: 2
+    note: "必选。NaFM Table 2 中 8/8 胜 ECFP，本项目最强的正面证据(事实 G)"
+
+  - name: "kpgt"
+    display: "KPGT"
+    adapter: "sparc.models.model_a:KPGTEncoder"
+    repo: "github.com/lihan97/KPGT"
+    ckpt_rel: "../../data/assets_weight/KPGT/kpgt_base.pth"
+    revision: "REQUIRED_PIN_BEFORE_USE"
+    pretrain_corpus: "ChEMBL ~2M"
+    license: "unverified"
+    d_a: 2304
+    pooling: "cls"
+    eligibility: {c1: pass, c2: pass, c3: unverified, c4: pass, c5: unverified, c6: unverified,
+                  c7: unverified, c8: pass, c9: unverified, c10: unverified, c11: unverified}
+    priority: 3
+    note: "强推荐：语料最接近纯药物域，判据 9 最容易通过"
+
+  - name: "chemberta2_mlm"
+    display: "ChemBERTa-2 77M-MLM"
+    adapter: "sparc.models.model_a:HuggingFaceSmilesEncoder"
+    hf_id: "DeepChem/ChemBERTa-77M-MLM"
+    revision: "REQUIRED_PIN_BEFORE_USE"
+    pretrain_corpus: "PubChem 77M"
+    license: "unverified"
+    d_a: 384
+    pooling: "mean"
+    eligibility: {c1: pass, c2: pass, c3: unverified, c4: pass, c5: pass, c6: unverified,
+                  c7: unverified, c8: pass, c9: unverified, c10: unverified, c11: unverified}
+    priority: 4
+    note: "备选。轻量，适合做 Model A 敏感性分析的第三点"
+
+# 硬阻断项：注册即报错 (§7.2 判据 8/9)
+blocked:
+  - {name: "graphmvp",  reason: "判据 8：3D 多视图预训练；NaFM Table 2 上 0/8 劣于 ECFP"}
+  - {name: "unimol",    reason: "判据 8：3D 构象预训练"}
+  - {name: "unimol2",   reason: "判据 8：3D 构象预训练"}
+  - {name: "gem",       reason: "判据 8：几何增强预训练"}
+  - {name: "3d_infomax",reason: "判据 8：几何对齐预训练"}
+  - {name: "nafm",      reason: "判据 9：预训练语料即 COCONUT 0.6M 天然产物，r_NP≈1.0；注册会抹掉跨域前提"}
+
+# 参照系：不是 Model A，但必须出现在 S0-B 与主表
+references:
+  - {name: "mean_predictor", role: "trivial_baseline", mandatory: true,
+     note: "事实 A：在 8 个 NPASS 靶点中 4 个跑赢已发表 SOTA"}
+  - {name: "ecfp4_rf",       role: "non_neural_baseline", mandatory: true}
+  - {name: "ecfp4_svr",      role: "non_neural_baseline", mandatory: false}
+  - {name: "dmpnn",          role: "upper_reference_from_scratch", mandatory: false,
+     note: "无预训练，不是 Model A；NaFM Table 2 中 8/8 胜 ECFP"}
+  - {name: "nafm",           role: "np_side_upper_reference", mandatory: false,
+     note: "只作性能上界参照，绝不作 Model A"}

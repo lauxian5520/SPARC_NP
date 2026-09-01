@@ -1,0 +1,143 @@
+# ============================================================
+# SPARC-NP v1.0 —— 冻结超参数 (§8, §9, §10.2)
+#
+# 【冻结规则】"未冻结的搜索网格是数据泄漏最常见的入口"(§10.2)。
+# 网格在跑第一个实验前冻结；内层 CV 只允许在此处列出的网格内搜索。
+# ============================================================
+
+spec_version: "1.0.0"
+
+# ---------- 维度契约 (§8.2/§8.3，被 tests/test_dim_manifest.py 校验) ----------
+dims:
+  d_pca_ligand: 128        # Model A 输出 → 冻结 PCA 白化到 128 (§7.1)
+  d_pca_protein: 64        # ESM-2 640 → 冻结 PCA 到 64 (§8.2)
+  d_ligand_hidden: 128     # z_q'
+  d_protein_ctx: 64        # c_t
+  bilinear_rank: 4         # 低秩双线性分量数
+  d_bilinear_block: 16     # s_bil 外积展开 (4 x 4)
+  d_base_fusion_in: 208    # 128 + 64 + 16
+  d_base_hidden: 128       # h_q
+  d_base_head: 64          # r
+  d_query_repr: 256        # v_q = [z_q'(128) ; h_q(128)]，重排器与残差共用
+  d_gm_node_feat: 76       # 20 常见元素+other 等 9 类属性 one-hot
+  d_gm_edge_feat: 16
+  d_gm_hidden: 64
+  d_gm_proj: 32            # W_Q, W_D
+  d_align_summary: 32      # a_i
+  d_rank_feature: 103      # 32 + 32 + 32 + 7
+  d_rank_hidden: 64
+  d_evidence_raw: 96       # 32 + 32 + 16 + 8 + 8
+  d_evidence_ctx: 64       # c_R
+  d_evidence_y: 16
+  d_assay_family_emb: 8
+  n_assay_family: 32
+  d_candidate_meta: 8      # t_i，无参数的候选元特征
+  residual_rank: 8         # U ∈ R^{256x8}, V ∈ R^{64x8}
+  n_gate_features: 28      # +1 bias = 29 参数 (§8.3.5)
+
+# ---------- 参数预算 (§8.3.6，硬性核对值) ----------
+param_budget:
+  theta_b: 57218
+  graphmatcher: 31203
+  reranker: 15151
+  evidence: 6688
+  residual: 2633
+  gate: 29
+  uncertainty_head: 322
+  theta_r: 56026
+  total_trainable: 113244
+  tolerance: 0             # 零容差：对不上即构建失败
+
+# ---------- 检索管线 (§9.1) ----------
+retrieval:
+  k_src: 512               # 每源召回 min(512, |M_view|)
+  k0: 256                  # 候选池
+  k_top: 16                # Top-K
+  min_memory_view: 200     # |M_view| < 200 ⇒ insufficient_memory，g̃ ≡ 0
+  sources: ["ecfp4_lsh", "model_a_hnsw", "pharmacophore_ann"]
+  ecfp:
+    radius: 2              # ECFP4
+    n_bits: 2048
+  # 硬过滤键：同 UniProt + 同 tax_id + 同 endpoint + fold 可见性 (§9.1 步骤 1)
+  view_filter_keys: ["uniprot_id", "organism_tax_id", "endpoint"]
+
+# ---------- 图匹配 Sinkhorn (§8.3.1) ----------
+sinkhorn:
+  tau_m: 0.10              # 匹配温度，talk.md 缺失，v1.0 补齐
+  iters: 10
+  with_dustbin: true       # 由 dustbin 保证 m_i ∈ [0,1]
+  log_domain: true
+  max_atoms: 64            # 超过则按度中心性截断
+  eps: 1.0e-8
+
+# ---------- 损失权重与内层 CV 网格 (§10.2，从 structure5.6.md 恢复) ----------
+loss_weights:
+  lambda_rank:
+    default: 0.20
+    grid: [0.05, 0.10, 0.20, 0.40]
+  lambda_utility:
+    default: 0.50
+    grid: [0.25, 0.50, 1.00]
+  lambda_cal:
+    default: 0.10
+    grid: [0.05, 0.10, 0.20]
+  harm_weight: 0.5         # L_utility-gate = L_utility + 0.5 * L_harm
+  l2_theta_r: 1.0e-5
+  tau_rank: 1.0            # Evidence 注意力温度 α_i = softmax(s_i / τ_rank)
+
+# ---------- 训练 (§10.4) ----------
+train:
+  seed: 42
+  seeds_multi: [42, 1337, 2026]        # S0-B 三种子
+  base:
+    epochs: 200
+    batch_size: 128
+    lr: 1.0e-3
+    weight_decay: 1.0e-4
+    dropout: 0.10
+    early_stop_patience: 30
+    grad_clip: 5.0
+  retrieval:
+    epochs: 100
+    batch_size: 32
+    lr: 5.0e-4
+    weight_decay: 1.0e-5
+    early_stop_patience: 20
+    grad_clip: 5.0
+    detach_base_hidden: false   # §8.3.4：h_q 不再冻结(梯度可穿过)；Θ_B 参数本身仍 frozen
+  gate:
+    l2_grid: [0.01, 0.03, 0.1, 0.3, 1.0, 3.0]   # 内层 CV 选 L2
+    max_iter: 2000
+    lr: 0.05
+  crossfit:
+    n_folds: 5             # J = 5 (§10.3)
+    max_ks_shift: 0.15     # KS > 0.15 ⇒ 协变量偏移过大，需缩小 J
+  amp:
+    enabled: true          # 训练可用混合精度
+    fallback_assert_fp32: true   # 但 g̃=0 退化断言强制 fp32 (§8.3.4)
+
+# ---------- 外层划分 (§11.2) ----------
+split:
+  outer_test_frac: 0.20
+  dev_train_frac: 0.60     # dev 内部 60 : 20 : 20
+  dev_inner_frac: 0.20
+  dev_calib_frac: 0.20
+  protocol_default: "S"
+  protocols: ["S", "T", "A", "X"]
+  scaffold_family:
+    murcko_tanimoto_threshold: 0.50
+    use_inchikey_skeleton: true
+    use_deglyco_core: true
+    use_tautomer_family: true
+
+# ---------- 数据构建 (§5) ----------
+data:
+  lambda_d: 0.0            # §6.4 默认：药物数据不进入 Θ_B 梯度
+  aggregate: "median"
+  max_pactivity_spread: 1.5   # 极差 > 1.5 log 单位 ⇒ 整条丢弃
+  censor_relations:
+    right: [">", ">=", ">>"]
+    left: ["<", "<=", "<<"]
+    none: ["=", "~"]
+  null_token: "n.a."
+  csv_field_size_limit: 10000000

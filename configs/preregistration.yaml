@@ -1,0 +1,83 @@
+# ============================================================
+# SPARC-NP v1.0 —— 预注册文件 (§1.3, §11.2)
+#
+# 【冻结规则】本文件在跑第一个实验前写死，并由 sparc.common.hashing
+# 计算 sha256 写入每一次 run 的 manifest。任何修改都必须同时
+# 提升 spec_version 并作为"新的实验轮次"重新走 S0。
+# 判据在见到数据之前定义 —— 这是 λ 用 Learn-then-Test 而不是
+# 网格搜索的同一条理由 (§11.1)。
+# ============================================================
+
+spec_version: "1.0.0"
+frozen_at: "2026-08-30"
+authority: "method.md v1.0.0"
+
+# ---------- Learn-then-Test 参数 (§11.2) ----------
+ltt:
+  alpha: 0.10          # 风险上界 R(λ) ≤ α
+  delta: 0.05          # 置信度：P(R(λ*) ≤ α) ≥ 1 − δ
+  epsilon: 0.01        # 伤害判定裕度 ℓ_SPARC > ℓ_base + ε
+  lambda_grid_start: 0.00
+  lambda_grid_stop: 0.99
+  lambda_grid_step: 0.01
+  # §11.2 允许 fixed_sequence 与 bonferroni 二选一。本项目选 bonferroni：
+  # 固定序列按"λ 从大到小"从 λ=0.99 起测，而标定折在最大 λ 上通常只有
+  # 个位数被接受样本；风险为 0 时 Hoeffding p 值仍需 n ≥ ln(1/δ)/(2α²) = 150
+  # 才能拒绝，于是序列在第一步就中断，λ* 恒为 None —— 这与"真的不存在
+  # 安全工作点"是两回事，会把 H3 变成不可检验。诊断见
+  # sparc.calibrate.ltt.diagnose_fixed_sequence_power。
+  # 若要用 fixed_sequence，必须用 fixed_sequence_order_from_inner_fold
+  # 在 dev 内层折（与标定折互斥）上预先指定检验顺序，以保持有限样本有效性。
+  multiple_testing: "bonferroni"
+  fixed_sequence_order_source: "inner_fold"   # 仅当 multiple_testing=fixed_sequence 时生效
+  pvalue_method: "hoeffding_bentkus"
+
+# ---------- H1：朴素跨域检索在低支持区造成负迁移 ----------
+h1:
+  statement: "在 Top-1 Tanimoto < 0.35 的查询子集上，f_base + naive kNN 残差的逐样本损失严格高于 f_base"
+  low_support_tanimoto_threshold: 0.35
+  criteria:
+    a_delta_loss_ci_lower_gt_zero: true    # Δℓ 均值的 95% CI 下界 > 0
+    b_min_target_agreement_frac: 0.60      # ≥60% 入选靶点方向一致
+    c_min_cohens_d: 0.20                   # 效应量 Cohen's d ≥ 0.2
+  bootstrap_n: 10000
+  ci_level: 0.95
+  # 止损 (§13.3)：≥2/3 Tier-1 靶点 CI 下界 ≤ 0 ⇒ Plan-B
+  stop_loss_target_frac: 0.6667
+
+# ---------- H2：多维支持度可识别有害检索 ----------
+h2:
+  statement: "28 维支持度特征的 29 参数 logistic 回归，对 u_i = 1[ℓ(retr) < ℓ(base) − ε] 的判别力优于任何单一 Tanimoto 标量"
+  criteria:
+    a_auroc_gt_tanimoto_baseline_ci_lower_gt_zero: true
+    b_min_auroc_on_activity_cliff_subset: 0.65
+    c_max_generalization_gap: 0.10         # |AUROC_OOF − AUROC_test| ≤ 0.10
+    d_max_sign_flips: 2                    # 系数符号与化学先验冲突数 ≤ 2/28
+  paired_bootstrap_n: 10000
+
+# ---------- H3：门控残差在保证不劣化下获得非平凡覆盖率 ----------
+h3:
+  statement: "存在阈值 λ 使 SafeCoverage(λ) ≥ 0.30"
+  criteria:
+    a_min_safe_coverage: 0.30
+    b_min_target_positive_frac: 0.60       # ≥60% 入选靶点 SafeCoverage > 0
+    c_test_risk_le_alpha: true             # LTT 的 λ 在测试集上实际风险 ≤ α
+
+# ---------- Stage 0 闸门 (§13.1) ----------
+stage0_gate:
+  # 若药物记忆库与天然产物查询集在化学空间上分不开 ⇒ 停止，重新定义域
+  max_median_top1_tanimoto: 0.60
+  min_memory_per_target: 200               # |M_t| < 200 ⇒ 降级/排除 (§5.3)
+
+# ---------- 冻结的主标指标定义 (§12.1) ----------
+primary_metric: "safe_coverage"
+safe_coverage:
+  ci_level: 0.95
+  ucb_method: "bootstrap_percentile"       # UCB_95%(E[ℓ_SPARC − ℓ_base | g ≥ Q_{1−c}(g)]) ≤ 0
+  coverage_grid_step: 0.01
+  bootstrap_n: 10000
+
+# ---------- 必须出现在每一张表的基线 (§12.2, 事实 A) ----------
+mandatory_baselines:
+  - "mean_predictor"          # 平凡基线，缺失即视为结果无效
+  - "ecfp4_rf"

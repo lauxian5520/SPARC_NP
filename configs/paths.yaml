@@ -1,0 +1,65 @@
+# ============================================================
+# SPARC-NP v1.0 —— 路径配置
+# 所有路径均为相对路径，基准点 = 本文件所在目录 (Project/code/configs/)
+# 迁移到 CUDA 服务器时无需修改任何一行。
+# ============================================================
+
+# 项目根 (Project/)
+project_root: "../.."
+
+# 只读源数据 (§2)
+origin_dataset: "../../data/origin_dataset"
+npass_dir: "../../data/origin_dataset/NPSS"
+chembl_dir: "../../data/origin_dataset/ChEMBL37"
+bindingdb_dir: "../../data/origin_dataset/BindingDB"
+coconut_dir: "../../data/origin_dataset/COCONUT"
+lotus_dir: "../../data/origin_dataset/LOTUS"
+molecule_ace_dir: "../../data/origin_dataset/MoleculeACE"
+uniprot_dir: "../../data/origin_dataset/UniProt"
+
+# 权重
+assets_weight: "../../data/assets_weight"
+esm2_dir: "../../data/assets_weight/ESM-2-150M"
+
+# 中间产物与处理结果 (§15)
+interim: "../../data/interim"
+processed: "../../data/processed"
+queries_dir: "../../data/processed/queries"
+memory_dir: "../../data/processed/memory"
+splits_dir: "../../data/processed/splits"
+
+# 编码缓存 (Model A / ESM-2 推理结果离线化，§14)
+cache_dir: "../../data/cache"
+model_a_cache: "../../data/cache/model_a"
+esm2_cache: "../../data/cache/esm2"
+
+# 各阶段模块目录：data/<模块名>/{logs,checkpoints,outputs}
+stage_root: "../../data"
+stage_dirs:
+  s0_data: "../../data/s0_data"
+  s0b_backbone: "../../data/s0b_backbone"
+  s1_base: "../../data/s1_base"
+  s2_retrieval: "../../data/s2_retrieval"
+  s3_gate: "../../data/s3_gate"
+  s4_ltt: "../../data/s4_ltt"
+  s5_eval: "../../data/s5_eval"
+
+# 报告输出
+reports: "../../reports"
+figures: "../../reports/figures"
+
+# 具体源文件名 (已核实存在)
+files:
+  npass_activities: "NPASS3.0_activities.txt"
+  npass_target: "NPASS3.0_target.txt"
+  npass_structure: "NPASS3.0_naturalproducts_structure.txt"
+  npass_generalinfo: "NPASS3.0_naturalproducts_generalinfo.txt"
+  coconut_lite: "coconut_npkey_lite.tsv"
+  coconut_zip: "coconut_csv_lite-08-2026.zip"
+  lotus_gz: "260413_frozen.csv.gz"
+  chembl_tar: "chembl_37_sqlite.tar.gz"
+  chembl_sqlite: "chembl_37.db"
+  chembl_uniprot_map: "chembl_uniprot_mapping.txt"
+  bindingdb_zip: "BindingDB_All_202607_tsv.zip"
+  bindingdb_uniprot: "BindingDB_UniProt.txt"
+  uniprot_fasta_dir: "npass_targets"
