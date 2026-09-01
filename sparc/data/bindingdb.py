@@ -11,9 +11,10 @@ from __future__ import annotations
 
 import csv
 import io
+import re
 import zipfile
 from pathlib import Path
-from typing import Dict, Iterator, List, Optional, Sequence, Set
+from typing import Dict, Iterator, List, Optional, Sequence, Set, Tuple
 
 from sparc.common.logging_utils import get_logger
 from sparc.data.chembl import RawActivity
@@ -24,8 +25,43 @@ _LOGGER = get_logger(__name__)
 _COL_SMILES = "Ligand SMILES"
 _COL_INCHIKEY = "Ligand InChI Key"
 _COL_IC50 = "IC50 (nM)"
-_COL_UNIPROT_PRIMARY = "UniProt (SwissProt) Primary ID of Target Chain"
-_COL_UNIPROT_ALT = "UniProt (TrEMBL) Primary ID of Target Chain"
+# ⚠️ BindingDB 的靶点链列名**带链号后缀**：``... of Target Chain 1`` / ``Chain 2`` …
+# 全量 TSV（202607，640 列）里 SwissProt / TrEMBL 各有 50 条链的列。
+# 不带后缀的列名在表头里**出现 0 次** —— 按它去 ``row.get()`` 永远拿到 None，
+# 于是每一行的 accession 都是空串、全部被跳过，最终"扫描完成但命中 0 条"。
+# 这个失败是静默的：不报错、不警告，只是安静地返回空记忆库。
+_UNIPROT_CHAIN_RE = re.compile(
+    r"UniProt \((SwissProt|TrEMBL)\) Primary ID of Target Chain (\d+)"
+)
+
+
+def _uniprot_columns(fieldnames: Sequence[str]) -> Tuple[List[str], List[str]]:
+    """从真实表头里解析出按链号排序的 SwissProt / TrEMBL 主 ID 列。
+
+    Args:
+        fieldnames: ``csv.DictReader.fieldnames``。
+
+    Returns:
+        ``(swissprot 列名列表, trembl 列名列表)``，均按链号升序。
+
+    Raises:
+        ValueError: 一条链都没找到 —— 说明 BindingDB 换了表头格式，
+            必须先核对再继续，不允许静默产出空记忆库。
+    """
+    swiss: List[Tuple[int, str]] = []
+    trembl: List[Tuple[int, str]] = []
+    for name in fieldnames or ():
+        match = _UNIPROT_CHAIN_RE.fullmatch(name.strip())
+        if not match:
+            continue
+        (swiss if match.group(1) == "SwissProt" else trembl).append((int(match.group(2)), name))
+    if not swiss and not trembl:
+        raise ValueError(
+            "BindingDB 表头里找不到任何 'UniProt (SwissProt|TrEMBL) Primary ID of Target Chain N' 列。"
+            f"实际表头前 12 列：{list(fieldnames or ())[:12]}。"
+            "BindingDB 可能改了列名格式 —— 先核对再继续，不要让它静默产出空记忆库。"
+        )
+    return [n for _, n in sorted(swiss)], [n for _, n in sorted(trembl)]
 _COL_ORGANISM = "Target Source Organism According to Curator or DataSource"
 _COL_YEAR = "Article DOI"      # BindingDB 无独立年份列；PMID/DOI 由调用方另行解析
 _COL_PMID = "PMID"
@@ -85,11 +121,25 @@ class BindingDBExtractor:
             with archive.open(inner) as raw:
                 stream = io.TextIOWrapper(raw, encoding="utf-8", errors="replace", newline="")
                 reader = csv.DictReader(stream, delimiter="\t")
+                swiss_cols, trembl_cols = _uniprot_columns(reader.fieldnames)
+                _LOGGER.info("BindingDB 靶点链列：SwissProt %d 条 / TrEMBL %d 条",
+                             len(swiss_cols), len(trembl_cols))
                 for row in reader:
                     n_seen += 1
                     if max_rows and n_seen > max_rows:
                         break
-                    accession = (row.get(_COL_UNIPROT_PRIMARY) or row.get(_COL_UNIPROT_ALT) or "").strip()
+                    accession = ""
+                    for column in swiss_cols:          # 先 SwissProt，按链号顺序取第一个非空
+                        value = (row.get(column) or "").strip()
+                        if value:
+                            accession = value
+                            break
+                    if not accession:
+                        for column in trembl_cols:
+                            value = (row.get(column) or "").strip()
+                            if value:
+                                accession = value
+                                break
                     if accession not in wanted:
                         continue
                     raw_value = (row.get(_COL_IC50) or "").strip()
@@ -116,7 +166,14 @@ class BindingDBExtractor:
                         source_db="bindingdb",
                     )
                     n_yield += 1
-        _LOGGER.info("BindingDB 抽取完成：扫描 %d 行 → 命中 %d 条", n_seen, n_yield)
+        if n_yield == 0 and n_seen > 0:
+            _LOGGER.error(
+                "BindingDB 扫描了 %d 行却命中 0 条。BindingDB 覆盖 ~9,500 个靶点，"
+                "对常见人源靶点（AChE/COX-2/CYP3A4/BACE1 等）命中 0 条几乎不可能 —— "
+                "优先怀疑列名或 accession 口径，不要当成'本轮确实没有数据'。", n_seen,
+            )
+        else:
+            _LOGGER.info("BindingDB 抽取完成：扫描 %d 行 → 命中 %d 条", n_seen, n_yield)
 
 
 def _parse_bindingdb_value(raw: str) -> tuple[str, Optional[float]]:

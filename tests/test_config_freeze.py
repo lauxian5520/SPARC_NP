@@ -292,3 +292,41 @@ class TestUnitConversion:
         assert data.censor_flag("<") == "left"
         assert data.censor_flag("=") == "none"
         assert data.censor_flag("n.a.") == "none"
+
+
+class TestBindingDBColumns:
+    """BindingDB 的靶点链列名带链号后缀 —— 认错了会静默产出空记忆库。
+
+    2026-09-01 实测：全量 TSV 有 640 列，SwissProt / TrEMBL 各 50 条链，
+    形如 ``UniProt (SwissProt) Primary ID of Target Chain 1``。
+    不带后缀的旧列名在表头里出现 **0 次**，按它取值每行都是空串，
+    结果是"扫描 2,900 万行 → 命中 0 条"，且不报错、不警告。
+    """
+
+    def test_chain_columns_are_parsed_in_order(self):
+        """按链号升序解析出 SwissProt 与 TrEMBL 两组列。"""
+        from sparc.data.bindingdb import _uniprot_columns
+
+        header = [
+            "Ligand SMILES", "IC50 (nM)",
+            "UniProt (SwissProt) Primary ID of Target Chain 2",
+            "UniProt (TrEMBL) Primary ID of Target Chain 1",
+            "UniProt (SwissProt) Primary ID of Target Chain 1",
+            "UniProt (SwissProt) Entry Name of Target Chain 1",      # 名字列，不该被选中
+        ]
+        swiss, trembl = _uniprot_columns(header)
+        assert swiss == [
+            "UniProt (SwissProt) Primary ID of Target Chain 1",
+            "UniProt (SwissProt) Primary ID of Target Chain 2",
+        ]
+        assert trembl == ["UniProt (TrEMBL) Primary ID of Target Chain 1"]
+
+    def test_unsuffixed_header_is_rejected(self):
+        """只有不带链号的旧列名 ⇒ 必须报错，不允许静默返回空。"""
+        from sparc.data.bindingdb import _uniprot_columns
+
+        with pytest.raises(ValueError, match="Target Chain N"):
+            _uniprot_columns([
+                "Ligand SMILES", "IC50 (nM)",
+                "UniProt (SwissProt) Primary ID of Target Chain",   # 旧格式，无链号
+            ])
