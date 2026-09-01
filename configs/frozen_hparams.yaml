@@ -125,7 +125,8 @@ split:
   protocol_default: "S"
   protocols: ["S", "T", "A", "X"]
   scaffold_family:
-    murcko_tanimoto_threshold: 0.50
+    murcko_tanimoto_threshold: 0.70     # v1.0.3：原 0.50 在 12.9 万分子上渗流坍缩到 99.4%
+    max_largest_family_frac: 0.20       # 渗流护栏：最大家族超过 20% 即 fail hard
     use_inchikey_skeleton: true
     use_deglyco_core: true
     use_tautomer_family: true

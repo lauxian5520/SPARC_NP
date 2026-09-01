@@ -228,6 +228,7 @@ class SplitConfig:
     use_inchikey_skeleton: bool
     use_deglyco_core: bool
     use_tautomer_family: bool
+    max_largest_family_frac: float = 0.20
 
     def validate(self) -> None:
         """dev 三分必须和为 1。"""
@@ -327,6 +328,7 @@ class FrozenHparams:
             use_inchikey_skeleton=sp["scaffold_family"]["use_inchikey_skeleton"],
             use_deglyco_core=sp["scaffold_family"]["use_deglyco_core"],
             use_tautomer_family=sp["scaffold_family"]["use_tautomer_family"],
+            max_largest_family_frac=sp["scaffold_family"].get("max_largest_family_frac", 0.20),
         )
         split.validate()
         d = raw["data"]

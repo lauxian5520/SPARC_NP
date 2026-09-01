@@ -116,7 +116,8 @@ class TestFrozenHparams:
     def test_scaffold_family_all_four_keys_enabled(self, config):
         """§6.1 的四把钥匙默认全开 —— 关掉任一把都会打开一条泄漏通道。"""
         split = config.hparams.split
-        assert split.murcko_tanimoto_threshold == 0.50
+        assert split.murcko_tanimoto_threshold == 0.70      # v1.0.3：原 0.50 会渗流坍缩
+        assert split.max_largest_family_frac == 0.20
         assert split.use_inchikey_skeleton and split.use_deglyco_core and split.use_tautomer_family
 
     def test_lambda_d_default_zero(self, config):

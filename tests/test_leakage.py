@@ -282,3 +282,67 @@ class TestGraphEncoderSharing:
         n_total = sum(1 for n, _ in self._model().named_parameters() if n.startswith(prefixes))
         assert moved_params(share=True) == n_total, "共享实例时图编码器应当全部被训练"
         assert moved_params(share=False) == 0, "不共享时图编码器一步都不该动（这正是 bug 的后果）"
+
+
+class TestScaffoldPercolation:
+    """条款 1 是单连接聚类 —— 阈值偏低会渗流出吞掉一切的巨型家族。
+
+    实测（NPASS 真实分子，Murcko + ECFP4，2026-09-02）::
+
+        阈值    N=7,455   N=16,735   N=129,328(服务器)
+        0.50     51.4%     63.3%       99.4%   ❌
+        0.65       —        6.0%         —
+        0.70      4.2%      4.0%         —     ✅ 平台区
+
+    坍缩不会报错：§5.4 断言查的是四把钥匙的重叠、不是家族大小，
+    参数量核对也照样通过。所以必须有主动断言。
+    """
+
+    @staticmethod
+    def _chain(n: int):
+        """构造一条"每个分子只跟下一个同骨架"的链 —— 单连接下会并成一个家族。"""
+        from sparc.chem.scaffold import ScaffoldKeys
+        # 两把钥匙各自错开一位配对：skeleton14 连 (0,1)(2,3)…，deglyco 连 (1,2)(3,4)…
+        # 两者叠加把所有分子串成一条链 ⇒ 单连接下并成一个巨型家族。
+        return [
+            ScaffoldKeys(
+                molecule_id=f"M{i}", inchikey=f"IK{i}",
+                skeleton14=f"P{i // 2}",
+                deglyco_core_hash=f"Q{(i + 1) // 2}",
+                tautomer_family_id=f"T{i}",
+            )
+            for i in range(n)
+        ]
+
+    def test_frozen_threshold_is_070(self, config):
+        """v1.0.3 起冻结为 0.70；0.50 会在真实规模下坍缩。"""
+        assert config.hparams.split.murcko_tanimoto_threshold == 0.70
+
+    def test_percolation_is_rejected(self):
+        """最大家族超过上限 ⇒ 抛 ScaffoldPercolationError，不允许静默继续。"""
+        from sparc.chem.scaffold import ScaffoldFamilyBuilder, ScaffoldPercolationError
+
+        builder = ScaffoldFamilyBuilder(max_largest_family_frac=0.20,
+                                        percolation_min_molecules=10)
+        with pytest.raises(ScaffoldPercolationError, match="渗流坍缩"):
+            builder.build(self._chain(100))
+
+    def test_healthy_families_pass(self):
+        """家族分布正常时不该误报。"""
+        from sparc.chem.scaffold import ScaffoldFamilyBuilder, ScaffoldKeys
+
+        keys = [
+            ScaffoldKeys(molecule_id=f"M{i}", inchikey=f"IK{i}", skeleton14=f"S{i}",
+                         deglyco_core_hash=f"D{i}", tautomer_family_id=f"T{i}")
+            for i in range(50)
+        ]
+        result = ScaffoldFamilyBuilder(max_largest_family_frac=0.20).build(keys)
+        assert len(set(result.family_of.values())) == 50
+
+    def test_guard_can_be_disabled_only_explicitly(self):
+        """把上限设为 1.0 才关得掉 —— 必须是刻意动作。"""
+        from sparc.chem.scaffold import ScaffoldFamilyBuilder
+
+        result = ScaffoldFamilyBuilder(max_largest_family_frac=1.0,
+                                       percolation_min_molecules=10).build(self._chain(100))
+        assert len(set(result.family_of.values())) == 1      # 确实并成了一个巨型家族

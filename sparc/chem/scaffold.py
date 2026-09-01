@@ -54,6 +54,10 @@ class ScaffoldKeys:
         return keys
 
 
+class ScaffoldPercolationError(RuntimeError):
+    """骨架家族渗流坍缩 —— 见 :meth:`ScaffoldFamilyBuilder._assert_no_percolation`。"""
+
+
 class _UnionFind:
     """按秩合并 + 路径压缩的并查集。"""
 
@@ -126,15 +130,17 @@ class ScaffoldFamilyBuilder:
 
     def __init__(
         self,
-        murcko_tanimoto_threshold: float = 0.50,
+        murcko_tanimoto_threshold: float = 0.70,
         use_inchikey_skeleton: bool = True,
         use_deglyco_core: bool = True,
         use_tautomer_family: bool = True,
         murcko_block_size: int = 2048,
+        max_largest_family_frac: float = 0.20,
+        percolation_min_molecules: int = 200,
     ) -> None:
         """
         Args:
-            murcko_tanimoto_threshold: 条款 1 阈值（冻结为 0.50）。
+            murcko_tanimoto_threshold: 条款 1 阈值（v1.0.3 起冻结为 0.70，原 0.50 会渗流坍缩）。
             use_inchikey_skeleton: 启用条款 2。
             use_deglyco_core: 启用条款 3（糖苷通道，**不建议关闭**）。
             use_tautomer_family: 启用条款 4。
@@ -145,6 +151,8 @@ class ScaffoldFamilyBuilder:
         self.use_deglyco = use_deglyco_core
         self.use_tautomer = use_tautomer_family
         self.block_size = murcko_block_size
+        self.max_largest_family_frac = max_largest_family_frac
+        self.percolation_min_molecules = percolation_min_molecules
         if not (use_deglyco_core and use_tautomer_family and use_inchikey_skeleton):
             _LOGGER.warning(
                 "骨架家族的条款 2–4 被部分关闭 —— §6.1 明确规定这会漏掉糖苷/互变体泄漏通道，"
@@ -206,7 +214,62 @@ class ScaffoldFamilyBuilder:
 
         result = ScaffoldFamilyResult(family_of=family_of, members=dict(members), edge_counts=dict(edge_counts))
         _LOGGER.info("骨架家族构建完成：%s", result.summary())
+        self._assert_no_percolation(result)
         return result
+
+    def _assert_no_percolation(self, result: "ScaffoldFamilyResult") -> None:
+        """渗流护栏：最大家族不得吞掉过多分子。
+
+        **为什么必须硬断言。** 条款 1 是"Murcko 骨架 ECFP4 Tanimoto ≥ 阈值即连边"，
+        本质是单连接聚类 —— 相似度图的连通分量会随分子数增长而**渗流**：
+        A 像 B、B 像 C，即使 A 与 C 毫不相似，三者也会并进同一个家族。
+        阈值越低、分子越多，坍缩越严重。实测（NPASS 真实分子，Murcko + ECFP4）::
+
+            阈值      N=7,455    N=16,735    N=129,328(服务器实测)
+            0.50       51.4%      63.3%        99.4%   ❌
+            0.60        9.9%      24.1%          —
+            0.65         —         6.0%          —
+            0.70        4.2%       4.0%          —     ✅ 平台区
+
+        坍缩的后果不是"家族划粗了"这么轻描淡写，而是**整个方法静默失效**：
+
+        1. 划分以家族为原子单位 ⇒ 一个占 99% 的家族只能整体落到一侧
+           ⇒ train/test 退化，没有真正的留出集；
+        2. 更致命的是 :meth:`~sparc.data.splits.SplitBuilder.memory_visibility_filter`
+           按**划分单位**剔除记忆记录 ⇒ 评估某个 split 时，与它同家族的记忆
+           几乎全部不可见 ⇒ ``|M_view|`` 塌到阈值以下 ⇒ 全部标记
+           ``insufficient_memory`` ⇒ ``g̃ ≡ 0`` ⇒ 模型退化成纯 Base 预测器。
+
+        而这一切**不会报错**：断言照样通过（§5.4 查的是四把钥匙的重叠，不是家族），
+        参数量照样对得上，损失照样下降。所以这里必须主动断言。
+
+        Args:
+            result: 刚构建好的家族结果。
+
+        Raises:
+            ScaffoldPercolationError: 最大家族占比超过 ``max_largest_family_frac``。
+        """
+        n_total = len(result.family_of)
+        # 渗流是规模现象：3 个分子里并掉 2 个就是 67%，那不是坍缩。
+        # 低于下限一律不检查，否则小夹具会被误伤。
+        if (n_total < self.percolation_min_molecules
+                or self.max_largest_family_frac >= 1.0):
+            return
+        largest = max((len(m) for m in result.members.values()), default=0)
+        frac = largest / n_total
+        if frac <= self.max_largest_family_frac:
+            return
+        raise ScaffoldPercolationError(
+            f"骨架家族渗流坍缩：最大家族 {largest:,}/{n_total:,} = {frac:.1%}，"
+            f"超过上限 {self.max_largest_family_frac:.0%}（当前 Murcko 阈值 "
+            f"{self.threshold:.2f}）。\n"
+            f"条款 1 是单连接聚类，阈值偏低时相似度图会渗流出巨型连通分量。\n"
+            "后果（且全部静默）：① 家族是划分的原子单位，一个巨型家族让 train/test "
+            "退化；② memory_visibility_filter 按家族剔除记忆，记忆视图会整体塌陷、"
+            "全部标记 insufficient_memory、g̃≡0，模型退化成纯 Base。\n"
+            "处理：把 murcko_tanimoto_threshold 提高到 0.70（实测平台区）并**声明为一次"
+            "预注册修订**；若已经看过任何 H1/H2/H3 结果，则必须开启新的实验轮次。"
+        )
 
     # ------------------------------------------------------------------
     def _link_by_murcko(
