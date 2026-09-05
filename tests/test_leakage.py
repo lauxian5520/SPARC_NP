@@ -18,11 +18,12 @@ from sparc.data.schema import CensorFlag, Domain, MemoryRecord, QueryRecord
 from sparc.data.splits import SplitBuilder
 
 
-def _query(qid: str, key: str, skel: str, deglyco: str, taut: str, family: str = "FAM0") -> QueryRecord:
+def _query(qid: str, key: str, skel: str, deglyco: str, taut: str, family: str = "FAM0",
+           target_id: str = "T1") -> QueryRecord:
     """构造一条查询记录。"""
     return QueryRecord(
         query_id=qid, compound_id=qid, inchikey=key, smiles="CCO",
-        target_id="T1", uniprot_id="P1", organism_tax_id="9606",
+        target_id=target_id, uniprot_id="P1", organism_tax_id="9606",
         pactivity=6.0, censor_flag=CensorFlag.NONE,
         skeleton14=skel, deglyco_core_hash=deglyco, tautomer_family_id=taut,
         scaffold_family_id=family, ortholog_group_id="OG1",
@@ -30,11 +31,12 @@ def _query(qid: str, key: str, skel: str, deglyco: str, taut: str, family: str =
     )
 
 
-def _memory(mid: str, key: str, skel: str, deglyco: str, taut: str, family: str = "FAM9") -> MemoryRecord:
+def _memory(mid: str, key: str, skel: str, deglyco: str, taut: str, family: str = "FAM9",
+            target_id: str = "T1") -> MemoryRecord:
     """构造一条记忆库记录。"""
     return MemoryRecord(
         memory_id=mid, inchikey=key, smiles="CCC",
-        target_id="T1", uniprot_id="P1", organism_tax_id="9606",
+        target_id=target_id, uniprot_id="P1", organism_tax_id="9606",
         pactivity=7.0, censor_flag=CensorFlag.NONE,
         skeleton14=skel, deglyco_core_hash=deglyco, tautomer_family_id=taut,
         scaffold_family_id=family, domain=Domain.DRUG,
@@ -346,3 +348,145 @@ class TestScaffoldPercolation:
         result = ScaffoldFamilyBuilder(max_largest_family_frac=1.0,
                                        percolation_min_molecules=10).build(self._chain(100))
         assert len(set(result.family_of.values())) == 1      # 确实并成了一个巨型家族
+
+
+class TestDegenerateSplitGuard:
+    """协议 A 的年份缺失会让划分退化成一个桶，而且不报错 (§6.1)。"""
+
+    @staticmethod
+    def _queries(n: int, year):
+        from dataclasses import replace
+        return [replace(_query(f"q{i}", f"K{i}", f"S{i}", f"D{i}", f"T{i}", family=f"FAM{i}"),
+                        reference_year=year)
+                for i in range(n)]
+
+    def test_protocol_a_without_years_fails_hard(self):
+        """全部 reference_year 为 None ⇒ 所有查询进 year_unknown ⇒ 必须报错。
+
+        修复前这里会静默通过，Table 3 的协议 A 行因此是假的。
+        """
+        from sparc.data.splits import DegenerateSplitError
+
+        builder = SplitBuilder(0.2, 0.6, 0.2, 0.2, seed=0)
+        with pytest.raises(DegenerateSplitError, match="year_unknown"):
+            builder.build(self._queries(50, None), "A")
+
+    def test_protocol_a_with_years_succeeds(self):
+        """年份齐备时协议 A 正常划分。"""
+        from dataclasses import replace
+
+        queries = [replace(q, reference_year=2000 + i % 12)
+                   for i, q in enumerate(self._queries(60, 2020))]
+        assignment = SplitBuilder(0.2, 0.6, 0.2, 0.2, seed=0).build(queries, "A")
+        assert len(set(assignment.unit_of.values())) == 12
+
+    def test_guard_applies_to_every_protocol(self):
+        """不只协议 A：任何协议下单一单位吃掉 >80% 都是退化。"""
+        from sparc.data.splits import DegenerateSplitError
+
+        queries = [_query(f"q{i}", f"K{i}", f"S{i}", f"D{i}", f"T{i}", family="FAM_ALL")
+                   for i in range(40)]
+        with pytest.raises(DegenerateSplitError, match="退化"):
+            SplitBuilder(0.2, 0.6, 0.2, 0.2, seed=0).build(queries, "S")
+
+    def test_small_sets_are_not_blocked(self):
+        """样本太少时占比没有意义，不应误伤（与渗流护栏同一考量）。"""
+        queries = [_query(f"q{i}", f"K{i}", f"S{i}", f"D{i}", f"T{i}", family=f"FAM{i % 5}")
+                   for i in range(20)]
+        assert SplitBuilder(0.2, 0.6, 0.2, 0.2, seed=0).build(queries, "S") is not None
+
+
+
+class TestMemoryGate:
+    """§5.3 硬闸门：|M_t| < 200 的靶点必须降级或排除，不允许静默继续。"""
+
+    @staticmethod
+    def _target(tid: str, tier: str = "tier1"):
+        from sparc.data.schema import TargetRecord
+
+        return TargetRecord(
+            target_id=tid, target_name=tid, target_type="SINGLE PROTEIN",
+            uniprot_id=f"P{tid}", organism_tax_id="9606", organism="Homo sapiens",
+            ortholog_group_id=f"OG_{tid}", n_unique_compounds=120,
+            censored_frac=0.1, pactivity_std=1.0, tier=tier, has_sequence=True,
+        )
+
+    def _purge_report(self, kept_per_target, known):
+        from sparc.data.purge import PurgeReport
+
+        report = PurgeReport()
+        for tid, n in kept_per_target.items():
+            report.per_target_kept[tid] = n
+        report.known_target_ids = sorted(known)
+        universe = set(report.per_target_kept) | set(report.known_target_ids)
+        report.downgraded_targets = sorted(t for t in universe
+                                           if report.per_target_kept.get(t, 0) < 200)
+        return report
+
+    def test_zero_memory_target_is_caught(self):
+        """回归：|M_t| = 0 的靶点此前躲过闸门。
+
+        ``per_target_kept`` 只在有记录被保留时才出现某个 target_id，旧代码
+        只遍历它，于是记忆库最空的靶点反而不会被标记 —— 闸门对它恰好失效。
+        """
+        from sparc.data.blacklist import NaturalProductBlacklist
+        from sparc.data.purge import NPPurger
+
+        blacklist = NaturalProductBlacklist(set(), set())
+        # T_EMPTY 在候选池里一条记录都没有
+        records = [_memory(f"m{i}", f"K{i}", f"S{i}", f"D{i}", f"T{i}", target_id="T_OK")
+                   for i in range(5)]
+        _, report = NPPurger(blacklist, min_memory_per_target=3).purge(
+            records, all_target_ids=["T_OK", "T_EMPTY"])
+        assert "T_EMPTY" in report.downgraded_targets
+        assert "T_OK" not in report.downgraded_targets
+        assert report.to_dict()["min_memory_size"] == 0
+        assert report.to_dict()["n_targets_zero_memory"] == 1
+
+    def test_exclude_policy_drops_target_and_its_queries(self):
+        from sparc.data.purge import apply_memory_gate
+
+        targets = {"T_OK": self._target("T_OK"), "T_SMALL": self._target("T_SMALL")}
+        report = self._purge_report({"T_OK": 500, "T_SMALL": 12}, targets)
+        queries = [_query(f"q{i}", f"K{i}", f"S{i}", f"D{i}", f"TA{i}", family=f"F{i}",
+                          target_id="T_OK" if i % 2 else "T_SMALL") for i in range(6)]
+        memory = [_memory(f"m{i}", f"MK{i}", f"MS{i}", f"MD{i}", f"MT{i}",
+                          target_id="T_OK" if i % 2 else "T_SMALL") for i in range(6)]
+
+        new_targets, kept_q, kept_m, summary = apply_memory_gate(targets, report, queries, memory)
+        assert new_targets["T_SMALL"].tier == "tier_x"
+        assert new_targets["T_OK"].tier == "tier1"
+        assert "insufficient_memory(|M_t|=12)" in new_targets["T_SMALL"].exclusion_reasons
+        assert {q.target_id for q in kept_q} == {"T_OK"}
+        assert {m.target_id for m in kept_m} == {"T_OK"}
+        assert summary["n_excluded"] == 1 and summary["n_queries_dropped"] == 3
+
+    def test_downgrade_policy_moves_tier1_to_tier2(self):
+        from sparc.data.purge import MemoryGatePolicy, apply_memory_gate
+
+        targets = {"T1": self._target("T1", "tier1"), "T2": self._target("T2", "tier2")}
+        report = self._purge_report({"T1": 5, "T2": 5}, targets)
+        new_targets, kept_q, _, summary = apply_memory_gate(
+            targets, report, [], [], policy=MemoryGatePolicy.DOWNGRADE)
+        # tier1 降到 tier2；tier2 没有下一档，只能排除
+        assert new_targets["T1"].tier == "tier2"
+        assert new_targets["T2"].tier == "tier_x"
+        assert summary["n_downgraded"] == 1 and summary["n_excluded"] == 1
+
+    def test_unknown_policy_raises(self):
+        import pytest as _pytest
+
+        from sparc.data.purge import apply_memory_gate
+
+        with _pytest.raises(ValueError, match="未知的 policy"):
+            apply_memory_gate({}, self._purge_report({}, []), [], [], policy="warn")
+
+    def test_no_flagged_targets_is_a_noop(self):
+        from sparc.data.purge import apply_memory_gate
+
+        targets = {"T_OK": self._target("T_OK")}
+        report = self._purge_report({"T_OK": 900}, targets)
+        queries = [_query("q0", "K0", "S0", "D0", "TA0", family="F0", target_id="T_OK")]
+        new_targets, kept_q, kept_m, summary = apply_memory_gate(targets, report, queries, [])
+        assert new_targets["T_OK"].tier == "tier1"
+        assert len(kept_q) == 1 and summary["n_flagged"] == 0

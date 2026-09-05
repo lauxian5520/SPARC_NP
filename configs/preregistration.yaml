@@ -8,9 +8,9 @@
 # 网格搜索的同一条理由 (§11.1)。
 # ============================================================
 
-spec_version: "1.0.0"
+spec_version: "1.0.5"
 frozen_at: "2026-08-30"
-authority: "method.md v1.0.0"
+authority: "method.md v1.0.5"
 
 # ---------- Learn-then-Test 参数 (§11.2) ----------
 ltt:

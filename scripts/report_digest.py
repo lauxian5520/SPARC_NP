@@ -36,9 +36,15 @@ EXPECTED: Dict[str, Tuple[Any, str]] = {
     "npass.scale_spec_basis.n_target_compound_pairs": (7314, "事实 H"),
     "npass.scale_spec_basis.n_unique_natural_products": (4075, "事实 H"),
     "blacklist.n_union_exact": (764721, "COCONUT∪LOTUS"),
-    "target_selection.n_tier1": (13, "v1.0.2 实测（含 RDKit MW）"),
-    "target_selection.n_tier2": (28, "v1.0.2 实测"),
-    "target_selection.n_pairs_selected": (4250, "v1.0.2 实测"),
+    # ⚠ 下面三个是 §5.3 闸门**之前**的靶点数。v1.0.5 起 |M_t| < 200 的靶点会被
+    #   排除进 tier_x，所以闸门后的实测值**低于**这里的期望是正常的，不是回归。
+    #   要看闸门后的口径，读 memory_gate.n_excluded 与 np_purge.n_targets_zero_memory。
+    "target_selection.n_tier1": (13, "v1.0.2 实测（含 RDKit MW；§5.3 闸门前）"),
+    "target_selection.n_tier2": (28, "v1.0.2 实测（§5.3 闸门前）"),
+    "target_selection.n_pairs_selected": (4250, "v1.0.2 实测（§5.3 闸门前）"),
+    # 闸门自身的产物：没有期望值，但必须出现在摘要里
+    "memory_gate.n_excluded": (None, "§5.3 闸门排除数（无期望值，需人工判读）"),
+    "np_purge.n_targets_zero_memory": (None, "|M_t| = 0 的靶点数（应为 0；非 0 说明有 accession 在 ChEMBL/BindingDB 里查无 IC50）"),
 }
 
 # 日志里值得单独拎出来的关键行
@@ -50,6 +56,10 @@ LOG_PATTERNS: List[Tuple[str, str]] = [
     (r"ChEMBL.*(抽取|命中|标准化).*", "ChEMBL"),
     (r"记忆库视图不足.*", "记忆库闸门"),
     (r"降级或排除.*", "靶点降级"),
+    (r"§5\.3 硬闸门.*", "§5.3 闸门执行"),
+    (r"其中 \d+ 个靶点 \|M_t\| = 0.*", "零记忆靶点"),
+    (r"划分已退化.*", "划分退化"),
+    (r"骨架家族.*渗流.*", "骨架渗流"),
     (r"Stage 0 闸门.*", "Stage 0 闸门"),
     (r"参数预算.*total_trainable.*", "参数预算"),
     (r"LTT (完成|未找到).*", "LTT"),
@@ -102,7 +112,10 @@ def digest_outputs(stage_dir: Path, lines: List[str]) -> None:
             mark = ""
             if key in EXPECTED:
                 want, source = EXPECTED[key]
-                mark = f"   [期望 {want}（{source}）]" if value != want else "  ✓"
+                if want is None:            # 无期望值，只是要求它出现在摘要里
+                    mark = f"   [{source}]"
+                else:
+                    mark = f"   [期望 {want}（{source}）]" if value != want else "  ✓"
                 if value != want:
                     mark = "  ⚠" + mark
             if mark or _is_interesting(key):

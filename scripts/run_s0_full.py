@@ -11,7 +11,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any, Dict, List, Sequence, Set
+from typing import Any, Dict, List, Optional, Sequence, Set, Tuple
 
 import numpy as np
 
@@ -23,9 +23,9 @@ from sparc.data.build_dataset import (
     merge_memory_sources,
     write_stage0_outputs,
 )
-from sparc.data.purge import NPPurger, assert_zero_overlap
+from sparc.data.purge import NPPurger, apply_memory_gate, assert_zero_overlap
 from sparc.data.schema import CensorFlag, Domain, MemoryRecord, QueryRecord, TargetRecord
-from sparc.data.splits import SplitBuilder
+from sparc.data.splits import DegenerateSplitError, SplitBuilder
 
 
 def run_full_pipeline(
@@ -80,16 +80,35 @@ def run_full_pipeline(
 
     # ---------- 步骤 4：候选记忆池 + NP-purge ----------
     logger.info("== 步骤 4：ChEMBL/BindingDB 抽取 → NP-purge（先于一切） ==")
-    memory_candidates, memory_annotations, memory_report = _build_memory(
+    memory_candidates, memory_annotations, year_by_inchikey, memory_report = _build_memory(
         config, logger, selected, blacklist, annotator, outputs,
     )
     report["memory_extraction"] = memory_report
 
+    # 协议 A 的年份必须在划分（步骤 7）之前就位
+    queries = _backfill_query_years(queries, year_by_inchikey, logger)
+
     purger = NPPurger(blacklist, min_memory_per_target=hparams.retrieval.min_memory_view)
-    memory, purge_report = purger.purge(memory_candidates)
+    # 传入靶点全集，否则 |M_t| = 0 的靶点不会出现在 per_target_kept 里，
+    # 于是恰恰逃过为它设的闸门（§5.3）
+    memory, purge_report = purger.purge(memory_candidates, all_target_ids=selected.keys())
     report["np_purge"] = purge_report.to_dict()
     logger.info("NP-purge：%d → %d（清洗率 %.1f%%）",
                 purge_report.n_input, purge_report.n_kept, 100 * purge_report.np_purge_rate)
+
+    # ---------- 步骤 4b：§5.3 硬闸门（|M_t| < 200 ⇒ 降级或排除） ----------
+    # 必须在骨架家族与划分之前执行：被排除的靶点连同其查询一起离场，
+    # 否则它们会带着一个恒为 insufficient_memory（g̃ ≡ 0）的检索分支
+    # 进入 H1(b)/H3(b) 的靶点级分母，纯粹稀释信号。
+    selected, queries, memory, gate_summary = apply_memory_gate(
+        selected, purge_report, queries, memory)
+    # 闸门改的是 selected 的 tier，必须回写进 targets —— targets.yaml 是从它落盘的，
+    # 不回写的话降级/排除只存在于内存里，后续阶段读到的仍是旧 tier。
+    targets = {**targets, **selected}
+    report["memory_gate"] = gate_summary
+    logger.info("§5.3 闸门后：靶点 %d 个（排除 %d）、查询 %d 条、记忆 %d 条",
+                sum(1 for r in selected.values() if r.tier in ("tier1", "tier2")),
+                gate_summary["n_excluded"], len(queries), len(memory))
 
     # ---------- 步骤 5：骨架家族 ----------
     logger.info("== 步骤 5：骨架家族（四条规则） ==")
@@ -115,8 +134,13 @@ def run_full_pipeline(
             splits[protocol] = assignment
             split_summary[protocol] = {"counts": assignment.counts(), "units": assignment.unit_counts(),
                                        "fingerprint": assignment.fingerprint}
-        except ValueError as exc:
-            logger.warning("协议 %s 划分失败：%s", protocol, exc)
+        except (ValueError, DegenerateSplitError) as exc:
+            # 协议 S 是主协议，全部主结果都建立在它上面 —— 它退化就没有实验可做。
+            # T/A/X 只进 Table 3 的压力测试，失败记录下来继续。
+            if protocol == "S":
+                logger.error("主协议 S 划分失败，Stage 0 终止：%s", exc)
+                raise
+            logger.warning("协议 %s 划分失败（Table 3 该行将缺失）：%s", protocol, exc)
             split_summary[protocol] = {"error": str(exc)}
     report["splits"] = split_summary
 
@@ -161,7 +185,7 @@ def _build_queries(loader, selected, per_target_compounds, key_to_smiles, by_inc
     organisms = blacklist.load_lotus_organisms(config.paths.file("lotus_gz", "lotus_dir"), rank="genus")
 
     grouped = defaultdict(list)
-    years = {}
+    refs: Dict[Tuple[str, str], str] = {}
     flags = defaultdict(list)
     structures = loader.load_structures()
     np_to_key = {np_id: rec["inchikey"] for np_id, rec in structures.items()}
@@ -184,9 +208,14 @@ def _build_queries(loader, selected, per_target_compounds, key_to_smiles, by_inc
             continue
         grouped[(target_id, key)].append(pact)
         flags[(target_id, key)].append(CensorFlag(data_cfg.censor_flag(row.get("activity_relation", "="))))
+        # NPASS 只给 ref_id / ref_id_type（多为 PMID），**没有年份列**。
+        # 年份在 _build_memory 之后由 ChEMBL 的 docs.year 按 InChIKey 回填
+        # （事实 B：79.0% 的查询自带 ChEMBL ID）。这里只记来源，不再塞 None ——
+        # 旧代码 `years.setdefault(key, None)` 写的是字面 None，
+        # 于是协议 A 把所有查询归进同一个 "year_unknown" 桶而不报错。
         ref = row.get("ref_id", "")
         if ref.isdigit():
-            years.setdefault((target_id, key), None)
+            refs[(target_id, key)] = ref
 
     queries: List[QueryRecord] = []
     for (target_id, key), values in grouped.items():
@@ -205,10 +234,45 @@ def _build_queries(loader, selected, per_target_compounds, key_to_smiles, by_inc
             tautomer_family_id=ann.tautomer_family_id, murcko_smiles=ann.murcko_smiles,
             ortholog_group_id=target.ortholog_group_id,
             source_organism_family=organisms.get(key, "unknown"),
-            reference_year=years.get((target_id, key)),
+            reference_year=None,   # 由 _backfill_query_years() 在记忆库建好后回填
             n_source_records=len(values), is_glycoside=ann.is_glycoside,
         ))
+    logger.info("查询集自带 PMID 引用 %d/%d 条（NPASS 无年份列，年份改由 ChEMBL docs.year 回填）",
+                len(refs), len(queries))
     return queries
+
+
+def _backfill_query_years(queries, year_by_inchikey, logger) -> List[QueryRecord]:
+    """用 ChEMBL 的 ``docs.year`` 按 InChIKey 回填查询的 ``reference_year``。
+
+    NPASS 只给 ``ref_id``/``ref_id_type``（多为 PMID），没有年份列；而事实 B 说
+    **79.0% 的查询池自带 ChEMBL ID**，所以绝大多数查询分子在 ChEMBL 里有对应的
+    活性记录，可以直接取其最早发表年份。
+
+    这是协议 A（时序外推，§6.1）唯一的年份来源。修复前 ``reference_year`` 恒为
+    ``None``，:meth:`SplitAssigner._unit_function` 于是把**所有**查询归进同一个
+    ``"year_unknown"`` 桶 —— 划分退化成一个单位，而且不报错。
+
+    Args:
+        queries: 待回填的查询集。
+        year_by_inchikey: ``{inchikey: 最早年份}``，来自 ChEMBL 原始活性流。
+        logger: 日志器。
+
+    Returns:
+        回填后的查询集（新对象；``QueryRecord`` 是 frozen dataclass）。
+    """
+    filled = [QueryRecord(**{**q.__dict__,
+                             "reference_year": year_by_inchikey.get(q.inchikey)})
+              for q in queries]
+    n_known = sum(1 for q in filled if q.reference_year is not None)
+    coverage = n_known / len(filled) if filled else 0.0
+    logger.info("查询年份回填：%d/%d（%.1f%%）有年份", n_known, len(filled), coverage * 100)
+    if filled and coverage < 0.50:
+        logger.warning(
+            "查询年份覆盖 %.1f%% < 50%%：协议 A（时序外推）的划分单位会被 "
+            "\"year_unknown\" 主导，Table 3 的该行不可信。SplitAssigner 会在超限时 fail hard。",
+            coverage * 100)
+    return filled
 
 
 def _build_memory(config, logger, selected, blacklist, annotator, outputs):
@@ -238,9 +302,26 @@ def _build_memory(config, logger, selected, blacklist, annotator, outputs):
     annotations = annotator.annotate_many(smiles_list)
     by_inchikey = {ann.inchikey: ann for ann in annotations.values()}
 
+    # 供 _backfill_query_years() 用：同一分子在多条记录里出现时取最早年份。
+    # 走 annotations 把原始 SMILES 映成标准 InChIKey，才能与查询集对上。
+    year_by_inchikey: Dict[str, int] = {}
+    for record in raw:
+        if record.year is None:
+            continue
+        ann = annotations.get(record.smiles)
+        if ann is None:
+            continue
+        current = year_by_inchikey.get(ann.inchikey)
+        if current is None or record.year < current:
+            year_by_inchikey[ann.inchikey] = record.year
+    logger.info("ChEMBL 年份索引：%d 个 InChIKey 有发表年份", len(year_by_inchikey))
+
     molecular_weights: Dict[str, float] = {}
     memory, unit_report, qc = merge_memory_sources(raw, annotations, target_by_uniprot, config, molecular_weights)
-    return memory, by_inchikey, {"n_raw": len(raw), "unit_conversion": unit_report.to_dict(), "qc": qc}
+    return memory, by_inchikey, year_by_inchikey, {
+        "n_raw": len(raw), "unit_conversion": unit_report.to_dict(), "qc": qc,
+        "n_inchikey_with_year": len(year_by_inchikey),
+    }
 
 
 def _assign_scaffold_families(queries, memory, query_annotations, memory_annotations, config, logger):

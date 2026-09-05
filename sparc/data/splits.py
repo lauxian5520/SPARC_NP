@@ -41,6 +41,14 @@ SPLIT_TEST = "test"
 ALL_SPLITS = (SPLIT_TRAIN, SPLIT_INNER, SPLIT_CALIB, SPLIT_TEST)
 
 
+class DegenerateSplitError(RuntimeError):
+    """划分已退化成单一单位 —— 留出集名存实亡。
+
+    与 :class:`~sparc.chem.scaffold.ScaffoldPercolationError` 是同一类守卫：
+    两者都拦"看起来跑通了、其实什么都没留出"的静默失败。
+    """
+
+
 @dataclass
 class SplitAssignment:
     """一次划分的结果。"""
@@ -149,6 +157,7 @@ class SplitBuilder:
         for unit in unit_of.values():
             unit_sizes[unit] += 1
 
+        self._assert_units_are_informative(protocol, unit_of, unit_sizes)
         unit_split = self._assign_units(units, unit_sizes)
         assignment = SplitAssignment(
             protocol=protocol,
@@ -163,6 +172,50 @@ class SplitBuilder:
             protocol, assignment.counts(), assignment.unit_counts(), assignment.fingerprint[:12],
         )
         return assignment
+
+    # ------------------------------------------------------------------
+    # 单个划分单位允许占据的最大样本比例。超过它，"留出"就不再是留出。
+    MAX_UNIT_FRAC = 0.80
+
+    def _assert_units_are_informative(
+        self,
+        protocol: str,
+        unit_of: Dict[str, str],
+        unit_sizes: Dict[str, int],
+    ) -> None:
+        """拒绝已经退化成单一桶的划分。
+
+        划分以单位为原子：一个占了绝大多数样本的单位只能整体落到某一侧，
+        于是 train/test 退化，而**没有任何断言会报错** —— 样本数、指纹、
+        零重叠断言全部照常通过。这正是骨架家族渗流（§6.1）暴露出来的失败模式，
+        协议 A 上则由 ``reference_year`` 缺失触发：所有查询归进 ``"year_unknown"``。
+
+        Args:
+            protocol: 协议名，用于错误信息。
+            unit_of: ``{query_id: 划分单位}``。
+            unit_sizes: ``{划分单位: 样本数}``。
+
+        Raises:
+            DegenerateSplitError: 最大单位占比超过 :attr:`MAX_UNIT_FRAC`。
+        """
+        n_total = len(unit_of)
+        if n_total == 0:
+            return
+        largest_unit, largest_n = max(unit_sizes.items(), key=lambda kv: kv[1])
+        frac = largest_n / n_total
+        if frac <= self.MAX_UNIT_FRAC:
+            return
+        hint = ""
+        if protocol == "A" and largest_unit == "year_unknown":
+            hint = ("\n协议 A 的年份来自 QueryRecord.reference_year。全部为 year_unknown "
+                    "说明它没有被回填 —— 见 run_s0_full._backfill_query_years()，"
+                    "年份取自 ChEMBL 的 docs.year。")
+        raise DegenerateSplitError(
+            f"协议 {protocol} 的划分已退化：最大单位 '{largest_unit}' 占 "
+            f"{largest_n}/{n_total} = {frac:.1%}，超过上限 {self.MAX_UNIT_FRAC:.0%}。"
+            f"划分以单位为原子，这意味着它只能整体落到某一侧，train/test 名存实亡。"
+            f"共 {len(unit_sizes)} 个单位。" + hint
+        )
 
     # ------------------------------------------------------------------
     @staticmethod
