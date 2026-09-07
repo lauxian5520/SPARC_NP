@@ -2,7 +2,7 @@
 
 家族定义（v1.0 修订，**四把钥匙缺一不可**）：
     节点 = 分子；以下任一成立即连边
-      1. 通用 Murcko 骨架的 ECFP4 Tanimoto ≥ 0.50
+      1. 通用 Murcko 骨架的 ECFP4 Tanimoto ≥ 0.70（v1.0.3 起；0.50 会渗流坍缩到 99.4%）
       2. ``inchikey_skeleton`` 相同（InChIKey 前 14 位）
       3. ``deglyco_core_hash`` 相同（脱糖母核）      ← v1.0 新增
       4. ``tautomer_family_id`` 相同                 ← v1.0 新增

@@ -355,6 +355,9 @@ def _assign_scaffold_families(queries, memory, query_annotations, memory_annotat
     result = ScaffoldFamilyBuilder(
         split_cfg.murcko_tanimoto_threshold, split_cfg.use_inchikey_skeleton,
         split_cfg.use_deglyco_core, split_cfg.use_tautomer_family,
+        # 渗流护栏必须从冻结配置取值：之前漏传，靠类默认值恰好也是 0.20 才没出事，
+        # 一旦有人在 frozen_hparams.yaml 里收紧这个阈值，冻结哈希会变而行为不会变。
+        max_largest_family_frac=split_cfg.max_largest_family_frac,
     ).build(keys, murcko_fps)
 
     queries = [QueryRecord(**{**q.__dict__, "scaffold_family_id": result.family_of.get(q.inchikey, "")})
